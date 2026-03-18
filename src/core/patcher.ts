@@ -490,6 +490,16 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
         search: '"lines from ",L7.default.createElement(v,{bold:!0},A.displayPath)," in"," ",A.ideName',
         replace: '"行，來自 ",L7.default.createElement(v,{bold:!0},A.displayPath),"，在 ",A.ideName',
       },
+      // ── Permission dialog: Accept button (unsafe string, needs postPatch) ──
+      {
+        search: '" Accept  "',
+        replace: '" 允許  "',
+      },
+      // ── Permission dialog: Deny tab title (unsafe string, needs postPatch) ──
+      {
+        search: 'title:"Deny"',
+        replace: 'title:"拒絕"',
+      },
       // ── Tool badge: Reading/Read ternaries ──
       {
         search: '?"Reading":"reading"',
