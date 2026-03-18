@@ -217,7 +217,10 @@
     "tab_switch_esc_close": "(tab 切換，esc 關閉)",
     "press_esc_close": "(按 esc 關閉)",
     "double_tap_esc": "按兩下 esc 清除輸入",
-    "describe_issue": "請在下方描述問題："
+    "describe_issue": "請在下方描述問題：",
+    "type_to_filter": "輸入以篩選",
+    "type_to_search": "輸入以搜尋",
+    "enter_session_name": "輸入新會話名稱"
   },
   "tools": {
     "view_tools": "🧰 查看工具",
@@ -317,7 +320,9 @@
     "subagent_own_context": "每個子 Agent 有自己的上下文視窗、系統提示詞和工具。",
     "not_set": "未設定",
     "not_authenticated": "未驗證",
-    "learn_more": "了解更多："
+    "learn_more": "了解更多：",
+    "backgrounded_agent": "背景代理",
+    "environment_variables": "環境變數"
   },
   "billing": {
     "pro_max_team": "Pro、Max、Team 或 Enterprise",

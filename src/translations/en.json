@@ -217,7 +217,10 @@
     "tab_switch_esc_close": "(tab to switch, esc to close)",
     "press_esc_close": "(press esc to close)",
     "double_tap_esc": "double tap esc to clear input",
-    "describe_issue": "Describe the issue below:"
+    "describe_issue": "Describe the issue below:",
+    "type_to_filter": "Type to filter",
+    "type_to_search": "Type to search",
+    "enter_session_name": "Enter new session name"
   },
   "tools": {
     "view_tools": "🧰 View tools",
@@ -317,7 +320,9 @@
     "subagent_own_context": "Each subagent has its own context window, custom system prompt, and specific tools.",
     "not_set": "not set",
     "not_authenticated": "not authenticated",
-    "learn_more": "Learn more:"
+    "learn_more": "Learn more:",
+    "backgrounded_agent": "Backgrounded agent",
+    "environment_variables": "Environment Variables"
   },
   "billing": {
     "pro_max_team": "Pro, Max, Team, or Enterprise",
