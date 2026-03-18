@@ -990,7 +990,13 @@
     "guest_passes": "访客通行证目前不可使用。",
     "cc_review_new_prs": "Claude Code Review — 新 PR 自动代码审查",
     "pr_assistant_workflow": "Claude PR 助手工作流",
-    "cc_review_workflow": "Claude Code Review 工作流"
+    "cc_review_workflow": "Claude Code Review 工作流",
+    "effort_high_this_turn": "本轮运算强度已设为 high",
+    "browser_open_auth": " 将打开浏览器窗口以进行验证",
+    "component_not_available": "• 远程插件无法提供组件摘要",
+    "components_discovered": "• 组件将在安装时被发现",
+    "python_api_iterm": "• Python API 已在 iTerm2 偏好设置中启用",
+    "restart_iterm": "• 启用后可能需要重新启动 iTerm2"
   },
   "tips": {
     "tip_ide": "提示：可在 /config 或使用 --ide 启用自动连接 IDE",

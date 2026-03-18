@@ -995,7 +995,8 @@
     "guest_passes": "Guest passes are not currently available.",
     "cc_review_new_prs": "Claude Code Review - Automated code review on new PRs",
     "pr_assistant_workflow": "Claude PR Assistant workflow",
-    "cc_review_workflow": "Claude Code Review workflow"
+    "cc_review_workflow": "Claude Code Review workflow",
+    "effort_high_this_turn": "Effort set to high for this turn"
   },
   "tips": {
     "tip_ide": "Tip: You can enable auto-connect to IDE in /config or with the --ide flag",

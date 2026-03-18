@@ -263,6 +263,11 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
         search: '`✻ [Claude Code]',
         replace: '`☯ [Claude Code]',
       },
+      // ── Image in clipboard: template literal ──
+      {
+        search: '`Image in clipboard · ${Ty1.displayText} to paste`',
+        replace: '`剪貼簿有圖片 · ${Ty1.displayText} 貼上`',
+      },
     ];
   }
 
@@ -323,6 +328,11 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
       {
         search: '`✻ [Claude Code]',
         replace: '`☯ [Claude Code]',
+      },
+      // ── Image in clipboard: template literal ──
+      {
+        search: '`Image in clipboard · ${Ty1.displayText} to paste`',
+        replace: '`剪贴板有图片 · ${Ty1.displayText} 粘贴`',
       },
     ];
   }

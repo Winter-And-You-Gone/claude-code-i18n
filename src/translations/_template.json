@@ -992,7 +992,8 @@
     "guest_passes": "",
     "cc_review_new_prs": "",
     "pr_assistant_workflow": "",
-    "cc_review_workflow": ""
+    "cc_review_workflow": "",
+    "effort_high_this_turn": ""
   },
   "tips": {
     "tip_ide": "",

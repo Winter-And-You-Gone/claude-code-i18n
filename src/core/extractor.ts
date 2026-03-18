@@ -746,6 +746,7 @@ export const KNOWN_STRINGS: Record<string, Record<string, string>> = {
     how_handle: 'How would you like to handle this?',
     would_like_to: 'Would you like to:',
     choose_option: 'Choose an option:',
+    effort_high_this_turn: 'Effort set to high for this turn',
   },
 
   tips: {

@@ -995,7 +995,8 @@
     "guest_passes": "訪客通行證目前不可使用。",
     "cc_review_new_prs": "Claude Code Review — 新 PR 自動程式碼審查",
     "pr_assistant_workflow": "Claude PR 助手工作流程",
-    "cc_review_workflow": "Claude Code Review 工作流程"
+    "cc_review_workflow": "Claude Code Review 工作流程",
+    "effort_high_this_turn": "本輪運算強度已設為 high"
   },
   "tips": {
     "tip_ide": "提示：可在 /config 或使用 --ide 啟用自動連接 IDE",
