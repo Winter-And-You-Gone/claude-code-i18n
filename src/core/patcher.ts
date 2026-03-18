@@ -510,6 +510,21 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
         search: '" Directories "',
         replace: '" 目錄 "',
       },
+      // ── Tool header: Read userFacingName (1 occ, safe) ──
+      {
+        search: 'return"Read"}function',
+        replace: 'return"讀取"}function',
+      },
+      // ── Tool header: Bash userFacingName (2 occ, both UI) ──
+      {
+        search: 'return"Bash"',
+        replace: 'return"終端指令"',
+      },
+      // ── Tool header: Edit file title (2 occ, both UI) ──
+      {
+        search: '"Edit file"',
+        replace: '"編輯檔案"',
+      },
       // ── Tool badge: Reading/Read ternaries ──
       {
         search: '?"Reading":"reading"',
