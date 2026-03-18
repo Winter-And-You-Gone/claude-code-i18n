@@ -322,6 +322,231 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
         search: '"Read output ("',
         replace: '"讀取輸出 ("',
       },
+      // ── Template literal: thought for Ns ──
+      {
+        search: '`thought for ${Math.max(1,Math.round(G/1000))}s`',
+        replace: '`思考了 ${Math.max(1,Math.round(G/1000))}s`',
+      },
+      // ── Template literal: +N lines ──
+      {
+        search: '`+${X} lines`',
+        replace: '`+${X} 行`',
+      },
+      {
+        search: '+${q} lines]`',
+        replace: '+${q} 行]`',
+      },
+      {
+        search: '+${H} lines ',
+        replace: '+${H} 行 ',
+      },
+      {
+        search: '+${j} lines',
+        replace: '+${j} 行',
+      },
+      // ── Template literal: ↑↓ more files ──
+      {
+        search: '` ↑ ${w} more file${w!==1?"s":""}`',
+        replace: '` ↑ 還有 ${w} 個檔案`',
+      },
+      {
+        search: '` ↓ ${K.length-O} more file${K.length-O!==1?"s":""}`',
+        replace: '` ↓ 還有 ${K.length-O} 個檔案`',
+      },
+      // ── Template literal: still running ──
+      {
+        search: '` · ${O} still running `',
+        replace: '` · ${O} 仍在執行 `',
+      },
+      // ── Template literal: model set to ──
+      {
+        search: '` · model set to ${Dk}`',
+        replace: '` · 模型設為 ${Dk}`',
+      },
+      // ── Template literal: already installed ──
+      {
+        search: '` · ${z6.installedCount} already installed`',
+        replace: '` · ${z6.installedCount} 已安裝`',
+      },
+      // ── Template literal: collapse/show all ──
+      {
+        search: '` · ${_} to ${K?"collapse":"show all"}`',
+        replace: '` · ${_} ${K?"收合":"展開全部"}`',
+      },
+      // ── Template literal: to scroll ──
+      {
+        search: '` · ${w}/${O} to scroll`',
+        replace: '` · ${w}/${O} 捲動`',
+      },
+      // ── Template literal: ctrl+e to hide/explain ──
+      {
+        search: '` · ctrl+e to ${J.visible?"hide":"explain"}`',
+        replace: '` · ctrl+e ${J.visible?"隱藏":"解說"}`',
+      },
+      // ── Template literal: Share earn ──
+      {
+        search: '`Share Claude Code and earn ${K86(K)} of extra usage · /passes`',
+        replace: '`分享 Claude Code 可獲得 ${K86(K)} 額外用量 · /passes`',
+      },
+      // ── Template literal: free guest passes ──
+      {
+        search: '`You have free guest passes to share · ${q("/passes")}`',
+        replace: '`你有免費邀請碼可以分享 · ${q("/passes")}`',
+      },
+      // ── Template literal: Tip access ──
+      {
+        search: '`Tip: You have access to ${q.name} with ${q.multiplier}x more context`',
+        replace: '`提示：你可使用 ${q.name}，擁有 ${q.multiplier} 倍的上下文`',
+      },
+      // ── Template literal: Tip dynamic ──
+      {
+        search: '`Tip: ${j6}`',
+        replace: '`提示：${j6}`',
+      },
+      // ── Template literal: Editing ──
+      {
+        search: '`Editing ${q}`',
+        replace: '`編輯 ${q}`',
+      },
+      // ── Template literal: auto-compact ──
+      {
+        search: '`${M}% until auto-compact`',
+        replace: '`${M}% 即將自動壓縮`',
+      },
+      // ── Template literal: carried from compact ──
+      {
+        search: '` (${K} carried from compact boundary)`',
+        replace: '` (${K} 從壓縮邊界帶入)`',
+      },
+      // ── Template literal: In/Out tokens ──
+      {
+        search: '`  In: ${vq($.inputTokens)} · Out: ${vq($.outputTokens)}`',
+        replace: '`  輸入: ${vq($.inputTokens)} · 輸出: ${vq($.outputTokens)}`',
+      },
+      // ── Template literal: per Mtok ──
+      {
+        search: '`${ct7(A.inputTokens)}/${ct7(A.outputTokens)} per Mtok`',
+        replace: '`${ct7(A.inputTokens)}/${ct7(A.outputTokens)} / 百萬 token`',
+      },
+      // ── Ternary: will not work / may conflict ──
+      {
+        search: '"will not work":"may conflict"',
+        replace: '"無法運作":"可能衝突"',
+      },
+      // ── Template literal: Branched conversation ──
+      {
+        search: '`Branched conversation${P}. You are now in the branch.${W}`',
+        replace: '`已建立對話分支${P}。你現在在分支中。${W}`',
+      },
+      {
+        search: '`Branched conversation${P}. Resume with: /resume ${_}`',
+        replace: '`已建立對話分支${P}。恢復請用：/resume ${_}`',
+      },
+      // ── Running command: fixed string + template ──
+      {
+        search: 'return"Running command"',
+        replace: 'return"執行指令"',
+      },
+      {
+        search: '`Running ${A.description??J3(A.command,nI)}`',
+        replace: '`執行 ${A.description??J3(A.command,nI)}`',
+      },
+      // ── Template literal: Next task ──
+      {
+        search: '`Next: ${B.subject}`',
+        replace: '`下一個：${B.subject}`',
+      },
+      // ── Share: variant without /passes ──
+      {
+        search: '`Share Claude Code and earn ${K86(A)} of extra usage`',
+        replace: '`分享 Claude Code 可獲得 ${K86(A)} 額外用量`',
+      },
+      // ── Share: variant with q() wrapper ──
+      {
+        search: '`Share Claude Code and earn ${q(K86(K))} of extra usage · ${q("/passes")}`',
+        replace: '`分享 Claude Code 可獲得 ${q(K86(K))} 額外用量 · ${q("/passes")}`',
+      },
+      // ── Share: fallback text ──
+      {
+        search: '"Share Claude Code with friends"',
+        replace: '"與朋友分享 Claude Code"',
+      },
+      // ── Branched conversation: default return ──
+      {
+        search: 'return"Branched conversation"',
+        replace: 'return"已建立對話分支"',
+      },
+      // ── Tool badge: Reading/Read ternaries ──
+      {
+        search: '?"Reading":"reading"',
+        replace: '?"正在讀取":"正在讀取"',
+      },
+      {
+        search: '?"Read":"read"',
+        replace: '?"已讀取":"已讀取"',
+      },
+      // ── Plural: file/files (all variable forms) ──
+      {
+        search: '===1?"file":"files"',
+        replace: '===1?"個檔案":"個檔案"',
+      },
+      // ── Plural: commit/commits ──
+      {
+        search: '===1?"commit":"commits"',
+        replace: '===1?"個提交":"個提交"',
+      },
+      // ── Plural: occurrence/occurrences ──
+      {
+        search: '===1?"occurrence":"occurrences"',
+        replace: '===1?"個結果":"個結果"',
+      },
+      // ── Plural: issue/issues ──
+      {
+        search: '===1?"issue":"issues"',
+        replace: '===1?"個問題":"個問題"',
+      },
+      // ── uncommitted (before file/commit count) ──
+      {
+        search: ' uncommitted ${',
+        replace: ' 未提交 ${',
+      },
+      // ── Tool badge: Searching/Searched ternaries ──
+      {
+        search: '?"Searching for":"searching for"',
+        replace: '?"正在搜尋":"正在搜尋"',
+      },
+      {
+        search: '?"Searched for":"searched for"',
+        replace: '?"已搜尋":"已搜尋"',
+      },
+      // ── Tool badge: pattern/patterns ──
+      {
+        search: '${A===1?"pattern":"patterns"}',
+        replace: '${A===1?"個模式":"個模式"}',
+      },
+      {
+        search: 'L===1?"pattern":"patterns"',
+        replace: 'L===1?"個模式":"個模式"',
+      },
+      // ── Spinner: thinking label ──
+      {
+        search: '?`thinking${f}`',
+        replace: '?`思考中${f}`',
+      },
+      // ── Tip: /mobile ──
+      {
+        search: '"/mobile to use Claude Code from the Claude app on your phone"',
+        replace: '"/mobile 從手機上的 Claude App 使用 Claude Code"',
+      },
+      // ── Collapse: ternary (translation map already replaced "→ to expand" → "→ 展開") ──
+      {
+        search: 'Gq?"← to collapse":"→ 展開"',
+        replace: 'Gq?"← 收合":"→ 展開"',
+      },
+      {
+        search: 'return"← to collapse"',
+        replace: 'return"← 收合"',
+      },
     ];
   }
 
@@ -441,6 +666,231 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
       {
         search: '"Read output ("',
         replace: '"读取输出 ("',
+      },
+      // ── Template literal: thought for Ns ──
+      {
+        search: '`thought for ${Math.max(1,Math.round(G/1000))}s`',
+        replace: '`思考了 ${Math.max(1,Math.round(G/1000))}s`',
+      },
+      // ── Template literal: +N lines ──
+      {
+        search: '`+${X} lines`',
+        replace: '`+${X} 行`',
+      },
+      {
+        search: '+${q} lines]`',
+        replace: '+${q} 行]`',
+      },
+      {
+        search: '+${H} lines ',
+        replace: '+${H} 行 ',
+      },
+      {
+        search: '+${j} lines',
+        replace: '+${j} 行',
+      },
+      // ── Template literal: ↑↓ more files ──
+      {
+        search: '` ↑ ${w} more file${w!==1?"s":""}`',
+        replace: '` ↑ 还有 ${w} 个文件`',
+      },
+      {
+        search: '` ↓ ${K.length-O} more file${K.length-O!==1?"s":""}`',
+        replace: '` ↓ 还有 ${K.length-O} 个文件`',
+      },
+      // ── Template literal: still running ──
+      {
+        search: '` · ${O} still running `',
+        replace: '` · ${O} 仍在执行 `',
+      },
+      // ── Template literal: model set to ──
+      {
+        search: '` · model set to ${Dk}`',
+        replace: '` · 模型设为 ${Dk}`',
+      },
+      // ── Template literal: already installed ──
+      {
+        search: '` · ${z6.installedCount} already installed`',
+        replace: '` · ${z6.installedCount} 已安装`',
+      },
+      // ── Template literal: collapse/show all ──
+      {
+        search: '` · ${_} to ${K?"collapse":"show all"}`',
+        replace: '` · ${_} ${K?"收起":"展开全部"}`',
+      },
+      // ── Template literal: to scroll ──
+      {
+        search: '` · ${w}/${O} to scroll`',
+        replace: '` · ${w}/${O} 滚动`',
+      },
+      // ── Template literal: ctrl+e to hide/explain ──
+      {
+        search: '` · ctrl+e to ${J.visible?"hide":"explain"}`',
+        replace: '` · ctrl+e ${J.visible?"隐藏":"解释"}`',
+      },
+      // ── Template literal: Share earn ──
+      {
+        search: '`Share Claude Code and earn ${K86(K)} of extra usage · /passes`',
+        replace: '`分享 Claude Code 可获得 ${K86(K)} 额外用量 · /passes`',
+      },
+      // ── Template literal: free guest passes ──
+      {
+        search: '`You have free guest passes to share · ${q("/passes")}`',
+        replace: '`你有免费邀请码可以分享 · ${q("/passes")}`',
+      },
+      // ── Template literal: Tip access ──
+      {
+        search: '`Tip: You have access to ${q.name} with ${q.multiplier}x more context`',
+        replace: '`提示：你可使用 ${q.name}，拥有 ${q.multiplier} 倍的上下文`',
+      },
+      // ── Template literal: Tip dynamic ──
+      {
+        search: '`Tip: ${j6}`',
+        replace: '`提示：${j6}`',
+      },
+      // ── Template literal: Editing ──
+      {
+        search: '`Editing ${q}`',
+        replace: '`编辑 ${q}`',
+      },
+      // ── Template literal: auto-compact ──
+      {
+        search: '`${M}% until auto-compact`',
+        replace: '`${M}% 即将自动压缩`',
+      },
+      // ── Template literal: carried from compact ──
+      {
+        search: '` (${K} carried from compact boundary)`',
+        replace: '` (${K} 从压缩边界带入)`',
+      },
+      // ── Template literal: In/Out tokens ──
+      {
+        search: '`  In: ${vq($.inputTokens)} · Out: ${vq($.outputTokens)}`',
+        replace: '`  输入: ${vq($.inputTokens)} · 输出: ${vq($.outputTokens)}`',
+      },
+      // ── Template literal: per Mtok ──
+      {
+        search: '`${ct7(A.inputTokens)}/${ct7(A.outputTokens)} per Mtok`',
+        replace: '`${ct7(A.inputTokens)}/${ct7(A.outputTokens)} / 百万 token`',
+      },
+      // ── Ternary: will not work / may conflict ──
+      {
+        search: '"will not work":"may conflict"',
+        replace: '"无法运作":"可能冲突"',
+      },
+      // ── Template literal: Branched conversation ──
+      {
+        search: '`Branched conversation${P}. You are now in the branch.${W}`',
+        replace: '`已建立对话分支${P}。你现在在分支中。${W}`',
+      },
+      {
+        search: '`Branched conversation${P}. Resume with: /resume ${_}`',
+        replace: '`已建立对话分支${P}。恢复请用：/resume ${_}`',
+      },
+      // ── Running command: fixed string + template ──
+      {
+        search: 'return"Running command"',
+        replace: 'return"执行指令"',
+      },
+      {
+        search: '`Running ${A.description??J3(A.command,nI)}`',
+        replace: '`执行 ${A.description??J3(A.command,nI)}`',
+      },
+      // ── Template literal: Next task ──
+      {
+        search: '`Next: ${B.subject}`',
+        replace: '`下一个：${B.subject}`',
+      },
+      // ── Share: variant without /passes ──
+      {
+        search: '`Share Claude Code and earn ${K86(A)} of extra usage`',
+        replace: '`分享 Claude Code 可获得 ${K86(A)} 额外用量`',
+      },
+      // ── Share: variant with q() wrapper ──
+      {
+        search: '`Share Claude Code and earn ${q(K86(K))} of extra usage · ${q("/passes")}`',
+        replace: '`分享 Claude Code 可获得 ${q(K86(K))} 额外用量 · ${q("/passes")}`',
+      },
+      // ── Share: fallback text ──
+      {
+        search: '"Share Claude Code with friends"',
+        replace: '"与朋友分享 Claude Code"',
+      },
+      // ── Branched conversation: default return ──
+      {
+        search: 'return"Branched conversation"',
+        replace: 'return"已建立对话分支"',
+      },
+      // ── Tool badge: Reading/Read ternaries ──
+      {
+        search: '?"Reading":"reading"',
+        replace: '?"正在读取":"正在读取"',
+      },
+      {
+        search: '?"Read":"read"',
+        replace: '?"已读取":"已读取"',
+      },
+      // ── Plural: file/files (all variable forms) ──
+      {
+        search: '===1?"file":"files"',
+        replace: '===1?"个文件":"个文件"',
+      },
+      // ── Plural: commit/commits ──
+      {
+        search: '===1?"commit":"commits"',
+        replace: '===1?"个提交":"个提交"',
+      },
+      // ── Plural: occurrence/occurrences ──
+      {
+        search: '===1?"occurrence":"occurrences"',
+        replace: '===1?"个结果":"个结果"',
+      },
+      // ── Plural: issue/issues ──
+      {
+        search: '===1?"issue":"issues"',
+        replace: '===1?"个问题":"个问题"',
+      },
+      // ── uncommitted (before file/commit count) ──
+      {
+        search: ' uncommitted ${',
+        replace: ' 未提交 ${',
+      },
+      // ── Tool badge: Searching/Searched ternaries ──
+      {
+        search: '?"Searching for":"searching for"',
+        replace: '?"正在搜索":"正在搜索"',
+      },
+      {
+        search: '?"Searched for":"searched for"',
+        replace: '?"已搜索":"已搜索"',
+      },
+      // ── Tool badge: pattern/patterns ──
+      {
+        search: '${A===1?"pattern":"patterns"}',
+        replace: '${A===1?"个模式":"个模式"}',
+      },
+      {
+        search: 'L===1?"pattern":"patterns"',
+        replace: 'L===1?"个模式":"个模式"',
+      },
+      // ── Spinner: thinking label ──
+      {
+        search: '?`thinking${f}`',
+        replace: '?`思考中${f}`',
+      },
+      // ── Tip: /mobile ──
+      {
+        search: '"/mobile to use Claude Code from the Claude app on your phone"',
+        replace: '"/mobile 从手机上的 Claude App 使用 Claude Code"',
+      },
+      // ── Collapse: ternary (translation map already replaced "→ to expand" → "→ 展开") ──
+      {
+        search: 'Gq?"← to collapse":"→ 展开"',
+        replace: 'Gq?"← 收起":"→ 展开"',
+      },
+      {
+        search: 'return"← to collapse"',
+        replace: 'return"← 收起"',
       },
     ];
   }
