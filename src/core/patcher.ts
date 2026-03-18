@@ -476,6 +476,20 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
         search: 'return"Branched conversation"',
         replace: 'return"已建立對話分支"',
       },
+      // ── Tool badge: Wrote N lines to (createElement split) ──
+      {
+        search: '"Wrote ",H," lines to"',
+        replace: '"寫入 ",H," 行至"',
+      },
+      {
+        search: '"Wrote ",FK.createElement(v,{bold:!0},H)," lines to"',
+        replace: '"寫入 ",FK.createElement(v,{bold:!0},H)," 行至"',
+      },
+      // ── Tool badge: Selected N lines from file in IDE ──
+      {
+        search: '"lines from ",L7.default.createElement(v,{bold:!0},A.displayPath)," in"," ",A.ideName',
+        replace: '"行，來自 ",L7.default.createElement(v,{bold:!0},A.displayPath),"，在 ",A.ideName',
+      },
       // ── Tool badge: Reading/Read ternaries ──
       {
         search: '?"Reading":"reading"',
