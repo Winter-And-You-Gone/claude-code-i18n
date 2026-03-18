@@ -193,6 +193,18 @@ export interface TranslationStrings {
   };
 }
 
+export interface CommandStrings {
+  [key: string]: string;
+}
+
+export interface SubcommandStrings {
+  [key: string]: string;
+}
+
+export interface ConfigStrings {
+  [key: string]: string;
+}
+
 export interface TranslationSchema {
   _meta: TranslationMeta;
   [category: string]: Record<string, string> | TranslationMeta;

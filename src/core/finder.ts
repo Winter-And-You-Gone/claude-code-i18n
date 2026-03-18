@@ -150,19 +150,47 @@ function readVersion(packageDir: string): string {
 }
 
 /**
+ * Find via native installer paths (~/.claude/).
+ * CC is migrating from npm to a native installer that may place cli.js here.
+ */
+function findViaNativeInstaller(): string | null {
+  const home = os.homedir();
+  const candidates = [
+    path.join(home, '.claude', 'local', 'cli.js'),
+    path.join(home, '.claude', 'bin', 'cli.js'),
+    path.join(home, '.claude', 'lib', 'cli.js'),
+    // macOS native app support
+    '/Applications/Claude Code.app/Contents/Resources/cli.js',
+    path.join(home, 'Library', 'Application Support', 'claude-code', 'cli.js'),
+    // Linux native paths
+    path.join(home, '.local', 'share', 'claude-code', 'cli.js'),
+    '/opt/claude-code/cli.js',
+  ];
+
+  for (const candidate of candidates) {
+    if (fs.existsSync(candidate)) {
+      return candidate;
+    }
+  }
+  return null;
+}
+
+/**
  * Find Claude Code's cli.js installation path.
  *
  * Search order:
  * 1. `which claude` → follow symlink
- * 2. `npm root -g` → @anthropic-ai/claude-code/cli.js
- * 3. ~/.volta/ scan
- * 4. Common global node_modules paths
+ * 2. Native installer paths (~/.claude/)
+ * 3. `npm root -g` → @anthropic-ai/claude-code/cli.js
+ * 4. ~/.volta/ scan
+ * 5. Common global node_modules paths
  *
  * @throws Error with installation instructions if not found
  */
 export async function findClaudeCodeCli(): Promise<ClaudeCodeInfo> {
   const strategies = [
     findViaBinary,
+    findViaNativeInstaller,
     findViaNpmGlobal,
     findViaVolta,
     findViaCommonPaths,
@@ -205,6 +233,11 @@ export function getSearchPaths(): string[] {
   } catch { /* npm not available */ }
 
   paths.push(
+    // Native installer paths
+    path.join(home, '.claude', 'local', 'cli.js'),
+    path.join(home, '.claude', 'bin', 'cli.js'),
+    path.join(home, '.claude', 'lib', 'cli.js'),
+    // npm global paths
     '/usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js',
     '/opt/homebrew/lib/node_modules/@anthropic-ai/claude-code/cli.js',
     path.join(home, '.volta', 'tools', 'image', 'node'),

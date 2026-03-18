@@ -28,23 +28,32 @@ const UNSAFE_STRINGS: ReadonlySet<string> = new Set([
   'Ask',              // Wolfram Language function name list
   'Auto',             // Yoga layout engine enum value
   'Plan',             // Internal agentType identifier
-  'Initializing\u2026', // Near agentType context
-  'Built-in agents',  // Near encoding context
 
   // ── Conservative exclusions: scanner-flagged, kept for stability ──
   'Add Marketplace',
   'Install GitHub App',
   'Remote Control failed',
-  'Esc to cancel',
-  'Location: ',
-  'No conversations found to resume.',
-  'Source: ',
-  'No, exit',
-  'Esc to go back',
-  'Press any key to exit',
-  'Welcome to Claude Code',
-  'Installing\u2026',
-  'Running ',
+  'Location: ',       // HTTP Location header context
+  'Source: ',         // Mixed UI/protocol context
+  'Running ',         // Near shell exec context
+]);
+
+/**
+ * Strings that should always be replaced via replaceAll, even when
+ * they appear multiple times. These are confirmed UI-only strings
+ * that contextAwareReplace might miss because they sit in data arrays
+ * (no createElement/label context nearby).
+ */
+const WHITELIST_STRINGS: ReadonlySet<string> = new Set([
+  // try_suggestions — in plain data arrays, no createElement context
+  'fix lint errors',
+  'fix typecheck errors',
+  'how do I log an error?',
+  'create a util logging.py that...',
+  // spinner words with >1 occurrence (also appear in status contexts)
+  'Processing',
+  'Working',
+  'Creating',
 ]);
 
 export interface PatchState {
@@ -174,6 +183,172 @@ function replaceAll(source: string, search: string, replace: string): string {
 }
 
 /**
+ * Locale-specific post-patch replacements for strings that can't be handled
+ * by the translation map (apostrophe-split strings, template literals, symbols).
+ */
+interface PostPatchRule {
+  search: string;
+  replace: string;
+}
+
+function getPostPatchRules(locale: string): PostPatchRule[] {
+  const baseLang = locale.replace(/-technical$/, '');
+
+  if (baseLang === 'zh-TW') {
+    return [
+      // ── Safety page: apostrophe-split "what's in this folder" ──
+      {
+        search: '"Quick safety check: Is this a project you created or one you trust? (Like your own code, a well-known open source project, or work from your team). If not, take a moment to review what","\'","s in this folder first."',
+        replace: '"快速安全檢查：這是你建立或信任的專案嗎？（例如你自己的程式碼、知名開源專案、或團隊的工作）如果不是，請先看一下這個資料夾的內容。"',
+      },
+      // ── Safety page: apostrophe-split "Claude Code'll be able to" ──
+      {
+        search: '"Claude Code","\'","ll be able to read, edit, and execute files here."',
+        replace: '"Claude Code 將可以讀取、編輯和執行這裡的檔案。"',
+      },
+      // ── Try prefix in template literal ──
+      {
+        search: 'return`Try "${eJ(K)}"`',
+        replace: 'return`試試看 "${eJ(K)}"`',
+      },
+      // ── Spinner: ✻ symbol → ☯ ──
+      {
+        search: 'te="✻"',
+        replace: 'te="☯"',
+      },
+      // ── Spinner frames: replace with taichi breathing sequence ──
+      {
+        search: '["·","✢","✳","✶","✻","✽"]',
+        replace: '[" ","·","∘","○","☯","○","∘","·"]',
+      },
+      {
+        search: '["·","✢","✳","✶","✻","*"]',
+        replace: '[" ","·","∘","○","☯","○","∘","·"]',
+      },
+      {
+        search: '["·","✢","*","✶","✻","✽"]',
+        replace: '[" ","·","∘","○","☯","○","∘","·"]',
+      },
+      // ── ✻ icon in UI strings → ☯ ──
+      {
+        search: '"✻ "',
+        replace: '"☯ "',
+      },
+      {
+        search: '"[✻] [✻] [✻]"',
+        replace: '"[☯] [☯] [☯]"',
+      },
+      {
+        search: '"[✻]"',
+        replace: '"[☯]"',
+      },
+      {
+        search: '"✻"',
+        replace: '"☯"',
+      },
+      // ── Remaining ✻ in compound strings ──
+      {
+        search: '"✻ Conversation compacted ("',
+        replace: '"☯ 對話已壓縮（"',
+      },
+      {
+        search: '" ✻"',
+        replace: '" ☯"',
+      },
+      {
+        search: '" ) CC ✻ ┊╱"',
+        replace: '" ) CC ☯ ┊╱"',
+      },
+      {
+        search: '`✻ [Claude Code]',
+        replace: '`☯ [Claude Code]',
+      },
+    ];
+  }
+
+  if (baseLang === 'zh-CN') {
+    return [
+      {
+        search: '"Quick safety check: Is this a project you created or one you trust? (Like your own code, a well-known open source project, or work from your team). If not, take a moment to review what","\'","s in this folder first."',
+        replace: '"快速安全检查：这是你创建或信任的项目吗？（例如你自己的代码、知名开源项目、或团队的工作）如果不是，请先看一下这个文件夹的内容。"',
+      },
+      {
+        search: '"Claude Code","\'","ll be able to read, edit, and execute files here."',
+        replace: '"Claude Code 将可以读取、编辑和执行这里的文件。"',
+      },
+      {
+        search: 'return`Try "${eJ(K)}"`',
+        replace: 'return`试试看 "${eJ(K)}"`',
+      },
+      {
+        search: 'te="✻"',
+        replace: 'te="☯"',
+      },
+      {
+        search: '["·","✢","✳","✶","✻","✽"]',
+        replace: '[" ","·","∘","○","☯","○","∘","·"]',
+      },
+      {
+        search: '["·","✢","✳","✶","✻","*"]',
+        replace: '[" ","·","∘","○","☯","○","∘","·"]',
+      },
+      {
+        search: '["·","✢","*","✶","✻","✽"]',
+        replace: '[" ","·","∘","○","☯","○","∘","·"]',
+      },
+      {
+        search: '"✻ "',
+        replace: '"☯ "',
+      },
+      {
+        search: '"[✻] [✻] [✻]"',
+        replace: '"[☯] [☯] [☯]"',
+      },
+      {
+        search: '"[✻]"',
+        replace: '"[☯]"',
+      },
+      {
+        search: '"✻"',
+        replace: '"☯"',
+      },
+      {
+        search: '" ✻"',
+        replace: '" ☯"',
+      },
+      {
+        search: '" ) CC ✻ ┊╱"',
+        replace: '" ) CC ☯ ┊╱"',
+      },
+      {
+        search: '`✻ [Claude Code]',
+        replace: '`☯ [Claude Code]',
+      },
+    ];
+  }
+
+  // No post-patch rules for English or other locales
+  return [];
+}
+
+function applyPostPatch(
+  source: string,
+  locale: string,
+): { source: string; count: number } {
+  const rules = getPostPatchRules(locale);
+  let count = 0;
+
+  for (const rule of rules) {
+    if (source.includes(rule.search)) {
+      source = replaceAll(source, rule.search, rule.replace);
+      count++;
+    }
+  }
+
+  return { source, count };
+}
+
+/**
  * Apply translation patch to Claude Code's cli.js.
  *
  * Strategy:
@@ -224,14 +399,15 @@ export async function applyPatch(
     const doubleCount = countOccurrences(source, doubleSearch);
     const singleCount = countOccurrences(source, singleSearch);
     const totalCount = doubleCount + singleCount;
+    const forceReplace = WHITELIST_STRINGS.has(original);
 
-    if (totalCount <= 1) {
-      // Single occurrence: safe to replaceAll
-      if (doubleCount === 1) {
+    if (totalCount <= 1 || forceReplace) {
+      // Single occurrence OR whitelisted: safe to replaceAll
+      if (doubleCount > 0) {
         source = replaceAll(source, doubleSearch, `"${translated}"`);
         replaced = true;
       }
-      if (singleCount === 1) {
+      if (singleCount > 0) {
         source = replaceAll(source, singleSearch, `'${translated}'`);
         replaced = true;
       }
@@ -267,6 +443,13 @@ export async function applyPatch(
       missed.push(original);
     }
   }
+
+  // Step 4b: Locale-aware post-patch replacements
+  // These handle strings that can't be replaced via the translation map
+  // (apostrophe-split strings, template literals, UI symbols)
+  const postPatchApplied = applyPostPatch(source, locale);
+  source = postPatchApplied.source;
+  applied += postPatchApplied.count;
 
   // Step 5: Write patched file
   await fs.writeFile(cliPath, source, 'utf-8');

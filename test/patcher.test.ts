@@ -10,13 +10,19 @@ const TEST_CLI = path.join(TEST_DIR, 'cli.js');
 const TEST_BACKUP = TEST_CLI + '.cc-i18n-backup';
 
 // A minimal valid JS file simulating cli.js
+// Must include "Accept", "Default", "Bypass", "Allow" for verifyUnsafeIntegrity
 const MOCK_CLI_CONTENT = `
 "use strict";
-var UI = {
+var PROTO = {
+  accept: "Accept",
+  default: "Default",
+  bypass: "Bypass",
   allow: "Allow",
   deny: "Deny",
-  allowOnce: "Allow once",
-  alwaysAllow: "Always allow",
+};
+var UI = {
+  tryAgain: "Try again",
+  notNow: "Not now",
   thinking: "Thinking",
   compacting: "Compacting conversation",
   planMode: "Plan Mode",
@@ -116,40 +122,38 @@ describe('patcher', () => {
 
   it('should replace strings in double quotes', async () => {
     const translations = new Map([
-      ['Allow', '允許'],
-      ['Deny', '拒絕'],
+      ['Try again', '再試一次'],
+      ['Not now', '現在不要'],
     ]);
 
     const result = await applyPatch(TEST_CLI, translations, '2.1.77', 'zh-TW');
     expect(result.applied).toBe(2);
 
     const patched = await fs.readFile(TEST_CLI, 'utf-8');
-    expect(patched).toContain('"允許"');
-    expect(patched).toContain('"拒絕"');
-    expect(patched).not.toContain('"Allow"');
-    expect(patched).not.toContain('"Deny"');
+    expect(patched).toContain('"再試一次"');
+    expect(patched).toContain('"現在不要"');
+    expect(patched).not.toContain('"Try again"');
+    expect(patched).not.toContain('"Not now"');
   });
 
   it('should replace longer strings first', async () => {
     const translations = new Map([
-      ['Allow', '允許'],
-      ['Allow once', '允許一次'],
-      ['Always allow', '永遠允許'],
+      ['Continue', '繼續'],
+      ['Press Enter to continue', '按 Enter 繼續'],
     ]);
 
     const result = await applyPatch(TEST_CLI, translations, '2.1.77', 'zh-TW');
-    expect(result.applied).toBe(3);
+    expect(result.applied).toBe(2);
 
     const patched = await fs.readFile(TEST_CLI, 'utf-8');
-    expect(patched).toContain('"允許一次"');
-    expect(patched).toContain('"永遠允許"');
-    expect(patched).toContain('"允許"');
-    // "Allow once" should not have been partially replaced
-    expect(patched).not.toContain('"允許 once"');
+    expect(patched).toContain('"按 Enter 繼續"');
+    expect(patched).toContain('"繼續"');
+    // "Press Enter to continue" should not have been partially replaced
+    expect(patched).not.toContain('"Press Enter to 繼續"');
   });
 
   it('should create backup before patching', async () => {
-    const translations = new Map([['Allow', '允許']]);
+    const translations = new Map([['Try again', '再試一次']]);
     await applyPatch(TEST_CLI, translations, '2.1.77', 'zh-TW');
 
     expect(await hasValidBackup(TEST_CLI)).toBe(true);
@@ -159,7 +163,7 @@ describe('patcher', () => {
 
   it('should report missed strings', async () => {
     const translations = new Map([
-      ['Allow', '允許'],
+      ['Try again', '再試一次'],
       ['Nonexistent string', '不存在的字串'],
     ]);
 
@@ -170,10 +174,10 @@ describe('patcher', () => {
 
   it('should auto-restore on syntax error', async () => {
     // Write invalid JS that will fail node --check after any patching
-    const badContent = `var x = "Allow";\nvar y = `;
+    const badContent = `var x = "Try again";\nvar y = `;
     await fs.writeFile(TEST_CLI, badContent);
 
-    const translations = new Map([['Allow', '允許']]);
+    const translations = new Map([['Try again', '再試一次']]);
 
     // Should throw because the patched file is still invalid JS
     await expect(
@@ -186,7 +190,7 @@ describe('patcher', () => {
   });
 
   it('should save state after patching', async () => {
-    const translations = new Map([['Allow', '允許']]);
+    const translations = new Map([['Try again', '再試一次']]);
     await applyPatch(TEST_CLI, translations, '2.1.77', 'zh-TW', 'kids');
 
     const state = await loadState();
@@ -200,8 +204,8 @@ describe('patcher', () => {
 
   it('should skip identical translations', async () => {
     const translations = new Map([
-      ['Allow', 'Allow'], // Same — should skip
-      ['Deny', '拒絕'],
+      ['Try again', 'Try again'], // Same — should skip
+      ['Not now', '現在不要'],
     ]);
 
     const result = await applyPatch(TEST_CLI, translations, '2.1.77', 'zh-TW');
@@ -222,8 +226,8 @@ describe('verifyPatch', () => {
 
   it('should verify applied translations', async () => {
     const translations = new Map([
-      ['Allow', '允許'],
-      ['Deny', '拒絕'],
+      ['Try again', '再試一次'],
+      ['Not now', '現在不要'],
     ]);
 
     await applyPatch(TEST_CLI, translations, '2.1.77', 'zh-TW');
@@ -235,7 +239,7 @@ describe('verifyPatch', () => {
 
   it('should report unverified translations', async () => {
     const translations = new Map([
-      ['Allow', '允許'],
+      ['Try again', '再試一次'],
       ['Nonexistent', '不存在'],
     ]);
 
