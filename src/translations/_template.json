@@ -165,7 +165,11 @@
     "no_recent_activity": "",
     "no_changed_files": "",
     "no_code_changes": "",
-    "try_cc_desktop_desc": ""
+    "try_cc_desktop_desc": "",
+    "reading_file": "",
+    "writing_file": "",
+    "editing_file": "",
+    "editing_notebook": ""
   },
   "prompts": {
     "press_enter_continue": "",
@@ -338,7 +342,9 @@
     "select_enter_kill_shutdown": "",
     "left_right_adjust": "",
     "left_right_source": "",
-    "what_claude_do": ""
+    "what_claude_do": "",
+    "p_to_expand": "",
+    "arrow_to_expand": ""
   },
   "plan": {
     "here_is_plan": "",

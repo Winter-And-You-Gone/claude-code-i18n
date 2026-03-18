@@ -168,7 +168,11 @@
     "no_recent_activity": "无最近活动记录",
     "no_changed_files": "无已变更的文件",
     "no_code_changes": "无代码变更",
-    "try_cc_desktop_desc": "与 Claude Code 相同，另有可视化差异、实时应用预览、并行会话等功能。"
+    "try_cc_desktop_desc": "与 Claude Code 相同，另有可视化差异、实时应用预览、并行会话等功能。",
+    "reading_file": "读取文件中",
+    "writing_file": "写入文件中",
+    "editing_file": "编辑文件中",
+    "editing_notebook": "编辑 notebook 中"
   },
   "prompts": {
     "press_enter_continue": "按 Enter 继续",
@@ -341,7 +345,9 @@
     "select_enter_kill_shutdown": " 选择 · Enter 查看 · k 终止 · s 关闭 · p 清理空闲",
     "left_right_adjust": "← → 调整",
     "left_right_source": "←/→ 来源",
-    "what_claude_do": "· Claude 应该采取什么替代方案？"
+    "what_claude_do": "· Claude 应该采取什么替代方案？",
+    "p_to_expand": " (p 展开)",
+    "arrow_to_expand": "→ 展开"
   },
   "plan": {
     "here_is_plan": "以下是 Claude 的计划:",

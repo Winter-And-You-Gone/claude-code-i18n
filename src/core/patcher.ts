@@ -268,6 +268,60 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
         search: '`Image in clipboard · ${Ty1.displayText} to paste`',
         replace: '`剪貼簿有圖片 · ${Ty1.displayText} 貼上`',
       },
+      // ── Searching for: template literal ──
+      {
+        search: '`Searching for ${q}`',
+        replace: '`搜尋 ${q}`',
+      },
+      // ── (A to expand): template literal ──
+      {
+        search: '`(${A} to expand)`',
+        replace: '`(${A} 展開)`',
+      },
+      // ── Thinking (j to expand): template literal ──
+      {
+        search: '`${"∴ Thinking"} (${j} to expand)`',
+        replace: '`${"∴ 思考中"} (${j} 展開)`',
+      },
+      // ── Effort level descriptions (HC3 function) ──
+      {
+        search: 'case"low":return"Quick, straightforward implementation with minimal overhead"',
+        replace: 'case"low":return"low（低）— 快速直接，最少開銷"',
+      },
+      {
+        search: 'case"medium":return"Balanced approach with standard implementation and testing"',
+        replace: 'case"medium":return"medium（中等）— 均衡的實作與測試"',
+      },
+      {
+        search: 'case"high":return"Comprehensive implementation with extensive testing and documentation"',
+        replace: 'case"high":return"high（高）— 完整實作、全面測試與文件"',
+      },
+      {
+        search: 'case"max":return"Maximum capability with deepest reasoning (Opus 4.6 only)"',
+        replace: 'case"max":return"max（最高）— 最深度推理（僅 Opus 4.6）"',
+      },
+      {
+        search: 'return"Balanced approach with standard implementation and testing"',
+        replace: 'return"medium（中等）— 均衡的實作與測試"',
+      },
+      // ── Reading/Writing template literals ──
+      {
+        search: '`Reading ${q}`',
+        replace: '`讀取 ${q}`',
+      },
+      {
+        search: '`Writing ${q}`',
+        replace: '`寫入 ${q}`',
+      },
+      // ── "to expand" in createElement (variable keybinding) ──
+      {
+        search: '," to expand)"',
+        replace: '," 展開)"',
+      },
+      {
+        search: '"Read output ("',
+        replace: '"讀取輸出 ("',
+      },
     ];
   }
 
@@ -333,6 +387,60 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
       {
         search: '`Image in clipboard · ${Ty1.displayText} to paste`',
         replace: '`剪贴板有图片 · ${Ty1.displayText} 粘贴`',
+      },
+      // ── Searching for: template literal ──
+      {
+        search: '`Searching for ${q}`',
+        replace: '`搜索 ${q}`',
+      },
+      // ── (A to expand): template literal ──
+      {
+        search: '`(${A} to expand)`',
+        replace: '`(${A} 展开)`',
+      },
+      // ── Thinking (j to expand): template literal ──
+      {
+        search: '`${"∴ Thinking"} (${j} to expand)`',
+        replace: '`${"∴ 思考中"} (${j} 展开)`',
+      },
+      // ── Effort level descriptions (HC3 function) ──
+      {
+        search: 'case"low":return"Quick, straightforward implementation with minimal overhead"',
+        replace: 'case"low":return"low（低）— 快速直接，最少开销"',
+      },
+      {
+        search: 'case"medium":return"Balanced approach with standard implementation and testing"',
+        replace: 'case"medium":return"medium（中等）— 均衡的实现与测试"',
+      },
+      {
+        search: 'case"high":return"Comprehensive implementation with extensive testing and documentation"',
+        replace: 'case"high":return"high（高）— 完整实现、全面测试与文档"',
+      },
+      {
+        search: 'case"max":return"Maximum capability with deepest reasoning (Opus 4.6 only)"',
+        replace: 'case"max":return"max（最高）— 最深度推理（仅 Opus 4.6）"',
+      },
+      {
+        search: 'return"Balanced approach with standard implementation and testing"',
+        replace: 'return"medium（中等）— 均衡的实现与测试"',
+      },
+      // ── Reading/Writing template literals ──
+      {
+        search: '`Reading ${q}`',
+        replace: '`读取 ${q}`',
+      },
+      {
+        search: '`Writing ${q}`',
+        replace: '`写入 ${q}`',
+      },
+      // ── "to expand" in createElement (variable keybinding) ──
+      {
+        search: '," to expand)"',
+        replace: '," 展开)"',
+      },
+      {
+        search: '"Read output ("',
+        replace: '"读取输出 ("',
       },
     ];
   }

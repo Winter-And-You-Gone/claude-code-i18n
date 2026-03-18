@@ -175,6 +175,10 @@ export const KNOWN_STRINGS: Record<string, Record<string, string>> = {
     no_changed_files: 'No changed files',
     no_code_changes: 'No code changes',
     try_cc_desktop_desc: 'Same Claude Code with visual diffs, live app preview, parallel sessions, and more.',
+    reading_file: 'Reading file',
+    writing_file: 'Writing file',
+    editing_file: 'Editing file',
+    editing_notebook: 'Editing notebook',
   },
 
   prompts: {
@@ -359,6 +363,8 @@ export const KNOWN_STRINGS: Record<string, Record<string, string>> = {
     left_right_adjust: '\u2190 \u2192 to adjust',
     left_right_source: '\u2190/\u2192 source',
     what_claude_do: '\u00b7 What should Claude do instead?',
+    p_to_expand: ' (p to expand)',
+    arrow_to_expand: '\u2192 to expand',
   },
 
   plan: {

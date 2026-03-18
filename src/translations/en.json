@@ -168,7 +168,11 @@
     "no_recent_activity": "No recent activity",
     "no_changed_files": "No changed files",
     "no_code_changes": "No code changes",
-    "try_cc_desktop_desc": "Same Claude Code with visual diffs, live app preview, parallel sessions, and more."
+    "try_cc_desktop_desc": "Same Claude Code with visual diffs, live app preview, parallel sessions, and more.",
+    "reading_file": "Reading file",
+    "writing_file": "Writing file",
+    "editing_file": "Editing file",
+    "editing_notebook": "Editing notebook"
   },
   "prompts": {
     "press_enter_continue": "Press Enter to continue",
@@ -341,7 +345,9 @@
     "select_enter_kill_shutdown": " select · Enter view · k kill · s shutdown · p prune idle",
     "left_right_adjust": "← → to adjust",
     "left_right_source": "←/→ source",
-    "what_claude_do": "· What should Claude do instead?"
+    "what_claude_do": "· What should Claude do instead?",
+    "p_to_expand": " (p to expand)",
+    "arrow_to_expand": "→ to expand"
   },
   "plan": {
     "here_is_plan": "📋 Here is Claude's plan:",
