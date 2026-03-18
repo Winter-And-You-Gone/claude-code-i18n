@@ -322,7 +322,18 @@
     "not_authenticated": "not authenticated",
     "learn_more": "Learn more:",
     "backgrounded_agent": "Backgrounded agent",
-    "environment_variables": "Environment Variables"
+    "environment_variables": "Environment Variables",
+    "author_prefix": "Author: ",
+    "feedback_id_prefix": "Feedback ID: ",
+    "claude_can_make_mistakes": "Claude can make mistakes",
+    "running_code": "running code.",
+    "for_more_details": "For more details see:",
+    "fast_mode_overloaded": "Fast mode overloaded and is temporarily unavailable",
+    "to_get_started": " to get started",
+    "shortcuts": "Shortcuts",
+    "workflows": "Workflows",
+    "agents_label": "Agents",
+    "terminal_bell": "Terminal Bell"
   },
   "billing": {
     "pro_max_team": "Pro, Max, Team, or Enterprise",

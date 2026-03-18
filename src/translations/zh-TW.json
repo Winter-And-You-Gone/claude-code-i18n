@@ -322,7 +322,18 @@
     "not_authenticated": "未驗證",
     "learn_more": "了解更多：",
     "backgrounded_agent": "背景代理",
-    "environment_variables": "環境變數"
+    "environment_variables": "環境變數",
+    "author_prefix": "作者：",
+    "feedback_id_prefix": "回饋 ID：",
+    "claude_can_make_mistakes": "Claude 可能會犯錯",
+    "running_code": "執行程式碼。",
+    "for_more_details": "更多資訊請見：",
+    "fast_mode_overloaded": "快速模式超載，暫時無法使用",
+    "to_get_started": " 開始使用",
+    "shortcuts": "快捷鍵",
+    "workflows": "工作流程",
+    "agents_label": "代理",
+    "terminal_bell": "終端機提示音"
   },
   "billing": {
     "pro_max_team": "Pro、Max、Team 或 Enterprise",

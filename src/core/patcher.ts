@@ -500,6 +500,16 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
         search: 'title:"Deny"',
         replace: 'title:"拒絕"',
       },
+      // ── Fast mode overloaded: template literal variant ──
+      {
+        search: '`Fast mode overloaded and is temporarily unavailable · resets in ${q}`',
+        replace: '`快速模式超載，暫時無法使用 · ${q} 後重置`',
+      },
+      // ── Settings section: Directories (too many non-UI occurrences) ──
+      {
+        search: '" Directories "',
+        replace: '" 目錄 "',
+      },
       // ── Tool badge: Reading/Read ternaries ──
       {
         search: '?"Reading":"reading"',
