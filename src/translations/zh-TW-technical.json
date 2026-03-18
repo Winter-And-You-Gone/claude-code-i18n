@@ -220,7 +220,21 @@
     "describe_issue": "請在下方描述問題：",
     "type_to_filter": "輸入以篩選",
     "type_to_search": "輸入以搜尋",
-    "enter_session_name": "輸入新會話名稱"
+    "enter_session_name": "輸入新會話名稱",
+    "to_cancel": " 取消",
+    "to_auto_accept": " 自動接受編輯",
+    "to_toggle_tasks": " 切換任務",
+    "to_paste_images": " 貼上圖片",
+    "to_switch_model": " 切換模型",
+    "to_toggle_fast": " 切換快速模式",
+    "to_stash_prompt": " 暫存提示",
+    "to_edit_in_editor": " 在 $EDITOR 中編輯",
+    "to_toggle_thinking": " 切換思考",
+    "ctrl_z_suspend": "ctrl + z 暫停",
+    "at_for_file_paths": "@ 檔案路徑",
+    "amp_for_background": "& 背景執行",
+    "for_verbose_output": " 詳細輸出",
+    "enter_continue_dot": "Enter 繼續 · "
   },
   "tools": {
     "view_tools": "檢視工具",

@@ -220,7 +220,21 @@
     "describe_issue": "Describe the issue below:",
     "type_to_filter": "Type to filter",
     "type_to_search": "Type to search",
-    "enter_session_name": "Enter new session name"
+    "enter_session_name": "Enter new session name",
+    "to_cancel": " to cancel",
+    "to_auto_accept": " to auto-accept edits",
+    "to_toggle_tasks": " to toggle tasks",
+    "to_paste_images": " to paste images",
+    "to_switch_model": " to switch model",
+    "to_toggle_fast": " to toggle fast mode",
+    "to_stash_prompt": " to stash prompt",
+    "to_edit_in_editor": " to edit in $EDITOR",
+    "to_toggle_thinking": " to toggle thinking",
+    "ctrl_z_suspend": "ctrl + z to suspend",
+    "at_for_file_paths": "@ for file paths",
+    "amp_for_background": "& for background",
+    "for_verbose_output": " for verbose output",
+    "enter_continue_dot": "Enter to continue · "
   },
   "tools": {
     "view_tools": "View tools",
