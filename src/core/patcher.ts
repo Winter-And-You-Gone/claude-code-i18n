@@ -606,6 +606,11 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
         search: 'return"Write"}function',
         replace: 'return"寫入"}function',
       },
+      // ── Diff summary: Added N lines/line ──
+      {
+        search: '"Added ",pY.createElement(v,{bold:!0},j)," ",j>1?"lines":"line"',
+        replace: '"新增 ",pY.createElement(v,{bold:!0},j)," ",j>1?"行":"行"',
+      },
     ];
   }
 
