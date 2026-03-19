@@ -525,21 +525,6 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
         search: '"Edit file"',
         replace: '"編輯檔案"',
       },
-      // ── Diff summary: Added N lines (1 occ, createElement, safe) ──
-      {
-        search: '"Added ",bY.createElement(v,{bold:!0},j)," ",j>1?"lines":"line"',
-        replace: '"新增 ",bY.createElement(v,{bold:!0},j)," ",j>1?"行":"行"',
-      },
-      // ── Diff summary: removed (1 occ, createElement, safe) ──
-      {
-        search: 'createElement(v,{dimColor:U},"removed")',
-        replace: 'createElement(v,{dimColor:U},"移除")',
-      },
-      // ── Tool header: Write userFacingName (1 occ, safe) ──
-      {
-        search: 'return"Write"}function',
-        replace: 'return"寫入"}function',
-      },
       // ── Tool badge: Reading/Read ternaries ──
       {
         search: '?"Reading":"reading"',
