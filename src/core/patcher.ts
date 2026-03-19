@@ -616,6 +616,11 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
         search: '?"Done":"',
         replace: '?"完成":"',
       },
+      // ── Done status: background task return ──
+      {
+        search: 'return"Done"}',
+        replace: 'return"完成"}',
+      },
     ];
   }
 
