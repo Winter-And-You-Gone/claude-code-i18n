@@ -611,6 +611,11 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
         search: '"Added ",pY.createElement(v,{bold:!0},j)," ",j>1?"lines":"line"',
         replace: '"新增 ",pY.createElement(v,{bold:!0},j)," ",j>1?"行":"行"',
       },
+      // ── Done status: ternary (完成/無輸出) ──
+      {
+        search: '?"Done":"',
+        replace: '?"完成":"',
+      },
     ];
   }
 
