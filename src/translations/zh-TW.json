@@ -1152,7 +1152,9 @@
     "doctor_desc": "🩺 檢查安裝和設定有沒有問題",
     "chrome_desc": "Chrome 版 Claude（Beta）設定",
     "alias_desc": "建立或查看指令別名",
-    "plugin_desc": "🧩 管理外掛"
+    "plugin_desc": "🧩 管理外掛",
+    "exit_desc": "離開互動模式",
+    "mobile_desc": "顯示 QR 碼下載 Claude 行動應用程式"
   },
   "subcommands": {
     "mcp_add_desc": "用 JSON 新增 MCP 伺服器（stdio 或 SSE）",

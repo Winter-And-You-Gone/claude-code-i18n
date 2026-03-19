@@ -971,6 +971,36 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
         search: 'return"← to collapse"',
         replace: 'return"← 收起"',
       },
+      // ── Diff summary: removed (dimColor) ──
+      {
+        search: 'l7.createElement(v,{dimColor:d},"removed")',
+        replace: 'l7.createElement(v,{dimColor:d},"已删除")',
+      },
+      // ── Tool header: Write userFacingName ──
+      {
+        search: 'return"Write"}function',
+        replace: 'return"写入"}function',
+      },
+      // ── Diff summary: Added N lines/line ──
+      {
+        search: '"Added ",pY.createElement(v,{bold:!0},j)," ",j>1?"lines":"line"',
+        replace: '"新增 ",pY.createElement(v,{bold:!0},j)," ",j>1?"行":"行"',
+      },
+      // ── Done status: ternary ──
+      {
+        search: '?"Done":"',
+        replace: '?"完成":"',
+      },
+      // ── Done status: background return ──
+      {
+        search: 'return"Done"}',
+        replace: 'return"完成"}',
+      },
+      // ── Done status: skill loaded ──
+      {
+        search: 'createElement(S1,null,["Done"])',
+        replace: 'createElement(S1,null,["完成"])',
+      },
     ];
   }
 
