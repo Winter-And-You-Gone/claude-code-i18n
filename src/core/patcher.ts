@@ -601,6 +601,11 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
         search: 'l7.createElement(v,{dimColor:d},"removed")',
         replace: 'l7.createElement(v,{dimColor:d},"已刪除")',
       },
+      // ── Tool header: Write userFacingName ──
+      {
+        search: 'return"Write"}function',
+        replace: 'return"寫入"}function',
+      },
     ];
   }
 
