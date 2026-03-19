@@ -621,6 +621,11 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
         search: 'return"Done"}',
         replace: 'return"完成"}',
       },
+      // ── Done status: skill loaded ──
+      {
+        search: 'createElement(S1,null,["Done"])',
+        replace: 'createElement(S1,null,["完成"])',
+      },
     ];
   }
 
