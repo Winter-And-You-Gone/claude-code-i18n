@@ -596,6 +596,11 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
         search: 'return"← to collapse"',
         replace: 'return"← 收合"',
       },
+      // ── Diff summary: removed (dimColor) ──
+      {
+        search: 'l7.createElement(v,{dimColor:d},"removed")',
+        replace: 'l7.createElement(v,{dimColor:d},"已刪除")',
+      },
     ];
   }
 
