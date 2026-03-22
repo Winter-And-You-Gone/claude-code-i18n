@@ -1,6 +1,6 @@
 {
-  "name": "cc-i18n",
-  "version": "1.0.0",
+  "name": "claude-code-i18n",
+  "version": "1.1.0",
   "description": "Internationalize Claude Code - Make the entire CLI interface available in any language",
   "type": "module",
   "bin": {
@@ -34,9 +34,9 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/anthropics/cc-i18n"
+    "url": "https://github.com/joshchaotang/claude-code-i18n"
   },
-  "homepage": "https://github.com/anthropics/cc-i18n#readme",
+  "homepage": "https://github.com/joshchaotang/claude-code-i18n#readme",
   "dependencies": {
     "@inquirer/prompts": "^8.3.2",
     "chalk": "^5.4.1",

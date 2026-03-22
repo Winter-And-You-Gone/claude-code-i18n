@@ -4,10 +4,11 @@
 
 > Claude Code's terminal UI is hardcoded in English. This tool changes that.
 
-[![npm version](https://img.shields.io/npm/v/cc-i18n.svg)](https://www.npmjs.com/package/cc-i18n)
+[![npm version](https://img.shields.io/npm/v/claude-code-i18n.svg)](https://www.npmjs.com/package/claude-code-i18n)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Claude Code](https://img.shields.io/badge/Claude_Code-tested_v2.1-blueviolet)](https://docs.anthropic.com/en/docs/claude-code)
 
-[繁體中文](./README.zh-TW.md) | [简体中文](./README.zh-CN.md)
+[繁體中文](./docs/README.zh-TW.md) | [简体中文](./docs/README.zh-CN.md)
 
 ---
 
@@ -40,13 +41,13 @@ A special "kids" variant uses the simplest possible words + emoji to explain eve
 
 ```bash
 # Install
-npm install -g cc-i18n
+npm install -g claude-code-i18n
 
 # Switch to Traditional Chinese
 cc-i18n patch --lang zh-TW
 
-# Switch to Kids mode
-cc-i18n patch --lang zh-TW --kids
+# Auto-repair after CC updates (recommended)
+cc-i18n install-wrapper
 
 # Check status
 cc-i18n status
@@ -128,7 +129,18 @@ cc-i18n check-update --hook       # Print shell hook for .zshrc
 
 ## Auto Re-patch After Updates
 
-Claude Code updates will overwrite the patched `cli.js`. Add this to your `.zshrc` or `.bashrc` to auto re-patch:
+Claude Code updates will overwrite the patched `cli.js`. Install the wrapper for automatic re-patching:
+
+```bash
+cc-i18n install-wrapper
+```
+
+This creates a lightweight wrapper at `~/.local/bin/claude` that:
+1. Detects when CC has been updated (MD5 mismatch)
+2. Automatically re-applies your translation
+3. Falls back to English if anything goes wrong
+
+Alternatively, add a shell hook to your `.zshrc` or `.bashrc`:
 
 ```bash
 cc-i18n check-update --hook >> ~/.zshrc
