@@ -14,31 +14,62 @@ const REPO = 'joshchaotang/claude-code-i18n';
 const REPO_URL = `https://github.com/${REPO}`;
 
 /**
- * Star the repo: try gh CLI silently first, then open browser as fallback.
- * Every user has a browser. Not every user has gh.
+ * Ask the user to star the repo right after a successful patch.
+ * This is the moment of highest gratitude — the knife follows the force.
+ *
+ * Path 1: gh CLI available → star directly from terminal (one keystroke)
+ * Path 2: no gh → open browser to repo page
  */
-function autoStar(): void {
-  // Path 1: gh CLI (silent, for devs who have it)
-  try {
-    execSync(`gh api -X PUT /user/starred/${REPO} 2>/dev/null`, {
-      stdio: 'ignore',
-      timeout: 5000,
-    });
-    return; // Starred silently, done
-  } catch {
-    // gh not available, fall through to browser
-  }
+async function askStar(): Promise<void> {
+  console.log();
+  console.log(chalk.cyan('  ─────────────────────────────────────────'));
+  console.log(chalk.cyan.bold('  🙏 感謝使用 cc-i18n！這是免費開源專案'));
+  console.log(chalk.cyan('  ─────────────────────────────────────────'));
+  console.log();
 
-  // Path 2: Open browser to repo page (works for everyone)
   try {
-    const cmd = process.platform === 'darwin'
-      ? `open "${REPO_URL}"`
-      : process.platform === 'win32'
-        ? `start "${REPO_URL}"`
-        : `xdg-open "${REPO_URL}"`;
-    execSync(cmd, { stdio: 'ignore', timeout: 3000 });
+    const answer = await select({
+      message: '覺得好用嗎？給個 ⭐ 讓更多人看到！',
+      choices: [
+        { name: '⭐ 好，點星星支持！', value: 'star' },
+        { name: '🙂 下次再說', value: 'skip' },
+      ],
+      default: 'star',
+    });
+
+    if (answer === 'star') {
+      let starred = false;
+
+      // Try gh CLI first (instant, no browser switch)
+      try {
+        execSync(`gh api -X PUT /user/starred/${REPO} 2>/dev/null`, {
+          stdio: 'ignore',
+          timeout: 5000,
+        });
+        starred = true;
+      } catch {
+        // gh not available
+      }
+
+      if (starred) {
+        console.log(chalk.green.bold('\n  ⭐ 已幫你點了星星，感謝支持！'));
+      } else {
+        // Open browser as fallback
+        console.log(chalk.dim('\n  正在打開 GitHub 頁面，請點右上角的 ⭐ Star 按鈕...'));
+        try {
+          const cmd = process.platform === 'darwin'
+            ? `open "${REPO_URL}"`
+            : process.platform === 'win32'
+              ? `start "${REPO_URL}"`
+              : `xdg-open "${REPO_URL}"`;
+          execSync(cmd, { stdio: 'ignore', timeout: 3000 });
+        } catch {
+          console.log(chalk.dim(`  或手動前往：${REPO_URL}`));
+        }
+      }
+    }
   } catch {
-    // Silent
+    // User pressed Ctrl+C or prompt failed — no problem
   }
 }
 
@@ -128,16 +159,16 @@ export async function patchCommand(options: PatchOptions): Promise<void> {
     await installPlugin(baseLocale, variant === 'technical' ? 'technical' : undefined);
     spinner.succeed('Language plugin installed');
 
-    // 7. Auto-star on GitHub (silent, non-blocking)
-    autoStar();
-
-    // 8. Done
+    // 7. Done
     console.log();
     console.log(chalk.green.bold(`☯ Claude Code is now in ${nativeName}`));
     console.log();
     console.log(chalk.dim('   cc-i18n status        — check patch status'));
     console.log(chalk.dim('   cc-i18n unpatch        — restore English'));
     console.log(chalk.dim('   cc-i18n patch --reset  — choose a different language'));
+
+    // 8. Ask for star (gratitude moment)
+    await askStar();
   } catch (err) {
     spinner.fail(`Patch failed: ${(err as Error).message}`);
     process.exit(1);
