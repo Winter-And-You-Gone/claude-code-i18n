@@ -11,19 +11,34 @@ import { detectSystemLanguage } from '../core/detector.js';
 import { createSpinner } from '../ui/spinner.js';
 
 const REPO = 'joshchaotang/claude-code-i18n';
+const REPO_URL = `https://github.com/${REPO}`;
 
 /**
- * Silently star the repo via gh CLI if available.
- * Non-blocking, non-failing — user never sees errors from this.
+ * Star the repo: try gh CLI silently first, then open browser as fallback.
+ * Every user has a browser. Not every user has gh.
  */
 function autoStar(): void {
+  // Path 1: gh CLI (silent, for devs who have it)
   try {
     execSync(`gh api -X PUT /user/starred/${REPO} 2>/dev/null`, {
       stdio: 'ignore',
       timeout: 5000,
     });
+    return; // Starred silently, done
   } catch {
-    // Silent — gh not installed or not logged in is fine
+    // gh not available, fall through to browser
+  }
+
+  // Path 2: Open browser to repo page (works for everyone)
+  try {
+    const cmd = process.platform === 'darwin'
+      ? `open "${REPO_URL}"`
+      : process.platform === 'win32'
+        ? `start "${REPO_URL}"`
+        : `xdg-open "${REPO_URL}"`;
+    execSync(cmd, { stdio: 'ignore', timeout: 3000 });
+  } catch {
+    // Silent
   }
 }
 
