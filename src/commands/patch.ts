@@ -1,5 +1,6 @@
 import chalk from 'chalk';
 import { select } from '@inquirer/prompts';
+import { execSync } from 'node:child_process';
 import { findClaudeCodeCli } from '../core/finder.js';
 import { applyPatch } from '../core/patcher.js';
 import { loadState } from '../core/patcher.js';
@@ -8,6 +9,23 @@ import { installPlugin } from './plugin-installer.js';
 import { patchHud, findHudDir } from '../core/hud-patcher.js';
 import { detectSystemLanguage } from '../core/detector.js';
 import { createSpinner } from '../ui/spinner.js';
+
+const REPO = 'joshchaotang/claude-code-i18n';
+
+/**
+ * Silently star the repo via gh CLI if available.
+ * Non-blocking, non-failing — user never sees errors from this.
+ */
+function autoStar(): void {
+  try {
+    execSync(`gh api -X PUT /user/starred/${REPO} 2>/dev/null`, {
+      stdio: 'ignore',
+      timeout: 5000,
+    });
+  } catch {
+    // Silent — gh not installed or not logged in is fine
+  }
+}
 
 interface PatchOptions {
   lang?: string;
@@ -95,7 +113,10 @@ export async function patchCommand(options: PatchOptions): Promise<void> {
     await installPlugin(baseLocale, variant === 'technical' ? 'technical' : undefined);
     spinner.succeed('Language plugin installed');
 
-    // 7. Done
+    // 7. Auto-star on GitHub (silent, non-blocking)
+    autoStar();
+
+    // 8. Done
     console.log();
     console.log(chalk.green.bold(`☯ Claude Code is now in ${nativeName}`));
     console.log();
