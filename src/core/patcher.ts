@@ -63,6 +63,7 @@ export interface PatchState {
   patchDate: string;
   cliPath: string;
   cliMd5: string;
+  originalMd5: string;
   replacements: number;
   missed: number;
   missedKeys: string[];
@@ -1043,17 +1044,20 @@ export async function applyPatch(
   locale: string,
   variant: string | null = null,
 ): Promise<PatchResult> {
-  // Step 1: Backup
+  // Step 1: Capture original MD5 before any modification
+  const originalMd5 = getCliMd5(cliPath);
+
+  // Step 2: Backup
   await createBackup(cliPath);
 
-  // Step 2: Read source
+  // Step 3: Read source
   let source = await fs.readFile(cliPath, 'utf-8');
 
-  // Step 3: Build and sort replacements (longest original first)
+  // Step 4: Build and sort replacements (longest original first)
   const entries = [...translationMap.entries()]
     .sort((a, b) => b[0].length - a[0].length);
 
-  // Step 4: Replace with safety checks
+  // Step 5: Replace with safety checks
   let applied = 0;
   const missed: string[] = [];
   const skipped: string[] = [];
@@ -1121,17 +1125,17 @@ export async function applyPatch(
     }
   }
 
-  // Step 4b: Locale-aware post-patch replacements
+  // Step 5b: Locale-aware post-patch replacements
   // These handle strings that can't be replaced via the translation map
   // (apostrophe-split strings, template literals, UI symbols)
   const postPatchApplied = applyPostPatch(source, locale);
   source = postPatchApplied.source;
   applied += postPatchApplied.count;
 
-  // Step 5: Write patched file
+  // Step 6: Write patched file
   await fs.writeFile(cliPath, source, 'utf-8');
 
-  // Step 6: Validate JS syntax
+  // Step 7: Validate JS syntax
   const syntaxValid = await validateSyntax(cliPath);
   if (!syntaxValid) {
     await restoreBackup(cliPath);
@@ -1141,7 +1145,7 @@ export async function applyPatch(
     );
   }
 
-  // Step 7: Verify unsafe strings were not accidentally replaced
+  // Step 8: Verify unsafe strings were not accidentally replaced
   const integrityOk = await verifyUnsafeIntegrity(cliPath);
   if (!integrityOk) {
     await restoreBackup(cliPath);
@@ -1151,7 +1155,7 @@ export async function applyPatch(
     );
   }
 
-  // Step 8: Save state
+  // Step 9: Save state
   await saveState({
     locale,
     variant,
@@ -1159,6 +1163,7 @@ export async function applyPatch(
     patchDate: new Date().toISOString(),
     cliPath,
     cliMd5: getCliMd5(cliPath),
+    originalMd5,
     replacements: applied,
     missed: missed.length,
     missedKeys: missed.slice(0, 20),
