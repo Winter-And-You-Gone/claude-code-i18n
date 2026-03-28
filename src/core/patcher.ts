@@ -651,6 +651,16 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
         search: 'NotebookEditTool:"Editing notebook"',
         replace: 'NotebookEditTool:"編輯筆記本"',
       },
+      // ── Bash fallback: ternary returns "Bash" instead of "終端指令" ──
+      {
+        search: '?"SandboxedBash":"Bash"',
+        replace: '?"SandboxedBash":"終端指令"',
+      },
+      // ── Activity description map: tool status labels ──
+      {
+        search: '{Read:"Reading",Write:"Writing",Edit:"Editing",MultiEdit:"Editing",Bash:"Running",Glob:"Searching",Grep:"Searching",WebFetch:"Fetching",WebSearch:"Searching",Task:"Running task",FileReadTool:"Reading",FileWriteTool:"Writing",FileEditTool:"Editing",GlobTool:"Searching",GrepTool:"Searching",BashTool:"Running"',
+        replace: '{Read:"讀取中",Write:"寫入中",Edit:"編輯中",MultiEdit:"編輯中",Bash:"執行中",Glob:"搜尋中",Grep:"搜尋中",WebFetch:"擷取中",WebSearch:"搜尋中",Task:"執行任務",FileReadTool:"讀取中",FileWriteTool:"寫入中",FileEditTool:"編輯中",GlobTool:"搜尋中",GrepTool:"搜尋中",BashTool:"執行中"',
+      },
     ];
   }
 
@@ -1049,6 +1059,16 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
       {
         search: 'NotebookEditTool:"Editing notebook"',
         replace: 'NotebookEditTool:"编辑笔记本"',
+      },
+      // ── Bash fallback ──
+      {
+        search: '?"SandboxedBash":"Bash"',
+        replace: '?"SandboxedBash":"终端指令"',
+      },
+      // ── Activity description map ──
+      {
+        search: '{Read:"Reading",Write:"Writing",Edit:"Editing",MultiEdit:"Editing",Bash:"Running",Glob:"Searching",Grep:"Searching",WebFetch:"Fetching",WebSearch:"Searching",Task:"Running task",FileReadTool:"Reading",FileWriteTool:"Writing",FileEditTool:"Editing",GlobTool:"Searching",GrepTool:"Searching",BashTool:"Running"',
+        replace: '{Read:"读取中",Write:"写入中",Edit:"编辑中",MultiEdit:"编辑中",Bash:"执行中",Glob:"搜索中",Grep:"搜索中",WebFetch:"获取中",WebSearch:"搜索中",Task:"执行任务",FileReadTool:"读取中",FileWriteTool:"写入中",FileEditTool:"编辑中",GlobTool:"搜索中",GrepTool:"搜索中",BashTool:"执行中"',
       },
     ];
   }
