@@ -195,7 +195,10 @@
     "mcp_tools": "MCP 工具",
     "effort_level_auto": "推理等級：自動",
     "custom_sonnet_model": "自訂 Sonnet 模型",
-    "custom_opus_model": "自訂 Opus 模型"
+    "custom_opus_model": "自訂 Opus 模型",
+    "conversation_compacted": "對話已壓縮",
+    "connected": "已連線",
+    "saving": "儲存中"
   },
   "prompts": {
     "press_enter_continue": "按 Enter 繼續",
@@ -1099,7 +1102,7 @@
   },
   "commands": {
     "help_desc": "顯示說明與可用指令",
-    "config_desc": "開啟設定面板",
+    "config_desc": "以 JSON 格式顯示有效的自動模式設定：你設定的項目，其餘為預設值",
     "theme_desc": "變更主題",
     "rewind_desc": "還原程式碼及/或對話至先前時間點",
     "add_dir_desc": "新增工作目錄",
@@ -1153,14 +1156,30 @@
     "tasks_desc": "列出並管理背景任務",
     "remote_control_desc": "連接此終端機以進行遠端控制",
     "keybindings_desc": "開啟或建立快捷鍵設定檔",
-    "doctor_desc": "診斷並驗證 Claude Code 的安裝與設定",
+    "doctor_desc": "檢查 Claude Code 自動更新器的健康狀態。注意：此指令會跳過工作區信任對話框，並啟動 .mcp.json 中的 stdio 伺服器進行健康檢查。請只在信任的目錄中使用。",
     "chrome_desc": "Claude in Chrome（Beta）設定",
     "alias_desc": "建立或列出指令別名",
     "plugin_desc": "管理 Claude Code 外掛",
     "exit_desc": "離開互動模式",
     "mobile_desc": "顯示 QR 碼下載 Claude 行動應用程式",
     "mcp_get_desc": "取得 MCP 伺服器的詳細資訊",
-    "mcp_list_desc": "列出已設定的 MCP 伺服器"
+    "mcp_list_desc": "列出已設定的 MCP 伺服器",
+    "advisor_desc": "設定建議模型",
+    "auto_mode_desc": "查看自動模式分類器設定",
+    "bridge_kick_desc": "注入橋接故障狀態以進行手動恢復測試",
+    "critique_desc": "取得 AI 對自訂自動模式規則的回饋",
+    "defaults_desc": "以 JSON 格式顯示預設的自動模式環境、允許和拒絕規則",
+    "version_desc": "顯示目前執行的版本號（不是自動更新下載的版本）",
+    "xaa_desc": "管理 XAA (SEP-990) IdP 連線",
+    "login_desc": "快取 IdP token 讓 XAA MCP 伺服器靜默驗證",
+    "setup_desc": "設定 IdP 連線（所有 XAA 伺服器的一次性設定）",
+    "show_desc": "顯示目前的 IdP 連線設定",
+    "login_xaa_desc": "快取 IdP token 讓 XAA MCP 伺服器靜默驗證。預設：執行 OIDC 瀏覽器登入。加 --id-token：直接寫入預先取得的 JWT（用於模擬 IdP 不提供 /authorize 的一致性/端到端測試）。",
+    "setup_xaa_desc": "設定 IdP 連線（所有 XAA 伺服器的一次性設定）",
+    "show_xaa_desc": "顯示目前的 IdP 連線設定",
+    "get_mcp_desc": "取得 MCP 伺服器的詳細資訊。注意：此指令會跳過工作區信任對話框，並啟動 .mcp.json 中的 stdio 伺服器進行健康檢查。請只在信任的目錄中使用。",
+    "list_mcp_desc": "列出已設定的 MCP 伺服器。注意：此指令會跳過工作區信任對話框，並啟動 .mcp.json 中的 stdio 伺服器進行健康檢查。請只在信任的目錄中使用。",
+    "clear_xaa_desc": "清除 IdP 連線設定和已快取的 id_token"
   },
   "subcommands": {
     "mcp_add_desc": "以 JSON 字串新增 MCP 伺服器（stdio 或 SSE）",

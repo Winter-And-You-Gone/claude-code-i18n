@@ -192,7 +192,10 @@
     "mcp_tools": "",
     "effort_level_auto": "",
     "custom_sonnet_model": "",
-    "custom_opus_model": ""
+    "custom_opus_model": "",
+    "conversation_compacted": "",
+    "connected": "",
+    "saving": ""
   },
   "prompts": {
     "press_enter_continue": "",
@@ -1157,7 +1160,23 @@
     "exit_desc": "",
     "mobile_desc": "",
     "mcp_get_desc": "",
-    "mcp_list_desc": ""
+    "mcp_list_desc": "",
+    "advisor_desc": "",
+    "auto_mode_desc": "",
+    "bridge_kick_desc": "",
+    "critique_desc": "",
+    "defaults_desc": "",
+    "version_desc": "",
+    "xaa_desc": "",
+    "login_desc": "",
+    "setup_desc": "",
+    "show_desc": "",
+    "login_xaa_desc": "",
+    "setup_xaa_desc": "",
+    "show_xaa_desc": "",
+    "get_mcp_desc": "",
+    "list_mcp_desc": "",
+    "clear_xaa_desc": ""
   },
   "subcommands": {
     "mcp_add_desc": "",

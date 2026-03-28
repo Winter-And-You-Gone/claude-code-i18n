@@ -195,7 +195,10 @@
     "mcp_tools": "MCP tools",
     "effort_level_auto": "Effort level: auto",
     "custom_sonnet_model": "Custom Sonnet model",
-    "custom_opus_model": "Custom Opus model"
+    "custom_opus_model": "Custom Opus model",
+    "conversation_compacted": "Conversation compacted",
+    "connected": "Connected",
+    "saving": "Saving"
   },
   "prompts": {
     "press_enter_continue": "Press Enter to continue",
@@ -1099,7 +1102,7 @@
   },
   "commands": {
     "help_desc": "Show help and available commands",
-    "config_desc": "Open config panel",
+    "config_desc": "Print the effective auto mode config as JSON: your settings where set, defaults otherwise",
     "theme_desc": "Change the theme",
     "rewind_desc": "Restore the code and/or conversation to a previous point",
     "add_dir_desc": "Add a new working directory",
@@ -1153,14 +1156,30 @@
     "tasks_desc": "List and manage background tasks",
     "remote_control_desc": "Connect this terminal for remote-control sessions",
     "keybindings_desc": "Open or create your keybindings configuration file",
-    "doctor_desc": "Diagnose and verify your Claude Code installation and settings",
+    "doctor_desc": "Check the health of your Claude Code auto-updater. Note: The workspace trust dialog is skipped and stdio servers from .mcp.json are spawned for health checks. Only use this command in directories you trust.",
     "chrome_desc": "Claude in Chrome (Beta) settings",
     "alias_desc": "Create or list command aliases",
     "plugin_desc": "Manage Claude Code plugins",
     "exit_desc": "Exit the REPL",
     "mobile_desc": "Show QR code to download the Claude mobile app",
     "mcp_get_desc": "Get details about an MCP server",
-    "mcp_list_desc": "List configured MCP servers"
+    "mcp_list_desc": "List configured MCP servers",
+    "advisor_desc": "Configure the advisor model",
+    "auto_mode_desc": "Inspect auto mode classifier configuration",
+    "bridge_kick_desc": "Inject bridge failure states for manual recovery testing",
+    "critique_desc": "Get AI feedback on your custom auto mode rules",
+    "defaults_desc": "Print the default auto mode environment, allow, and deny rules as JSON",
+    "version_desc": "Print the version this session is running (not what autoupdate downloaded)",
+    "xaa_desc": "Manage the XAA (SEP-990) IdP connection",
+    "login_desc": "Cache an IdP id_token so XAA-enabled MCP servers authenticate silently",
+    "setup_desc": "Configure the IdP connection (one-time setup for all XAA-enabled servers)",
+    "show_desc": "Show the current IdP connection config",
+    "login_xaa_desc": "Cache an IdP id_token so XAA-enabled MCP servers authenticate silently. Default: run the OIDC browser login. With --id-token: write a pre-obtained JWT directly (used by conformance/e2e tests where the mock IdP does not serve /authorize).",
+    "setup_xaa_desc": "Configure the IdP connection (one-time setup for all XAA-enabled servers)",
+    "show_xaa_desc": "Show the current IdP connection config",
+    "get_mcp_desc": "Get details about an MCP server. Note: The workspace trust dialog is skipped and stdio servers from .mcp.json are spawned for health checks. Only use this command in directories you trust.",
+    "list_mcp_desc": "List configured MCP servers. Note: The workspace trust dialog is skipped and stdio servers from .mcp.json are spawned for health checks. Only use this command in directories you trust.",
+    "clear_xaa_desc": "Clear the IdP connection config and cached id_token"
   },
   "subcommands": {
     "mcp_add_desc": "Add an MCP server (stdio or SSE) with a JSON string",

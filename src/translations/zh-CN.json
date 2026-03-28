@@ -195,7 +195,10 @@
     "mcp_tools": "MCP 工具",
     "effort_level_auto": "推理等级：自动",
     "custom_sonnet_model": "自定义 Sonnet 模型",
-    "custom_opus_model": "自定义 Opus 模型"
+    "custom_opus_model": "自定义 Opus 模型",
+    "conversation_compacted": "对话已压缩",
+    "connected": "已连接",
+    "saving": "保存中"
   },
   "prompts": {
     "press_enter_continue": "按 Enter 继续",
@@ -1099,7 +1102,7 @@
   },
   "commands": {
     "help_desc": "📖 显示帮助和可用命令",
-    "config_desc": "⚙️ 打开设置面板",
+    "config_desc": "以 JSON 格式显示有效的自动模式配置：你设置的项目，其余为默认值",
     "theme_desc": "🎨 换主题",
     "rewind_desc": "⏪ 还原代码或对话到之前的状态",
     "add_dir_desc": "📁 添加工作目录",
@@ -1153,14 +1156,30 @@
     "tasks_desc": "📋 管理后台任务",
     "remote_control_desc": "🔗 连接终端供远程控制",
     "keybindings_desc": "⌨️ 打开快捷键配置文件",
-    "doctor_desc": "🩺 检查安装和设置有没有问题",
+    "doctor_desc": "检查 Claude Code 自动更新器的健康状态。注意：此命令会跳过工作区信任对话框，并启动 .mcp.json 中的 stdio 服务器进行健康检查。请只在信任的目录中使用。",
     "chrome_desc": "Chrome 版 Claude（Beta）设置",
     "alias_desc": "创建或查看命令别名",
     "plugin_desc": "🧩 管理插件",
     "exit_desc": "退出交互模式",
     "mobile_desc": "显示 QR 码下载 Claude 移动应用",
     "mcp_get_desc": "获取 MCP 服务器的详细信息",
-    "mcp_list_desc": "列出已配置的 MCP 服务器"
+    "mcp_list_desc": "列出已配置的 MCP 服务器",
+    "advisor_desc": "配置建议模型",
+    "auto_mode_desc": "查看自动模式分类器配置",
+    "bridge_kick_desc": "注入桥接故障状态以进行手动恢复测试",
+    "critique_desc": "获取 AI 对自定义自动模式规则的反馈",
+    "defaults_desc": "以 JSON 格式显示默认的自动模式环境、允许和拒绝规则",
+    "version_desc": "显示当前运行的版本号（不是自动更新下载的版本）",
+    "xaa_desc": "管理 XAA (SEP-990) IdP 连接",
+    "login_desc": "缓存 IdP token 让 XAA MCP 服务器静默验证",
+    "setup_desc": "配置 IdP 连接（所有 XAA 服务器的一次性设置）",
+    "show_desc": "显示当前的 IdP 连接配置",
+    "login_xaa_desc": "缓存 IdP token 让 XAA MCP 服务器静默验证。默认：执行 OIDC 浏览器登录。加 --id-token：直接写入预先获取的 JWT（用于模拟 IdP 不提供 /authorize 的一致性/端到端测试）。",
+    "setup_xaa_desc": "配置 IdP 连接（所有 XAA 服务器的一次性设置）",
+    "show_xaa_desc": "显示当前的 IdP 连接配置",
+    "get_mcp_desc": "获取 MCP 服务器的详细信息。注意：此命令会跳过工作区信任对话框，并启动 .mcp.json 中的 stdio 服务器进行健康检查。请只在信任的目录中使用。",
+    "list_mcp_desc": "列出已配置的 MCP 服务器。注意：此命令会跳过工作区信任对话框，并启动 .mcp.json 中的 stdio 服务器进行健康检查。请只在信任的目录中使用。",
+    "clear_xaa_desc": "清除 IdP 连接配置和已缓存的 id_token"
   },
   "subcommands": {
     "mcp_add_desc": "用 JSON 添加 MCP 服务器（stdio 或 SSE）",
