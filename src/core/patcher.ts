@@ -2,7 +2,7 @@ import fs from 'fs-extra';
 import path from 'node:path';
 import os from 'node:os';
 import { execSync } from 'node:child_process';
-import { createBackup, restoreBackup } from './backup.js';
+import { createBackup, restoreBackup, hasValidBackup, removeBackup } from './backup.js';
 import { getCliMd5 } from './backup.js';
 import type { TranslationSchema } from '../translations/schema.js';
 
@@ -1092,6 +1092,14 @@ export async function applyPatch(
   locale: string,
   variant: string | null = null,
 ): Promise<PatchResult> {
+  // Step 0: If already patched (backup exists), restore from backup first
+  // This prevents double-patching which produces garbage results
+  const hasBackup = await hasValidBackup(cliPath);
+  if (hasBackup) {
+    await restoreBackup(cliPath);
+    await removeBackup(cliPath);
+  }
+
   // Step 1: Capture original MD5 before any modification
   const originalMd5 = getCliMd5(cliPath);
 
