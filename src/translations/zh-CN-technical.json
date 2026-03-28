@@ -198,7 +198,21 @@
     "custom_opus_model": "自定义 Opus 模型",
     "conversation_compacted": "对话已压缩",
     "connected": "已连接",
-    "saving": "保存中"
+    "saving": "保存中",
+    "task_assigned": "已分配任务：",
+    "all_background_agents_killed": "所有后台代理已终止",
+    "tool_use_rejected": "工具使用被拒绝",
+    "stashing_changes": " 暂存更改中...",
+    "no_task_output_available": "没有可用的任务输出",
+    "task_not_ready": "任务尚未就绪",
+    "entered_plan_mode": " 进入计划模式",
+    "no_scheduled_jobs": "没有计划任务",
+    "file_must_be_read_first": "必须先读取文件",
+    "no_cells_found_in_notebook": "笔记本中未找到单元格",
+    "unchanged_since_last_read": "自上次读取后未更改",
+    "lsp_operation_failed": "LSP 操作失败",
+    "no_diff_content": "没有差异内容",
+    "new_file_not_yet_staged": "新文件尚未暂存。"
   },
   "prompts": {
     "press_enter_continue": "按 Enter 继续",
@@ -354,7 +368,19 @@
     "shortcuts": "快捷键",
     "workflows": "工作流程",
     "agents_label": "代理",
-    "terminal_bell": "终端提示音"
+    "terminal_bell": "终端提示音",
+    "image_data_detected_and_sent_to_claude": "[检测到图片并已发送给 Claude]",
+    "no_resources_found": "（未找到资源）",
+    "open_files": "⧉ 打开文件",
+    "selected_lines": "⧉ 已选中的行",
+    "also_requested": "同时请求：",
+    "creating_a_long_lived_token_for_github_a": "为 GitHub Actions 创建长期 Token",
+    "ctrl_d_to_hide_debug_info": "Ctrl-D 隐藏调试信息",
+    "system_diagnostics": "系统诊断",
+    "context_usage": "上下文用量",
+    "estimated_usage_by_category": "按类别估算的用量",
+    "free_space": " 可用空间：",
+    "memory_files": "记忆文件"
   },
   "billing": {
     "pro_max_team": "Pro、Max、Team 或 Enterprise",
@@ -1244,5 +1270,39 @@
     "permission_levels_desc": "LOW（安全开发流程）、MEDIUM（可恢复的变更）、HIGH（危险/不可逆）",
     "rate_limit_options_desc": "达到速率限制时显示选项",
     "skip_picker_desc": "日后跳过此选择器（可通过 /config 恢复）"
+  },
+  "ui_elements": {
+    "not_installed": "未安装",
+    "already_granted": "（已授权）",
+    "type_to_search": "输入搜索",
+    "connecting": " 连接中…",
+    "community_managed": " [社区管理]",
+    "awaiting_approval": "[等待批准]",
+    "untracked": "（未跟踪）"
+  },
+  "ui_actions": {
+    "to_see_all": "查看全部）",
+    "enter_to_view": " · Enter 查看",
+    "for_bash_mode": "! 进入终端模式",
+    "for_quick_launch": " 快速启动",
+    "to_reference_files_or_lines_in_your_inpu": " 引用文件或行号",
+    "plan_to_preview": "/plan 预览",
+    "rename_to_add_a_name": "/rename 添加名称"
+  },
+  "dialogs": {
+    "select_login_method": "选择登录方式：",
+    "create_authentication_token": "创建验证 Token",
+    "plugin_options": "插件选项",
+    "stop_ultrareview": "停止深度审查",
+    "open_in_claude_code_on_the_web": "在网页版 Claude Code 打开",
+    "select_content_to_copy": "选择要复制的内容：",
+    "download_now_y_n": "现在下载？(y/n)",
+    "press_space_enter_or_escape_to_dismiss": "按空格键、Enter 或 Esc 关闭",
+    "choose_the_text_style_that_looks_best_wi": "选择最适合你终端的文字风格",
+    "enter_your_preferred_response_and_voice_": "输入你偏好的回应和语音语言：",
+    "leave_empty_for_default_english": "留空使用默认（English）",
+    "external_imports": "外部导入：",
+    "this_report_will_include": "此报告将包含：",
+    "current_session_transcript": "- 当前的会话记录"
   }
 }

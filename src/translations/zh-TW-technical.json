@@ -198,7 +198,21 @@
     "custom_opus_model": "自訂 Opus 模型",
     "conversation_compacted": "對話已壓縮",
     "connected": "已連線",
-    "saving": "儲存中"
+    "saving": "儲存中",
+    "task_assigned": "已指派任務：",
+    "all_background_agents_killed": "所有背景代理已終止",
+    "tool_use_rejected": "工具使用被拒絕",
+    "stashing_changes": " 暫存變更中...",
+    "no_task_output_available": "沒有可用的任務輸出",
+    "task_not_ready": "任務尚未就緒",
+    "entered_plan_mode": " 進入計畫模式",
+    "no_scheduled_jobs": "沒有排程工作",
+    "file_must_be_read_first": "必須先讀取檔案",
+    "no_cells_found_in_notebook": "筆記本中找不到儲存格",
+    "unchanged_since_last_read": "自上次讀取後未變更",
+    "lsp_operation_failed": "LSP 操作失敗",
+    "no_diff_content": "沒有差異內容",
+    "new_file_not_yet_staged": "新檔案尚未加入暫存。"
   },
   "prompts": {
     "press_enter_continue": "按 Enter 繼續",
@@ -354,7 +368,19 @@
     "shortcuts": "快捷鍵",
     "workflows": "工作流程",
     "agents_label": "代理",
-    "terminal_bell": "終端機提示音"
+    "terminal_bell": "終端機提示音",
+    "image_data_detected_and_sent_to_claude": "[偵測到圖片並已傳送給 Claude]",
+    "no_resources_found": "（找不到資源）",
+    "open_files": "⧉ 開啟檔案",
+    "selected_lines": "⧉ 已選取的行",
+    "also_requested": "同時請求：",
+    "creating_a_long_lived_token_for_github_a": "為 GitHub Actions 建立長期 Token",
+    "ctrl_d_to_hide_debug_info": "Ctrl-D 隱藏除錯資訊",
+    "system_diagnostics": "系統診斷",
+    "context_usage": "上下文用量",
+    "estimated_usage_by_category": "依類別估算的用量",
+    "free_space": " 可用空間：",
+    "memory_files": "記憶檔案"
   },
   "billing": {
     "pro_max_team": "Pro、Max、Team 或 Enterprise",
@@ -1244,5 +1270,39 @@
     "permission_levels_desc": "LOW（安全開發流程）、MEDIUM（可恢復的變更）、HIGH（危險/不可逆）",
     "rate_limit_options_desc": "達到速率限制時顯示選項",
     "skip_picker_desc": "日後跳過此選擇器（可透過 /config 恢復）"
+  },
+  "ui_elements": {
+    "not_installed": "未安裝",
+    "already_granted": "（已授權）",
+    "type_to_search": "輸入搜尋",
+    "connecting": " 連線中…",
+    "community_managed": " [社群管理]",
+    "awaiting_approval": "[等待批准]",
+    "untracked": "（未追蹤）"
+  },
+  "ui_actions": {
+    "to_see_all": "查看全部）",
+    "enter_to_view": " · Enter 查看",
+    "for_bash_mode": "! 進入終端模式",
+    "for_quick_launch": " 快速啟動",
+    "to_reference_files_or_lines_in_your_inpu": " 引用檔案或行號",
+    "plan_to_preview": "/plan 預覽",
+    "rename_to_add_a_name": "/rename 新增名稱"
+  },
+  "dialogs": {
+    "select_login_method": "選擇登入方式：",
+    "create_authentication_token": "建立驗證 Token",
+    "plugin_options": "外掛選項",
+    "stop_ultrareview": "停止深度審查",
+    "open_in_claude_code_on_the_web": "在網頁版 Claude Code 開啟",
+    "select_content_to_copy": "選擇要複製的內容：",
+    "download_now_y_n": "現在下載？(y/n)",
+    "press_space_enter_or_escape_to_dismiss": "按空白鍵、Enter 或 Esc 關閉",
+    "choose_the_text_style_that_looks_best_wi": "選擇最適合你終端機的文字風格",
+    "enter_your_preferred_response_and_voice_": "輸入你偏好的回應和語音語言：",
+    "leave_empty_for_default_english": "留空使用預設（English）",
+    "external_imports": "外部匯入：",
+    "this_report_will_include": "此回報將包含：",
+    "current_session_transcript": "- 目前的對話記錄"
   }
 }

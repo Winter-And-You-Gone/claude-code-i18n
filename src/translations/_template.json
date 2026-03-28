@@ -195,7 +195,21 @@
     "custom_opus_model": "",
     "conversation_compacted": "",
     "connected": "",
-    "saving": ""
+    "saving": "",
+    "task_assigned": "",
+    "all_background_agents_killed": "",
+    "tool_use_rejected": "",
+    "stashing_changes": "",
+    "no_task_output_available": "",
+    "task_not_ready": "",
+    "entered_plan_mode": "",
+    "no_scheduled_jobs": "",
+    "file_must_be_read_first": "",
+    "no_cells_found_in_notebook": "",
+    "unchanged_since_last_read": "",
+    "lsp_operation_failed": "",
+    "no_diff_content": "",
+    "new_file_not_yet_staged": ""
   },
   "prompts": {
     "press_enter_continue": "",
@@ -351,7 +365,19 @@
     "shortcuts": "",
     "workflows": "",
     "agents_label": "",
-    "terminal_bell": ""
+    "terminal_bell": "",
+    "image_data_detected_and_sent_to_claude": "",
+    "no_resources_found": "",
+    "open_files": "",
+    "selected_lines": "",
+    "also_requested": "",
+    "creating_a_long_lived_token_for_github_a": "",
+    "ctrl_d_to_hide_debug_info": "",
+    "system_diagnostics": "",
+    "context_usage": "",
+    "estimated_usage_by_category": "",
+    "free_space": "",
+    "memory_files": ""
   },
   "billing": {
     "pro_max_team": "",
@@ -1241,5 +1267,39 @@
     "permission_levels_desc": "",
     "rate_limit_options_desc": "",
     "skip_picker_desc": ""
+  },
+  "ui_elements": {
+    "not_installed": "",
+    "already_granted": "",
+    "type_to_search": "",
+    "connecting": "",
+    "community_managed": "",
+    "awaiting_approval": "",
+    "untracked": ""
+  },
+  "ui_actions": {
+    "to_see_all": "",
+    "enter_to_view": "",
+    "for_bash_mode": "",
+    "for_quick_launch": "",
+    "to_reference_files_or_lines_in_your_inpu": "",
+    "plan_to_preview": "",
+    "rename_to_add_a_name": ""
+  },
+  "dialogs": {
+    "select_login_method": "",
+    "create_authentication_token": "",
+    "plugin_options": "",
+    "stop_ultrareview": "",
+    "open_in_claude_code_on_the_web": "",
+    "select_content_to_copy": "",
+    "download_now_y_n": "",
+    "press_space_enter_or_escape_to_dismiss": "",
+    "choose_the_text_style_that_looks_best_wi": "",
+    "enter_your_preferred_response_and_voice_": "",
+    "leave_empty_for_default_english": "",
+    "external_imports": "",
+    "this_report_will_include": "",
+    "current_session_transcript": ""
   }
 }

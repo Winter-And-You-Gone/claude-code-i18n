@@ -633,14 +633,32 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
         search: '"Esc to cancel · r to cycle dates · ctrl+s to copy"',
         replace: '"Esc 取消 · r 切換日期 · ctrl+s 複製"',
       },
-      // ── Custom model: template literals ──
+      // ── Custom model: template literals (two forms in v2.1.86) ──
       {
         search: '`Custom Sonnet model${_?" (1M context)":""}`,',
         replace: '`自訂 Sonnet 模型${_?" (1M context)":""}`,',
       },
       {
+        search: '`Custom Sonnet model${_?" with 1M context":""}`',
+        replace: '`自訂 Sonnet 模型${_?" with 1M context":""}`',
+      },
+      {
         search: '`Custom Opus model${_?" (1M context)":""}`,',
         replace: '`自訂 Opus 模型${_?" (1M context)":""}`,',
+      },
+      {
+        search: '`Custom Opus model${_?" with 1M context":""}`',
+        replace: '`自訂 Opus 模型${_?" with 1M context":""}`',
+      },
+      // ── Conversation compacted: meta content (3 occurrences) ──
+      {
+        search: 'content:"Conversation compacted"',
+        replace: 'content:"對話已壓縮"',
+      },
+      // ── Authenticating with: createElement split (3 occurrences) ──
+      {
+        search: '"Authenticating with ",q.name,"…"',
+        replace: '"正在驗證 ",q.name,"…"',
       },
       // ── Editing notebook: template + fixed ──
       {
@@ -1042,14 +1060,32 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
         search: '"Esc to cancel · r to cycle dates · ctrl+s to copy"',
         replace: '"Esc 取消 · r 切换日期 · ctrl+s 复制"',
       },
-      // ── Custom model: template literals ──
+      // ── Custom model: template literals (two forms) ──
       {
         search: '`Custom Sonnet model${_?" (1M context)":""}`,',
         replace: '`自定义 Sonnet 模型${_?" (1M context)":""}`,',
       },
       {
+        search: '`Custom Sonnet model${_?" with 1M context":""}`',
+        replace: '`自定义 Sonnet 模型${_?" with 1M context":""}`',
+      },
+      {
         search: '`Custom Opus model${_?" (1M context)":""}`,',
         replace: '`自定义 Opus 模型${_?" (1M context)":""}`,',
+      },
+      {
+        search: '`Custom Opus model${_?" with 1M context":""}`',
+        replace: '`自定义 Opus 模型${_?" with 1M context":""}`',
+      },
+      // ── Conversation compacted ──
+      {
+        search: 'content:"Conversation compacted"',
+        replace: 'content:"对话已压缩"',
+      },
+      // ── Authenticating with ──
+      {
+        search: '"Authenticating with ",q.name,"…"',
+        replace: '"正在验证 ",q.name,"…"',
       },
       // ── Editing notebook: template + fixed ──
       {

@@ -198,7 +198,21 @@
     "custom_opus_model": "Custom Opus model",
     "conversation_compacted": "Conversation compacted",
     "connected": "Connected",
-    "saving": "Saving"
+    "saving": "Saving",
+    "task_assigned": "Task assigned: ",
+    "all_background_agents_killed": "All background agents killed",
+    "tool_use_rejected": "Tool use rejected",
+    "stashing_changes": " Stashing changes...",
+    "no_task_output_available": "No task output available",
+    "task_not_ready": "Task not ready",
+    "entered_plan_mode": " Entered plan mode",
+    "no_scheduled_jobs": "No scheduled jobs",
+    "file_must_be_read_first": "File must be read first",
+    "no_cells_found_in_notebook": "No cells found in notebook",
+    "unchanged_since_last_read": "Unchanged since last read",
+    "lsp_operation_failed": "LSP operation failed",
+    "no_diff_content": "No diff content",
+    "new_file_not_yet_staged": "New file not yet staged."
   },
   "prompts": {
     "press_enter_continue": "Press Enter to continue",
@@ -354,7 +368,19 @@
     "shortcuts": "Shortcuts",
     "workflows": "Workflows",
     "agents_label": "Agents",
-    "terminal_bell": "Terminal Bell"
+    "terminal_bell": "Terminal Bell",
+    "image_data_detected_and_sent_to_claude": "[Image data detected and sent to Claude]",
+    "no_resources_found": "(No resources found)",
+    "open_files": "⧉ open files",
+    "selected_lines": "⧉ selected lines",
+    "also_requested": "Also requested:",
+    "creating_a_long_lived_token_for_github_a": "Creating a long-lived token for GitHub Actions",
+    "ctrl_d_to_hide_debug_info": "Ctrl-D to hide debug info",
+    "system_diagnostics": "System Diagnostics",
+    "context_usage": "Context Usage",
+    "estimated_usage_by_category": "Estimated usage by category",
+    "free_space": " Free space: ",
+    "memory_files": "Memory files"
   },
   "billing": {
     "pro_max_team": "Pro, Max, Team, or Enterprise",
@@ -1244,5 +1270,39 @@
     "permission_levels_desc": "LOW (safe dev workflows), MEDIUM (recoverable changes), HIGH (dangerous/irreversible)",
     "rate_limit_options_desc": "Show options when rate limit is reached",
     "skip_picker_desc": "Skip this picker in the future (revert via /config)"
+  },
+  "ui_elements": {
+    "not_installed": "not installed",
+    "already_granted": "(already granted)",
+    "type_to_search": "type to search",
+    "connecting": " connecting…",
+    "community_managed": " [Community Managed]",
+    "awaiting_approval": "[awaiting approval]",
+    "untracked": " (untracked)"
+  },
+  "ui_actions": {
+    "to_see_all": "to see all)",
+    "enter_to_view": " · enter to view",
+    "for_bash_mode": "! for bash mode",
+    "for_quick_launch": " for Quick Launch",
+    "to_reference_files_or_lines_in_your_inpu": " to reference files or lines in your input",
+    "plan_to_preview": "/plan to preview",
+    "rename_to_add_a_name": "/rename to add a name"
+  },
+  "dialogs": {
+    "select_login_method": "Select login method:",
+    "create_authentication_token": "Create Authentication Token",
+    "plugin_options": "Plugin options",
+    "stop_ultrareview": "Stop ultrareview",
+    "open_in_claude_code_on_the_web": "Open in Claude Code on the web",
+    "select_content_to_copy": "Select content to copy:",
+    "download_now_y_n": "Download now? (y/n)",
+    "press_space_enter_or_escape_to_dismiss": "Press Space, Enter, or Escape to dismiss",
+    "choose_the_text_style_that_looks_best_wi": "Choose the text style that looks best with your terminal",
+    "enter_your_preferred_response_and_voice_": "Enter your preferred response and voice language:",
+    "leave_empty_for_default_english": "Leave empty for default (English)",
+    "external_imports": "External imports:",
+    "this_report_will_include": "This report will include:",
+    "current_session_transcript": "- Current session transcript"
   }
 }
