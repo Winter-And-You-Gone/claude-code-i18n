@@ -192,7 +192,10 @@
     "debug_mode": "调试模式",
     "recent_messages": "最近消息",
     "free_space": "可用空间",
-    "mcp_tools": "MCP 工具"
+    "mcp_tools": "MCP 工具",
+    "effort_level_auto": "推理等级：自动",
+    "custom_sonnet_model": "自定义 Sonnet 模型",
+    "custom_opus_model": "自定义 Opus 模型"
   },
   "prompts": {
     "press_enter_continue": "按 Enter 继续",
@@ -234,7 +237,8 @@
     "at_for_file_paths": "@ 文件路径",
     "amp_for_background": "& 后台执行",
     "for_verbose_output": " 详细输出",
-    "enter_continue_dot": "Enter 继续 · "
+    "enter_continue_dot": "Enter 继续 · ",
+    "ctrl_s_to_copy": " · ctrl+s 复制"
   },
   "tools": {
     "view_tools": "🧰 查看工具",
@@ -1154,7 +1158,9 @@
     "alias_desc": "创建或查看命令别名",
     "plugin_desc": "🧩 管理插件",
     "exit_desc": "退出交互模式",
-    "mobile_desc": "显示 QR 码下载 Claude 移动应用"
+    "mobile_desc": "显示 QR 码下载 Claude 移动应用",
+    "mcp_get_desc": "获取 MCP 服务器的详细信息",
+    "mcp_list_desc": "列出已配置的 MCP 服务器"
   },
   "subcommands": {
     "mcp_add_desc": "用 JSON 添加 MCP 服务器（stdio 或 SSE）",

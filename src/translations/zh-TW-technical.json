@@ -192,7 +192,10 @@
     "debug_mode": "除錯模式",
     "recent_messages": "最近訊息",
     "free_space": "可用空間",
-    "mcp_tools": "MCP 工具"
+    "mcp_tools": "MCP 工具",
+    "effort_level_auto": "推理等級：自動",
+    "custom_sonnet_model": "自訂 Sonnet 模型",
+    "custom_opus_model": "自訂 Opus 模型"
   },
   "prompts": {
     "press_enter_continue": "按 Enter 繼續",
@@ -234,7 +237,8 @@
     "at_for_file_paths": "@ 檔案路徑",
     "amp_for_background": "& 背景執行",
     "for_verbose_output": " 詳細輸出",
-    "enter_continue_dot": "Enter 繼續 · "
+    "enter_continue_dot": "Enter 繼續 · ",
+    "ctrl_s_to_copy": " · ctrl+s 複製"
   },
   "tools": {
     "view_tools": "檢視工具",
@@ -1152,7 +1156,11 @@
     "doctor_desc": "診斷並驗證 Claude Code 的安裝與設定",
     "chrome_desc": "Claude in Chrome（Beta）設定",
     "alias_desc": "建立或列出指令別名",
-    "plugin_desc": "管理 Claude Code 外掛"
+    "plugin_desc": "管理 Claude Code 外掛",
+    "exit_desc": "離開互動模式",
+    "mobile_desc": "顯示 QR 碼下載 Claude 行動應用程式",
+    "mcp_get_desc": "取得 MCP 伺服器的詳細資訊",
+    "mcp_list_desc": "列出已設定的 MCP 伺服器"
   },
   "subcommands": {
     "mcp_add_desc": "以 JSON 字串新增 MCP 伺服器（stdio 或 SSE）",

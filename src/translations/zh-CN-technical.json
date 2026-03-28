@@ -52,7 +52,13 @@
     "confirm_delete_agent": "确定要删除此 Agent 吗",
     "yes_allow_all_edits_in": "是，允许修改此目录中所有文件",
     "yes_allow_reading_from": "是，允许读取此目录中的文件",
-    "yes_allow_edit_settings": "是，允许 Claude 在本次会话中编辑设置"
+    "yes_allow_edit_settings": "是，允许 Claude 在本次会话中编辑设置",
+    "decline": " 拒绝",
+    "yes_always_allow_access": "是，且永远允许访问",
+    "confirm_restore": "确认要还原",
+    "denied_prefix": "已拒绝：",
+    "allowed_prefix": "已允许：",
+    "from_this_project": " 从此项目"
   },
   "modes": {
     "default_mode": "默认",
@@ -172,7 +178,24 @@
     "reading_file": "读取文件中",
     "writing_file": "写入文件中",
     "editing_file": "编辑文件中",
-    "editing_notebook": "编辑 notebook 中"
+    "editing_notebook": "编辑 notebook 中",
+    "stopped": "已停止",
+    "completed": "已完成",
+    "authenticating_with": "正在验证",
+    "resuming_conversation": "恢复对话…",
+    "loading_conversations_ellipsis": "加载对话…",
+    "answering": "回答中...",
+    "no_changes_parens": "（无变更）",
+    "no_content_parens": "（无内容）",
+    "no_output_parens": "（无输出）",
+    "fast_mode": "快速模式",
+    "debug_mode": "调试模式",
+    "recent_messages": "最近消息",
+    "free_space": "可用空间",
+    "mcp_tools": "MCP 工具",
+    "effort_level_auto": "推理等级：自动",
+    "custom_sonnet_model": "自定义 Sonnet 模型",
+    "custom_opus_model": "自定义 Opus 模型"
   },
   "prompts": {
     "press_enter_continue": "按 Enter 继续",
@@ -196,7 +219,26 @@
     "esc_additional": "(按 esc 给予更多指示)",
     "tab_switch_esc_close": "(tab 切换，esc 关闭)",
     "press_esc_close": "(按 esc 关闭)",
-    "double_tap_esc": "按两下 esc 清除输入"
+    "double_tap_esc": "按两下 esc 清除输入",
+    "describe_issue": "请在下方描述问题：",
+    "type_to_filter": "输入以筛选",
+    "type_to_search": "输入以搜索",
+    "enter_session_name": "输入新会话名称",
+    "to_cancel": " 取消",
+    "to_auto_accept": " 自动接受编辑",
+    "to_toggle_tasks": " 切换任务",
+    "to_paste_images": " 粘贴图片",
+    "to_switch_model": " 切换模型",
+    "to_toggle_fast": " 切换快速模式",
+    "to_stash_prompt": " 暂存提示",
+    "to_edit_in_editor": " 在 $EDITOR 中编辑",
+    "to_toggle_thinking": " 切换思考",
+    "ctrl_z_suspend": "ctrl + z 暂停",
+    "at_for_file_paths": "@ 文件路径",
+    "amp_for_background": "& 后台执行",
+    "for_verbose_output": " 详细输出",
+    "enter_continue_dot": "Enter 继续 · ",
+    "ctrl_s_to_copy": " · ctrl+s 复制"
   },
   "tools": {
     "view_tools": "查看工具",
@@ -216,7 +258,9 @@
     "gh_not_installed": "GitHub CLI (gh) 似乎未安装或无法访问。",
     "no_changes_same": "无需变更：old_string 与 new_string 完全相同。",
     "file_denied_settings": "文件位于权限设置禁止访问的目录中。",
-    "sandbox_not_enabled": "沙箱未启用。请启用沙箱以配置覆写设置。"
+    "sandbox_not_enabled": "沙箱未启用。请启用沙箱以配置覆写设置。",
+    "error_prefix": "错误：",
+    "oauth_error": "OAuth 错误："
   },
   "actions": {
     "try_again": "重试",
@@ -291,7 +335,23 @@
     "enter_system_prompt": "请输入 Agent 的系统提示词：",
     "when_use_agent": "Claude 应在何时使用此 Agent？",
     "try_creating_agents": "建议尝试创建：Code Reviewer、Code Simplifier、Security Reviewer、Tech Lead 或 UX Reviewer。",
-    "subagent_own_context": "每个子 Agent 拥有独立的上下文窗口、自定义系统提示词与专属工具。"
+    "subagent_own_context": "每个子 Agent 拥有独立的上下文窗口、自定义系统提示词与专属工具。",
+    "not_set": "未设置",
+    "not_authenticated": "未验证",
+    "learn_more": "了解更多：",
+    "backgrounded_agent": "后台代理",
+    "environment_variables": "环境变量",
+    "author_prefix": "作者：",
+    "feedback_id_prefix": "反馈 ID：",
+    "claude_can_make_mistakes": "Claude 可能会犯错",
+    "running_code": "执行代码。",
+    "for_more_details": "更多信息请见：",
+    "fast_mode_overloaded": "快速模式超载，暂时无法使用",
+    "to_get_started": " 开始使用",
+    "shortcuts": "快捷键",
+    "workflows": "工作流程",
+    "agents_label": "代理",
+    "terminal_bell": "终端提示音"
   },
   "billing": {
     "pro_max_team": "Pro、Max、Team 或 Enterprise",
@@ -347,7 +407,12 @@
     "left_right_source": "←/→ 来源",
     "what_claude_do": "· Claude 应该采取什么替代方案？",
     "p_to_expand": " (p 展开)",
-    "arrow_to_expand": "→ 展开"
+    "arrow_to_expand": "→ 展开",
+    "back_arrow": "← 返回",
+    "again_to_exit": "再按一次退出",
+    "go_back": "返回",
+    "again_to_go_back": "再按一次返回",
+    "open_in_editor": "在编辑器中打开"
   },
   "plan": {
     "here_is_plan": "以下是 Claude 的计划:",
@@ -371,7 +436,10 @@
     "user_approved_plan": " 用户已核准 Claude 的计划",
     "user_rejected_plan": "用户已否决 Claude 的计划：",
     "user_declined_plan": " 用户拒绝进入规划模式",
-    "waiting_team_lead": "等待 team lead 审核与核准..."
+    "waiting_team_lead": "等待 team lead 审核与核准...",
+    "no_plan_found": "找不到计划",
+    "plan_file": "计划文件：",
+    "plan_saved_to": "计划已保存至："
   },
   "safety": {
     "accessing_workspace": "正在进入工作区：",
@@ -738,7 +806,8 @@
     "chrome_enabled": "Chrome 中的 Claude 默认启用",
     "accept_terms_off": "接受条款 · 帮助改善 Claude: 关",
     "accept_terms_off_domain": "接受条款 · 帮助改善 Claude: 关（限您的域名）",
-    "accept_terms_on": "接受条款 · 帮助改善 Claude: 开"
+    "accept_terms_on": "接受条款 · 帮助改善 Claude: 开",
+    "reconnect_extension": "重新连接扩展"
   },
   "titles": {
     "config": "设置",
@@ -820,7 +889,10 @@
     "tabs_context": "标签上下文",
     "tabs_create": "创建标签",
     "thinkback": "用 Claude Code 回顾 2025",
-    "iterm_split_pane": "iTerm2 分割面板设置"
+    "iterm_split_pane": "iTerm2 分割面板设置",
+    "plugin_details": "插件详情",
+    "manage_plugins": "管理插件",
+    "install_plugins": "安装插件"
   },
   "subtitles": {
     "agent_type": "代理类型（标识符）",
@@ -846,7 +918,8 @@
     "tell_next": "告诉 Claude 接下来做什么",
     "command_prefix": "命令前缀（例如 npm run:*）",
     "type_to_change": "在此处告诉 Claude 要修改的内容",
-    "enter_repo": "输入 owner/repo 或 https://github.com/owner/repo…"
+    "enter_repo": "输入 owner/repo 或 https://github.com/owner/repo…",
+    "enter_marketplace_source": "输入市场来源："
   },
   "user_messages": {
     "claude_waiting": "Claude 正在等待您的输入",
@@ -1002,7 +1075,9 @@
     "component_not_available": "• 远程插件无法提供组件摘要",
     "components_discovered": "• 组件将在安装时被发现",
     "python_api_iterm": "• Python API 已在 iTerm2 偏好设置中启用",
-    "restart_iterm": "• 启用后可能需要重新启动 iTerm2"
+    "restart_iterm": "• 启用后可能需要重新启动 iTerm2",
+    "logged_in_as": "已登录为",
+    "thank_you_report": "感谢您的反馈！"
   },
   "tips": {
     "tip_ide": "提示：可在 /config 或使用 --ide 启用自动连接 IDE",
@@ -1081,7 +1156,11 @@
     "doctor_desc": "诊断并验证 Claude Code 的安装与设置",
     "chrome_desc": "Claude in Chrome（Beta）设置",
     "alias_desc": "创建或列出命令别名",
-    "plugin_desc": "管理 Claude Code 插件"
+    "plugin_desc": "管理 Claude Code 插件",
+    "exit_desc": "退出交互模式",
+    "mobile_desc": "显示 QR 码下载 Claude 移动应用",
+    "mcp_get_desc": "获取 MCP 服务器的详细信息",
+    "mcp_list_desc": "列出已配置的 MCP 服务器"
   },
   "subcommands": {
     "mcp_add_desc": "以 JSON 字符串添加 MCP 服务器（stdio 或 SSE）",

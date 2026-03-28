@@ -209,8 +209,8 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
       },
       // ── Try prefix in template literal ──
       {
-        search: 'return`Try "${eJ(K)}"`',
-        replace: 'return`試試看 "${eJ(K)}"`',
+        search: 'return`Try "${VM(_)}"`',
+        replace: 'return`試試看 "${VM(_)}"`',
       },
       // ── Spinner: ✻ symbol → ☯ ──
       {
@@ -266,18 +266,18 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
       },
       // ── Image in clipboard: template literal ──
       {
-        search: '`Image in clipboard · ${Ty1.displayText} to paste`',
-        replace: '`剪貼簿有圖片 · ${Ty1.displayText} 貼上`',
+        search: '`Image in clipboard · ${DH("chat:imagePaste","Chat","ctrl+v")} to paste`',
+        replace: '`剪貼簿有圖片 · ${DH("chat:imagePaste","Chat","ctrl+v")} 貼上`',
       },
       // ── Searching for: template literal ──
       {
-        search: '`Searching for ${q}`',
-        replace: '`搜尋 ${q}`',
+        search: '`Searching for ${K}`',
+        replace: '`搜尋 ${K}`',
       },
       // ── (A to expand): template literal ──
       {
-        search: '`(${A} to expand)`',
-        replace: '`(${A} 展開)`',
+        search: '`(${q} to expand)`',
+        replace: '`(${q} 展開)`',
       },
       // ── Thinking (j to expand): template literal ──
       {
@@ -307,12 +307,12 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
       },
       // ── Reading/Writing template literals ──
       {
-        search: '`Reading ${q}`',
-        replace: '`讀取 ${q}`',
+        search: '`Reading ${K}`',
+        replace: '`讀取 ${K}`',
       },
       {
-        search: '`Writing ${q}`',
-        replace: '`寫入 ${q}`',
+        search: '`Writing ${K}`',
+        replace: '`寫入 ${K}`',
       },
       // ── "to expand" in createElement (variable keybinding) ──
       {
@@ -325,34 +325,30 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
       },
       // ── Template literal: thought for Ns ──
       {
-        search: '`thought for ${Math.max(1,Math.round(G/1000))}s`',
-        replace: '`思考了 ${Math.max(1,Math.round(G/1000))}s`',
+        search: '`thought for ${Math.max(1,Math.round(f/1000))}s`',
+        replace: '`思考了 ${Math.max(1,Math.round(f/1000))}s`',
       },
       // ── Template literal: +N lines ──
       {
-        search: '`+${X} lines`',
-        replace: '`+${X} 行`',
+        search: '`+${D} lines`',
+        replace: '`+${D} 行`',
       },
       {
-        search: '+${q} lines]`',
-        replace: '+${q} 行]`',
+        search: '+${K} lines]`',
+        replace: '+${K} 行]`',
       },
       {
-        search: '+${H} lines ',
-        replace: '+${H} 行 ',
+        search: '+${H} lines${',
+        replace: '+${H} 行${',
       },
       {
-        search: '+${j} lines',
-        replace: '+${j} 行',
+        search: '+${J} lines',
+        replace: '+${J} 行',
       },
       // ── Template literal: ↑↓ more files ──
       {
-        search: '` ↑ ${w} more file${w!==1?"s":""}`',
-        replace: '` ↑ 還有 ${w} 個檔案`',
-      },
-      {
-        search: '` ↓ ${K.length-O} more file${K.length-O!==1?"s":""}`',
-        replace: '` ↓ 還有 ${K.length-O} 個檔案`',
+        search: '` ↑ ${O} more ${$7(O,"file")}`',
+        replace: '` ↑ 還有 ${O} ${$7(O,"file")}`',
       },
       // ── Template literal: still running ──
       {
@@ -361,18 +357,18 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
       },
       // ── Template literal: model set to ──
       {
-        search: '` · model set to ${Dk}`',
-        replace: '` · 模型設為 ${Dk}`',
+        search: '` · model set to ${cI}`',
+        replace: '` · 模型設為 ${cI}`',
       },
       // ── Template literal: already installed ──
       {
-        search: '` · ${z6.installedCount} already installed`',
-        replace: '` · ${z6.installedCount} 已安裝`',
+        search: '` · ${J6.installedCount} already installed`',
+        replace: '` · ${J6.installedCount} 已安裝`',
       },
       // ── Template literal: collapse/show all ──
       {
-        search: '` · ${_} to ${K?"collapse":"show all"}`',
-        replace: '` · ${_} ${K?"收合":"展開全部"}`',
+        search: '` · ${j} to ${_?"collapse":"show all"}`',
+        replace: '` · ${j} ${_?"收合":"展開全部"}`',
       },
       // ── Template literal: to scroll ──
       {
@@ -381,33 +377,33 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
       },
       // ── Template literal: ctrl+e to hide/explain ──
       {
-        search: '` · ctrl+e to ${J.visible?"hide":"explain"}`',
-        replace: '` · ctrl+e ${J.visible?"隱藏":"解說"}`',
+        search: '` · ctrl+e to ${H.visible?"hide":"explain"}`',
+        replace: '` · ctrl+e ${H.visible?"隱藏":"解說"}`',
       },
       // ── Template literal: Share earn ──
       {
-        search: '`Share Claude Code and earn ${K86(K)} of extra usage · /passes`',
-        replace: '`分享 Claude Code 可獲得 ${K86(K)} 額外用量 · /passes`',
+        search: '`Share Claude Code and earn ${uK6(_)} of extra usage · /passes`',
+        replace: '`分享 Claude Code 可獲得 ${uK6(_)} 額外用量 · /passes`',
       },
       // ── Template literal: free guest passes ──
       {
-        search: '`You have free guest passes to share · ${q("/passes")}`',
-        replace: '`你有免費邀請碼可以分享 · ${q("/passes")}`',
+        search: '`You have free guest passes to share · ${K("/passes")}`',
+        replace: '`你有免費邀請碼可以分享 · ${K("/passes")}`',
       },
       // ── Template literal: Tip access ──
       {
-        search: '`Tip: You have access to ${q.name} with ${q.multiplier}x more context`',
-        replace: '`提示：你可使用 ${q.name}，擁有 ${q.multiplier} 倍的上下文`',
+        search: '`Tip: You have access to ${K.name} with ${K.multiplier}x more context`',
+        replace: '`提示：你可使用 ${K.name}，擁有 ${K.multiplier} 倍的上下文`',
       },
       // ── Template literal: Tip dynamic ──
       {
-        search: '`Tip: ${j6}`',
-        replace: '`提示：${j6}`',
+        search: '`Tip: ${G6}`',
+        replace: '`提示：${G6}`',
       },
       // ── Template literal: Editing ──
       {
-        search: '`Editing ${q}`',
-        replace: '`編輯 ${q}`',
+        search: '`Editing ${K}`',
+        replace: '`編輯 ${K}`',
       },
       // ── Template literal: auto-compact ──
       {
@@ -416,18 +412,18 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
       },
       // ── Template literal: carried from compact ──
       {
-        search: '` (${K} carried from compact boundary)`',
-        replace: '` (${K} 從壓縮邊界帶入)`',
+        search: '` (${_} carried from compact boundary)`',
+        replace: '` (${_} 從壓縮邊界帶入)`',
       },
       // ── Template literal: In/Out tokens ──
       {
-        search: '`  In: ${vq($.inputTokens)} · Out: ${vq($.outputTokens)}`',
-        replace: '`  輸入: ${vq($.inputTokens)} · 輸出: ${vq($.outputTokens)}`',
+        search: '`  In: ${BK(w.inputTokens)} · Out: ${BK(w.outputTokens)}`',
+        replace: '`  輸入: ${BK(w.inputTokens)} · 輸出: ${BK(w.outputTokens)}`',
       },
       // ── Template literal: per Mtok ──
       {
-        search: '`${ct7(A.inputTokens)}/${ct7(A.outputTokens)} per Mtok`',
-        replace: '`${ct7(A.inputTokens)}/${ct7(A.outputTokens)} / 百萬 token`',
+        search: '`${s54(q.inputTokens)}/${s54(q.outputTokens)} per Mtok`',
+        replace: '`${s54(q.inputTokens)}/${s54(q.outputTokens)} / 百萬 token`',
       },
       // ── Ternary: will not work / may conflict ──
       {
@@ -440,8 +436,8 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
         replace: '`已建立對話分支${P}。你現在在分支中。${W}`',
       },
       {
-        search: '`Branched conversation${P}. Resume with: /resume ${_}`',
-        replace: '`已建立對話分支${P}。恢復請用：/resume ${_}`',
+        search: '`Branched conversation${P}. Resume with: /resume ${A}`',
+        replace: '`已建立對話分支${P}。恢復請用：/resume ${A}`',
       },
       // ── Running command: fixed string + template ──
       {
@@ -449,8 +445,8 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
         replace: 'return"執行指令"',
       },
       {
-        search: '`Running ${A.description??J3(A.command,nI)}`',
-        replace: '`執行 ${A.description??J3(A.command,nI)}`',
+        search: '`Running ${q.description??b3(q.command,gN)}`',
+        replace: '`執行 ${q.description??b3(q.command,gN)}`',
       },
       // ── Template literal: Next task ──
       {
@@ -459,13 +455,13 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
       },
       // ── Share: variant without /passes ──
       {
-        search: '`Share Claude Code and earn ${K86(A)} of extra usage`',
-        replace: '`分享 Claude Code 可獲得 ${K86(A)} 額外用量`',
+        search: '`Share Claude Code and earn ${uK6(q)} of extra usage`',
+        replace: '`分享 Claude Code 可獲得 ${uK6(q)} 額外用量`',
       },
       // ── Share: variant with q() wrapper ──
       {
-        search: '`Share Claude Code and earn ${q(K86(K))} of extra usage · ${q("/passes")}`',
-        replace: '`分享 Claude Code 可獲得 ${q(K86(K))} 額外用量 · ${q("/passes")}`',
+        search: '`Share Claude Code and earn ${K(uK6(_))} of extra usage · ${K("/passes")}`',
+        replace: '`分享 Claude Code 可獲得 ${K(uK6(_))} 額外用量 · ${K("/passes")}`',
       },
       // ── Share: fallback text ──
       {
@@ -479,16 +475,16 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
       },
       // ── Tool badge: Wrote N lines to (createElement split) ──
       {
-        search: '"Wrote ",H," lines to"',
-        replace: '"寫入 ",H," 行至"',
+        search: '"Wrote ",j," lines to"',
+        replace: '"寫入 ",j," 行至"',
       },
       {
-        search: '"Wrote ",FK.createElement(v,{bold:!0},H)," lines to"',
-        replace: '"寫入 ",FK.createElement(v,{bold:!0},H)," 行至"',
+        search: '"Wrote ",eK.createElement(v,{bold:!0},j)," lines to"',
+        replace: '"寫入 ",eK.createElement(v,{bold:!0},j)," 行至"',
       },
       // ── Tool badge: Selected N lines from file in IDE ──
       {
-        search: '"lines from ",L7.default.createElement(v,{bold:!0},A.displayPath)," in"," ",A.ideName',
+        search: '"lines from ",V4.default.createElement(v,{bold:!0},q.displayPath)," in"," ",q.ideName',
         replace: '"行，來自 ",L7.default.createElement(v,{bold:!0},A.displayPath),"，在 ",A.ideName',
       },
       // ── Permission dialog: Accept button (unsafe string, needs postPatch) ──
@@ -503,8 +499,8 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
       },
       // ── Fast mode overloaded: template literal variant ──
       {
-        search: '`Fast mode overloaded and is temporarily unavailable · resets in ${q}`',
-        replace: '`快速模式超載，暫時無法使用 · ${q} 後重置`',
+        search: '`Fast mode overloaded and is temporarily unavailable · resets in ${K}`',
+        replace: '`快速模式超載，暫時無法使用 · ${K} 後重置`',
       },
       // ── Settings section: Directories (too many non-UI occurrences) ──
       {
@@ -580,8 +576,8 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
       },
       // ── Spinner: thinking label ──
       {
-        search: '?`thinking${f}`',
-        replace: '?`思考中${f}`',
+        search: '?`thinking${G}`',
+        replace: '?`思考中${G}`',
       },
       // ── Tip: /mobile ──
       {
@@ -590,8 +586,8 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
       },
       // ── Collapse: ternary (translation map already replaced "→ to expand" → "→ 展開") ──
       {
-        search: 'Gq?"← to collapse":"→ 展開"',
-        replace: 'Gq?"← 收合":"→ 展開"',
+        search: 'v_?"← to collapse":"→ 展開"',
+        replace: 'v_?"← 收合":"→ 展開"',
       },
       {
         search: 'return"← to collapse"',
@@ -599,8 +595,8 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
       },
       // ── Diff summary: removed (dimColor) ──
       {
-        search: 'l7.createElement(v,{dimColor:d},"removed")',
-        replace: 'l7.createElement(v,{dimColor:d},"已刪除")',
+        search: 'r4.createElement(v,{dimColor:Q},"removed")',
+        replace: 'r4.createElement(v,{dimColor:Q},"已刪除")',
       },
       // ── Tool header: Write userFacingName ──
       {
@@ -609,8 +605,8 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
       },
       // ── Diff summary: Added N lines/line ──
       {
-        search: '"Added ",pY.createElement(v,{bold:!0},j)," ",j>1?"lines":"line"',
-        replace: '"新增 ",pY.createElement(v,{bold:!0},j)," ",j>1?"行":"行"',
+        search: '"Added ",VO.createElement(v,{bold:!0},H)," ",H>1?"lines":"line"',
+        replace: '"新增 ",VO.createElement(v,{bold:!0},H)," ",H>1?"行":"行"',
       },
       // ── Done status: ternary (完成/無輸出) ──
       {
@@ -624,8 +620,36 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
       },
       // ── Done status: skill loaded ──
       {
-        search: 'createElement(S1,null,["Done"])',
-        replace: 'createElement(S1,null,["完成"])',
+        search: 'createElement(u1,null,["Done"])',
+        replace: 'createElement(u1,null,["完成"])',
+      },
+      // ── Effort level: template literal ──
+      {
+        search: '`Effort level: auto (currently ${FG8(K,q)})`',
+        replace: '`推理等級：自動（目前 ${FG8(K,q)}）`',
+      },
+      // ── ctrl+s to copy ──
+      {
+        search: '"Esc to cancel · r to cycle dates · ctrl+s to copy"',
+        replace: '"Esc 取消 · r 切換日期 · ctrl+s 複製"',
+      },
+      // ── Custom model: template literals ──
+      {
+        search: '`Custom Sonnet model${_?" (1M context)":""}`,',
+        replace: '`自訂 Sonnet 模型${_?" (1M context)":""}`,',
+      },
+      {
+        search: '`Custom Opus model${_?" (1M context)":""}`,',
+        replace: '`自訂 Opus 模型${_?" (1M context)":""}`,',
+      },
+      // ── Editing notebook: template + fixed ──
+      {
+        search: '`Editing notebook ${K}`:"Editing notebook"',
+        replace: '`編輯筆記本 ${K}`:"編輯筆記本"',
+      },
+      {
+        search: 'NotebookEditTool:"Editing notebook"',
+        replace: 'NotebookEditTool:"編輯筆記本"',
       },
     ];
   }
@@ -641,8 +665,8 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
         replace: '"Claude Code 将可以读取、编辑和执行这里的文件。"',
       },
       {
-        search: 'return`Try "${eJ(K)}"`',
-        replace: 'return`试试看 "${eJ(K)}"`',
+        search: 'return`Try "${VM(_)}"`',
+        replace: 'return`试试看 "${VM(_)}"`',
       },
       {
         search: 'te="✻"',
@@ -690,18 +714,18 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
       },
       // ── Image in clipboard: template literal ──
       {
-        search: '`Image in clipboard · ${Ty1.displayText} to paste`',
-        replace: '`剪贴板有图片 · ${Ty1.displayText} 粘贴`',
+        search: '`Image in clipboard · ${DH("chat:imagePaste","Chat","ctrl+v")} to paste`',
+        replace: '`剪贴板有图片 · ${DH("chat:imagePaste","Chat","ctrl+v")} 粘贴`',
       },
       // ── Searching for: template literal ──
       {
-        search: '`Searching for ${q}`',
-        replace: '`搜索 ${q}`',
+        search: '`Searching for ${K}`',
+        replace: '`搜索 ${K}`',
       },
       // ── (A to expand): template literal ──
       {
-        search: '`(${A} to expand)`',
-        replace: '`(${A} 展开)`',
+        search: '`(${q} to expand)`',
+        replace: '`(${q} 展开)`',
       },
       // ── Thinking (j to expand): template literal ──
       {
@@ -731,12 +755,12 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
       },
       // ── Reading/Writing template literals ──
       {
-        search: '`Reading ${q}`',
-        replace: '`读取 ${q}`',
+        search: '`Reading ${K}`',
+        replace: '`读取 ${K}`',
       },
       {
-        search: '`Writing ${q}`',
-        replace: '`写入 ${q}`',
+        search: '`Writing ${K}`',
+        replace: '`写入 ${K}`',
       },
       // ── "to expand" in createElement (variable keybinding) ──
       {
@@ -749,34 +773,30 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
       },
       // ── Template literal: thought for Ns ──
       {
-        search: '`thought for ${Math.max(1,Math.round(G/1000))}s`',
-        replace: '`思考了 ${Math.max(1,Math.round(G/1000))}s`',
+        search: '`thought for ${Math.max(1,Math.round(f/1000))}s`',
+        replace: '`思考了 ${Math.max(1,Math.round(f/1000))}s`',
       },
       // ── Template literal: +N lines ──
       {
-        search: '`+${X} lines`',
-        replace: '`+${X} 行`',
+        search: '`+${D} lines`',
+        replace: '`+${D} 行`',
       },
       {
-        search: '+${q} lines]`',
-        replace: '+${q} 行]`',
+        search: '+${K} lines]`',
+        replace: '+${K} 行]`',
       },
       {
-        search: '+${H} lines ',
-        replace: '+${H} 行 ',
+        search: '+${H} lines${',
+        replace: '+${H} 行${',
       },
       {
-        search: '+${j} lines',
-        replace: '+${j} 行',
+        search: '+${J} lines',
+        replace: '+${J} 行',
       },
       // ── Template literal: ↑↓ more files ──
       {
-        search: '` ↑ ${w} more file${w!==1?"s":""}`',
-        replace: '` ↑ 还有 ${w} 个文件`',
-      },
-      {
-        search: '` ↓ ${K.length-O} more file${K.length-O!==1?"s":""}`',
-        replace: '` ↓ 还有 ${K.length-O} 个文件`',
+        search: '` ↑ ${O} more ${$7(O,"file")}`',
+        replace: '` ↑ 还有 ${O} ${$7(O,"file")}`',
       },
       // ── Template literal: still running ──
       {
@@ -785,18 +805,18 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
       },
       // ── Template literal: model set to ──
       {
-        search: '` · model set to ${Dk}`',
-        replace: '` · 模型设为 ${Dk}`',
+        search: '` · model set to ${cI}`',
+        replace: '` · 模型设为 ${cI}`',
       },
       // ── Template literal: already installed ──
       {
-        search: '` · ${z6.installedCount} already installed`',
-        replace: '` · ${z6.installedCount} 已安装`',
+        search: '` · ${J6.installedCount} already installed`',
+        replace: '` · ${J6.installedCount} 已安装`',
       },
       // ── Template literal: collapse/show all ──
       {
-        search: '` · ${_} to ${K?"collapse":"show all"}`',
-        replace: '` · ${_} ${K?"收起":"展开全部"}`',
+        search: '` · ${j} to ${_?"collapse":"show all"}`',
+        replace: '` · ${j} ${_?"收起":"展开全部"}`',
       },
       // ── Template literal: to scroll ──
       {
@@ -805,33 +825,33 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
       },
       // ── Template literal: ctrl+e to hide/explain ──
       {
-        search: '` · ctrl+e to ${J.visible?"hide":"explain"}`',
-        replace: '` · ctrl+e ${J.visible?"隐藏":"解释"}`',
+        search: '` · ctrl+e to ${H.visible?"hide":"explain"}`',
+        replace: '` · ctrl+e ${H.visible?"隐藏":"解释"}`',
       },
       // ── Template literal: Share earn ──
       {
-        search: '`Share Claude Code and earn ${K86(K)} of extra usage · /passes`',
-        replace: '`分享 Claude Code 可获得 ${K86(K)} 额外用量 · /passes`',
+        search: '`Share Claude Code and earn ${uK6(_)} of extra usage · /passes`',
+        replace: '`分享 Claude Code 可获得 ${uK6(_)} 额外用量 · /passes`',
       },
       // ── Template literal: free guest passes ──
       {
-        search: '`You have free guest passes to share · ${q("/passes")}`',
-        replace: '`你有免费邀请码可以分享 · ${q("/passes")}`',
+        search: '`You have free guest passes to share · ${K("/passes")}`',
+        replace: '`你有免费邀请码可以分享 · ${K("/passes")}`',
       },
       // ── Template literal: Tip access ──
       {
-        search: '`Tip: You have access to ${q.name} with ${q.multiplier}x more context`',
-        replace: '`提示：你可使用 ${q.name}，拥有 ${q.multiplier} 倍的上下文`',
+        search: '`Tip: You have access to ${K.name} with ${K.multiplier}x more context`',
+        replace: '`提示：你可使用 ${K.name}，拥有 ${K.multiplier} 倍的上下文`',
       },
       // ── Template literal: Tip dynamic ──
       {
-        search: '`Tip: ${j6}`',
-        replace: '`提示：${j6}`',
+        search: '`Tip: ${G6}`',
+        replace: '`提示：${G6}`',
       },
       // ── Template literal: Editing ──
       {
-        search: '`Editing ${q}`',
-        replace: '`编辑 ${q}`',
+        search: '`Editing ${K}`',
+        replace: '`编辑 ${K}`',
       },
       // ── Template literal: auto-compact ──
       {
@@ -840,18 +860,18 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
       },
       // ── Template literal: carried from compact ──
       {
-        search: '` (${K} carried from compact boundary)`',
-        replace: '` (${K} 从压缩边界带入)`',
+        search: '` (${_} carried from compact boundary)`',
+        replace: '` (${_} 从压缩边界带入)`',
       },
       // ── Template literal: In/Out tokens ──
       {
-        search: '`  In: ${vq($.inputTokens)} · Out: ${vq($.outputTokens)}`',
-        replace: '`  输入: ${vq($.inputTokens)} · 输出: ${vq($.outputTokens)}`',
+        search: '`  In: ${BK(w.inputTokens)} · Out: ${BK(w.outputTokens)}`',
+        replace: '`  输入: ${BK(w.inputTokens)} · 输出: ${BK(w.outputTokens)}`',
       },
       // ── Template literal: per Mtok ──
       {
-        search: '`${ct7(A.inputTokens)}/${ct7(A.outputTokens)} per Mtok`',
-        replace: '`${ct7(A.inputTokens)}/${ct7(A.outputTokens)} / 百万 token`',
+        search: '`${s54(q.inputTokens)}/${s54(q.outputTokens)} per Mtok`',
+        replace: '`${s54(q.inputTokens)}/${s54(q.outputTokens)} / 百万 token`',
       },
       // ── Ternary: will not work / may conflict ──
       {
@@ -864,8 +884,8 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
         replace: '`已建立对话分支${P}。你现在在分支中。${W}`',
       },
       {
-        search: '`Branched conversation${P}. Resume with: /resume ${_}`',
-        replace: '`已建立对话分支${P}。恢复请用：/resume ${_}`',
+        search: '`Branched conversation${P}. Resume with: /resume ${A}`',
+        replace: '`已建立对话分支${P}。恢复请用：/resume ${A}`',
       },
       // ── Running command: fixed string + template ──
       {
@@ -873,8 +893,8 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
         replace: 'return"执行指令"',
       },
       {
-        search: '`Running ${A.description??J3(A.command,nI)}`',
-        replace: '`执行 ${A.description??J3(A.command,nI)}`',
+        search: '`Running ${q.description??b3(q.command,gN)}`',
+        replace: '`执行 ${q.description??b3(q.command,gN)}`',
       },
       // ── Template literal: Next task ──
       {
@@ -883,13 +903,13 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
       },
       // ── Share: variant without /passes ──
       {
-        search: '`Share Claude Code and earn ${K86(A)} of extra usage`',
-        replace: '`分享 Claude Code 可获得 ${K86(A)} 额外用量`',
+        search: '`Share Claude Code and earn ${uK6(q)} of extra usage`',
+        replace: '`分享 Claude Code 可获得 ${uK6(q)} 额外用量`',
       },
       // ── Share: variant with q() wrapper ──
       {
-        search: '`Share Claude Code and earn ${q(K86(K))} of extra usage · ${q("/passes")}`',
-        replace: '`分享 Claude Code 可获得 ${q(K86(K))} 额外用量 · ${q("/passes")}`',
+        search: '`Share Claude Code and earn ${K(uK6(_))} of extra usage · ${K("/passes")}`',
+        replace: '`分享 Claude Code 可获得 ${K(uK6(_))} 额外用量 · ${K("/passes")}`',
       },
       // ── Share: fallback text ──
       {
@@ -955,8 +975,8 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
       },
       // ── Spinner: thinking label ──
       {
-        search: '?`thinking${f}`',
-        replace: '?`思考中${f}`',
+        search: '?`thinking${G}`',
+        replace: '?`思考中${G}`',
       },
       // ── Tip: /mobile ──
       {
@@ -965,8 +985,8 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
       },
       // ── Collapse: ternary (translation map already replaced "→ to expand" → "→ 展开") ──
       {
-        search: 'Gq?"← to collapse":"→ 展开"',
-        replace: 'Gq?"← 收起":"→ 展开"',
+        search: 'v_?"← to collapse":"→ 展开"',
+        replace: 'v_?"← 收起":"→ 展开"',
       },
       {
         search: 'return"← to collapse"',
@@ -974,8 +994,8 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
       },
       // ── Diff summary: removed (dimColor) ──
       {
-        search: 'l7.createElement(v,{dimColor:d},"removed")',
-        replace: 'l7.createElement(v,{dimColor:d},"已删除")',
+        search: 'r4.createElement(v,{dimColor:Q},"removed")',
+        replace: 'r4.createElement(v,{dimColor:Q},"已删除")',
       },
       // ── Tool header: Write userFacingName ──
       {
@@ -984,8 +1004,8 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
       },
       // ── Diff summary: Added N lines/line ──
       {
-        search: '"Added ",pY.createElement(v,{bold:!0},j)," ",j>1?"lines":"line"',
-        replace: '"新增 ",pY.createElement(v,{bold:!0},j)," ",j>1?"行":"行"',
+        search: '"Added ",VO.createElement(v,{bold:!0},H)," ",H>1?"lines":"line"',
+        replace: '"新增 ",VO.createElement(v,{bold:!0},H)," ",H>1?"行":"行"',
       },
       // ── Done status: ternary ──
       {
@@ -999,8 +1019,36 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
       },
       // ── Done status: skill loaded ──
       {
-        search: 'createElement(S1,null,["Done"])',
-        replace: 'createElement(S1,null,["完成"])',
+        search: 'createElement(u1,null,["Done"])',
+        replace: 'createElement(u1,null,["完成"])',
+      },
+      // ── Effort level: template literal ──
+      {
+        search: '`Effort level: auto (currently ${FG8(K,q)})`',
+        replace: '`推理等级：自动（当前 ${FG8(K,q)}）`',
+      },
+      // ── ctrl+s to copy ──
+      {
+        search: '"Esc to cancel · r to cycle dates · ctrl+s to copy"',
+        replace: '"Esc 取消 · r 切换日期 · ctrl+s 复制"',
+      },
+      // ── Custom model: template literals ──
+      {
+        search: '`Custom Sonnet model${_?" (1M context)":""}`,',
+        replace: '`自定义 Sonnet 模型${_?" (1M context)":""}`,',
+      },
+      {
+        search: '`Custom Opus model${_?" (1M context)":""}`,',
+        replace: '`自定义 Opus 模型${_?" (1M context)":""}`,',
+      },
+      // ── Editing notebook: template + fixed ──
+      {
+        search: '`Editing notebook ${K}`:"Editing notebook"',
+        replace: '`编辑笔记本 ${K}`:"编辑笔记本"',
+      },
+      {
+        search: 'NotebookEditTool:"Editing notebook"',
+        replace: 'NotebookEditTool:"编辑笔记本"',
       },
     ];
   }

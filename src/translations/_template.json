@@ -49,7 +49,13 @@
     "confirm_delete_agent": "",
     "yes_allow_all_edits_in": "",
     "yes_allow_reading_from": "",
-    "yes_allow_edit_settings": ""
+    "yes_allow_edit_settings": "",
+    "decline": "",
+    "yes_always_allow_access": "",
+    "confirm_restore": "",
+    "denied_prefix": "",
+    "allowed_prefix": "",
+    "from_this_project": ""
   },
   "modes": {
     "default_mode": "",
@@ -169,7 +175,24 @@
     "reading_file": "",
     "writing_file": "",
     "editing_file": "",
-    "editing_notebook": ""
+    "editing_notebook": "",
+    "stopped": "",
+    "completed": "",
+    "authenticating_with": "",
+    "resuming_conversation": "",
+    "loading_conversations_ellipsis": "",
+    "answering": "",
+    "no_changes_parens": "",
+    "no_content_parens": "",
+    "no_output_parens": "",
+    "fast_mode": "",
+    "debug_mode": "",
+    "recent_messages": "",
+    "free_space": "",
+    "mcp_tools": "",
+    "effort_level_auto": "",
+    "custom_sonnet_model": "",
+    "custom_opus_model": ""
   },
   "prompts": {
     "press_enter_continue": "",
@@ -193,7 +216,26 @@
     "esc_additional": "",
     "tab_switch_esc_close": "",
     "press_esc_close": "",
-    "double_tap_esc": ""
+    "double_tap_esc": "",
+    "describe_issue": "",
+    "type_to_filter": "",
+    "type_to_search": "",
+    "enter_session_name": "",
+    "to_cancel": "",
+    "to_auto_accept": "",
+    "to_toggle_tasks": "",
+    "to_paste_images": "",
+    "to_switch_model": "",
+    "to_toggle_fast": "",
+    "to_stash_prompt": "",
+    "to_edit_in_editor": "",
+    "to_toggle_thinking": "",
+    "ctrl_z_suspend": "",
+    "at_for_file_paths": "",
+    "amp_for_background": "",
+    "for_verbose_output": "",
+    "enter_continue_dot": "",
+    "ctrl_s_to_copy": ""
   },
   "tools": {
     "view_tools": "",
@@ -213,7 +255,9 @@
     "gh_not_installed": "",
     "no_changes_same": "",
     "file_denied_settings": "",
-    "sandbox_not_enabled": ""
+    "sandbox_not_enabled": "",
+    "error_prefix": "",
+    "oauth_error": ""
   },
   "actions": {
     "try_again": "",
@@ -288,7 +332,23 @@
     "enter_system_prompt": "",
     "when_use_agent": "",
     "try_creating_agents": "",
-    "subagent_own_context": ""
+    "subagent_own_context": "",
+    "not_set": "",
+    "not_authenticated": "",
+    "learn_more": "",
+    "backgrounded_agent": "",
+    "environment_variables": "",
+    "author_prefix": "",
+    "feedback_id_prefix": "",
+    "claude_can_make_mistakes": "",
+    "running_code": "",
+    "for_more_details": "",
+    "fast_mode_overloaded": "",
+    "to_get_started": "",
+    "shortcuts": "",
+    "workflows": "",
+    "agents_label": "",
+    "terminal_bell": ""
   },
   "billing": {
     "pro_max_team": "",
@@ -344,7 +404,12 @@
     "left_right_source": "",
     "what_claude_do": "",
     "p_to_expand": "",
-    "arrow_to_expand": ""
+    "arrow_to_expand": "",
+    "back_arrow": "",
+    "again_to_exit": "",
+    "go_back": "",
+    "again_to_go_back": "",
+    "open_in_editor": ""
   },
   "plan": {
     "here_is_plan": "",
@@ -368,7 +433,10 @@
     "user_approved_plan": "",
     "user_rejected_plan": "",
     "user_declined_plan": "",
-    "waiting_team_lead": ""
+    "waiting_team_lead": "",
+    "no_plan_found": "",
+    "plan_file": "",
+    "plan_saved_to": ""
   },
   "safety": {
     "accessing_workspace": "",
@@ -735,7 +803,8 @@
     "chrome_enabled": "",
     "accept_terms_off": "",
     "accept_terms_off_domain": "",
-    "accept_terms_on": ""
+    "accept_terms_on": "",
+    "reconnect_extension": ""
   },
   "titles": {
     "config": "",
@@ -817,7 +886,10 @@
     "tabs_context": "",
     "tabs_create": "",
     "thinkback": "",
-    "iterm_split_pane": ""
+    "iterm_split_pane": "",
+    "plugin_details": "",
+    "manage_plugins": "",
+    "install_plugins": ""
   },
   "subtitles": {
     "agent_type": "",
@@ -843,7 +915,8 @@
     "tell_next": "",
     "command_prefix": "",
     "type_to_change": "",
-    "enter_repo": ""
+    "enter_repo": "",
+    "enter_marketplace_source": ""
   },
   "user_messages": {
     "claude_waiting": "",
@@ -999,7 +1072,9 @@
     "cc_review_new_prs": "",
     "pr_assistant_workflow": "",
     "cc_review_workflow": "",
-    "effort_high_this_turn": ""
+    "effort_high_this_turn": "",
+    "logged_in_as": "",
+    "thank_you_report": ""
   },
   "tips": {
     "tip_ide": "",
@@ -1078,7 +1153,11 @@
     "doctor_desc": "",
     "chrome_desc": "",
     "alias_desc": "",
-    "plugin_desc": ""
+    "plugin_desc": "",
+    "exit_desc": "",
+    "mobile_desc": "",
+    "mcp_get_desc": "",
+    "mcp_list_desc": ""
   },
   "subcommands": {
     "mcp_add_desc": "",

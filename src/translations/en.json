@@ -192,7 +192,10 @@
     "debug_mode": "Debug mode",
     "recent_messages": "Recent messages",
     "free_space": "Free space",
-    "mcp_tools": "MCP tools"
+    "mcp_tools": "MCP tools",
+    "effort_level_auto": "Effort level: auto",
+    "custom_sonnet_model": "Custom Sonnet model",
+    "custom_opus_model": "Custom Opus model"
   },
   "prompts": {
     "press_enter_continue": "Press Enter to continue",
@@ -234,7 +237,8 @@
     "at_for_file_paths": "@ for file paths",
     "amp_for_background": "& for background",
     "for_verbose_output": " for verbose output",
-    "enter_continue_dot": "Enter to continue · "
+    "enter_continue_dot": "Enter to continue · ",
+    "ctrl_s_to_copy": " · ctrl+s to copy"
   },
   "tools": {
     "view_tools": "🧰 View tools",
@@ -1152,7 +1156,11 @@
     "doctor_desc": "Diagnose and verify your Claude Code installation and settings",
     "chrome_desc": "Claude in Chrome (Beta) settings",
     "alias_desc": "Create or list command aliases",
-    "plugin_desc": "Manage Claude Code plugins"
+    "plugin_desc": "Manage Claude Code plugins",
+    "exit_desc": "Exit the REPL",
+    "mobile_desc": "Show QR code to download the Claude mobile app",
+    "mcp_get_desc": "Get details about an MCP server",
+    "mcp_list_desc": "List configured MCP servers"
   },
   "subcommands": {
     "mcp_add_desc": "Add an MCP server (stdio or SSE) with a JSON string",
