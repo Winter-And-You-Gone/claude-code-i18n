@@ -3,6 +3,8 @@ dist/
 *.js.map
 *.tsbuildinfo
 .DS_Store
+*.log
+*.tgz
 
 # Work files (batch instructions, diagnostics, temp scripts)
 *-instructions.md

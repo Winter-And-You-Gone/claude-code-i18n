@@ -1,217 +1,94 @@
-# cc-i18n
+[English](docs/README.en.md) | 中文
 
-**Internationalize Claude Code — Make the entire CLI interface available in any language**
+# cc-i18n — 讓 Claude Code 說中文
 
-> Claude Code's terminal UI is hardcoded in English. This tool changes that.
+把 Claude Code 的整個介面翻譯成中文（或任何語言）。
 
-[![npm version](https://img.shields.io/npm/v/claude-code-i18n.svg)](https://www.npmjs.com/package/claude-code-i18n)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Claude Code](https://img.shields.io/badge/Claude_Code-tested_v2.1-blueviolet)](https://docs.anthropic.com/en/docs/claude-code)
+一行安裝，零 token 消耗，CC 更新後自動修復。
 
-[繁體中文](./docs/README.zh-TW.md) | [简体中文](./docs/README.zh-CN.md)
+## 效果
 
----
+安裝前：所有選單、按鈕、提示都是英文
+安裝後：全部變中文，操作體驗完全不同
 
-## What it does
+> 目前翻譯了 1480+ 個字串，涵蓋 CC 的按鈕、選單、狀態列、錯誤訊息、工具提示等。
 
-cc-i18n translates Claude Code's **entire terminal interface** into your language:
-
-- Permission prompts (Allow / Deny / Always allow...)
-- Status messages (Thinking... / Running... / Compacting...)
-- Mode labels (Plan Mode / Auto-accept edits / Bypass...)
-- Error messages, button labels, and more
-- **Also makes Claude's AI responses use your language** via a plugin
-
-### Kids Mode
-
-A special "kids" variant uses the simplest possible words + emoji to explain everything:
-
-| English | 繁體中文 | 小學生版 |
-|---------|---------|---------|
-| Allow | 允許 | 👍 好的 |
-| Deny | 拒絕 | 🚫 不要 |
-| Thinking... | 思考中... | 🤔 想一想... |
-| Running... | 執行中... | ⚡ 在做了在做了... |
-| Plan Mode | 規劃模式 | 📋 只看不做模式 |
-| Bypass Permissions | 跳過權限 | ⚠️ 什麼都不問模式 |
-
----
-
-## Quick Start
+## 三步安裝
 
 ```bash
-# Install
-npm install -g claude-code-i18n
+# 1. 安裝工具
+npm install -g cc-i18n
 
-# Switch to Traditional Chinese
+# 2. 套用中文
 cc-i18n patch --lang zh-TW
 
-# Auto-repair after CC updates (recommended)
-cc-i18n install-wrapper
-
-# Check status
-cc-i18n status
-
-# Restore English
-cc-i18n unpatch
-```
-
----
-
-## Available Languages
-
-| Locale | Language | Kids |
-|--------|----------|------|
-| `zh-TW` | 繁體中文 (Traditional Chinese) | ✅ |
-| `zh-CN` | 简体中文 (Simplified Chinese) | ✅ |
-
-More languages coming soon. [Contribute a translation!](#contributing-translations)
-
----
-
-## Commands
-
-### `cc-i18n patch --lang <locale>`
-
-Apply translation patch to Claude Code.
-
-```bash
-cc-i18n patch --lang zh-TW          # Traditional Chinese
-cc-i18n patch --lang zh-CN --kids   # Simplified Chinese, kids mode
-```
-
-What it does:
-1. Finds your Claude Code installation
-2. Backs up the original `cli.js`
-3. Replaces English UI strings with translations
-4. Validates the patched file (auto-restores on failure)
-5. Installs a Claude plugin for AI response language
-
-### `cc-i18n unpatch`
-
-Restore Claude Code to original English.
-
-### `cc-i18n status`
-
-Show current patch status, language, version, and replacement count.
-
-### `cc-i18n list`
-
-List all available translation locales.
-
-### `cc-i18n extract`
-
-Extract UI strings from Claude Code for translation work.
-
-```bash
-cc-i18n extract --output strings.json
-```
-
-### `cc-i18n contribute --lang <locale>`
-
-Generate an empty translation template for a new language.
-
-```bash
-cc-i18n contribute --lang ja   # Creates ja.json template
-```
-
-### `cc-i18n check-update`
-
-Check if Claude Code was updated and re-apply patch if needed.
-
-```bash
-cc-i18n check-update              # Check and report
-cc-i18n check-update --repatch    # Auto re-apply if updated
-cc-i18n check-update --hook       # Print shell hook for .zshrc
-```
-
----
-
-## Auto Re-patch After Updates
-
-Claude Code updates will overwrite the patched `cli.js`. Install the wrapper for automatic re-patching:
-
-```bash
+# 3. 裝自動修復（CC 更新後自動恢復中文）
 cc-i18n install-wrapper
 ```
 
-This creates a lightweight wrapper at `~/.local/bin/claude` that:
-1. Detects when CC has been updated (MD5 mismatch)
-2. Automatically re-applies your translation
-3. Falls back to English if anything goes wrong
+裝完打 `claude --help`，看到中文就成功了。
 
-Alternatively, add a shell hook to your `.zshrc` or `.bashrc`:
+## CC 更新後會不會失效？
 
-```bash
-cc-i18n check-update --hook >> ~/.zshrc
-source ~/.zshrc
-```
+**不會。** 安裝了自動修復機制（三層防禦），CC 怎麼更新都不影響：
 
----
+| 防線 | 原理 | 什麼時候保護你 |
+|------|------|----------------|
+| Wrapper | 每次打 `claude` 前自動檢查 | 你啟動 CC 的那一刻 |
+| Sentinel | 背景監控 CC 安裝目錄 | cli.js 被換的那一秒 |
+| CC Hook | CC 啟動時再確認一次 | CC 內部啟動流程中 |
 
-## How It Works
+三層獨立運作，任一層壞了其他兩層照顧你。
 
-### Two-Layer Architecture
+## 支援語言
 
-| Layer | Translates | Method |
-|-------|-----------|--------|
-| **Patcher** | System UI: buttons, prompts, status bar | String replacement in `cli.js` |
-| **Plugin** | AI content: responses, explanations | CLAUDE.md rules in `~/.claude/` |
+| 語言 | 代碼 | 狀態 |
+|------|------|------|
+| 繁體中文 | zh-TW | 完整 |
+| 簡體中文 | zh-CN | 同步中 |
+| 簡單英文 | en-simple | 規劃中 |
 
-### Safety
+想加新語言？歡迎貢獻！看 [新語言指南](docs/cc-i18n-new-lang-playbook.md)。
 
-- **Backup**: Original `cli.js` is backed up before any modification
-- **Validation**: Patched file is verified with `node --check`
-- **Auto-restore**: If validation fails, the original is automatically restored
-- **Reversible**: `cc-i18n unpatch` fully restores the original
-
----
-
-## Contributing Translations
-
-Adding a new language is straightforward:
-
-### 1. Generate a template
+## 所有指令
 
 ```bash
-cc-i18n contribute --lang ja
+cc-i18n patch --lang zh-TW    # 套用翻譯
+cc-i18n unpatch                # 恢復英文
+cc-i18n status                 # 查看狀態
+cc-i18n install-wrapper        # 安裝自動修復 wrapper
+cc-i18n install-sentinel       # 安裝背景哨兵（可選）
 ```
 
-### 2. Fill in translations
+## 常見問題
 
-Edit `ja.json` — reference `src/translations/en.json` for the English originals.
+**Q：會消耗更多 token 嗎？**
+A：不會。翻譯是在你的電腦上直接替換 UI 字串，跟 API 無關。零消耗。
 
-### 3. Translation guidelines
+**Q：會不會影響 CC 的功能？**
+A：不會。只改介面文字，不碰任何邏輯代碼。UNSAFE 字串（HTTP headers 等）自動排除。
 
-- **Standard version**: Use natural, professional terminology for your locale
-- **Kids version** (optional): Simple words, short sentences, emoji, friendly tone
-- Keep the same JSON structure — every key must be present
-- Test with `cc-i18n patch --lang ja` before submitting
+**Q：怎麼更新翻譯？**
+A：`npm update -g cc-i18n && cc-i18n patch --lang zh-TW`
 
-### 4. Submit a PR
+**Q：支援 native installer 版的 CC 嗎？**
+A：目前支援 npm/Homebrew 安裝的 CC。Native installer 路徑支援開發中。
 
-Copy your translation to `src/translations/` and submit a pull request.
+## 原理
 
----
+cc-i18n 用兩層翻譯：
 
-## Technical Details
+1. **靜態翻譯表**：1440+ 條英中對照，直接字串替換
+2. **postPatch 規則**：處理 JSX/createElement 等動態字串，用上下文感知的精確替換
 
-- **Claude Code internals**: TypeScript + React + Ink, bundled into a single `cli.js` (~12MB)
-- **String replacement**: Longest-first replacement to prevent partial matches
-- **Quote-aware**: Handles both `"double"` and `'single'` quoted strings
-- **State tracking**: Patch state stored in `~/.cc-i18n/state.json`
-- **MD5 detection**: Detects Claude Code updates by comparing file hashes
+不改邏輯，只改顯示文字。patch 前自動備份，隨時可 unpatch 恢復。
 
----
+## 貢獻
 
-## Acknowledgements
-
-Inspired by community requests for Claude Code internationalization:
-- [Issue #4866](https://github.com/anthropics/claude-code/issues/4866)
-- [Issue #22356](https://github.com/anthropics/claude-code/issues/22356)
-- [Issue #22386](https://github.com/anthropics/claude-code/issues/22386)
-
----
+歡迎 PR！特別歡迎：
+- 新語言翻譯
+- 修正翻譯錯誤
+- 支援新版 CC
 
 ## License
 
