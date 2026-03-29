@@ -7,6 +7,7 @@ import { loadState } from '../core/patcher.js';
 import { resolveLocaleKey, loadTranslationMap, listLocaleGroups } from '../core/translations.js';
 import { installPlugin } from './plugin-installer.js';
 import { patchHud, findHudDir } from '../core/hud-patcher.js';
+import { patchSkillDescriptions } from '../core/skill-patcher.js';
 import { detectSystemLanguage } from '../core/detector.js';
 import { createSpinner } from '../ui/spinner.js';
 
@@ -154,12 +155,24 @@ export async function patchCommand(options: PatchOptions): Promise<void> {
       }
     }
 
-    // 6. Install plugin
+    // 6. Patch skill & command descriptions
+    spinner.start('Patching skill descriptions...');
+    const skillResult = await patchSkillDescriptions(localeKey);
+    if (skillResult.patched > 0) {
+      spinner.succeed(`Skills: ${skillResult.patched} descriptions translated`);
+    } else {
+      spinner.succeed('Skills: no translations for this locale');
+    }
+    if (skillResult.errors.length > 0) {
+      console.log(chalk.yellow(`   ⚠ ${skillResult.errors.length} skill patch errors`));
+    }
+
+    // 7. Install plugin
     spinner.start('Installing language plugin...');
     await installPlugin(baseLocale, variant === 'technical' ? 'technical' : undefined);
     spinner.succeed('Language plugin installed');
 
-    // 7. Done
+    // 8. Done
     console.log();
     console.log(chalk.green.bold(`☯ Claude Code is now in ${nativeName}`));
     console.log();
@@ -167,8 +180,10 @@ export async function patchCommand(options: PatchOptions): Promise<void> {
     console.log(chalk.dim('   cc-i18n unpatch        — restore English'));
     console.log(chalk.dim('   cc-i18n patch --reset  — choose a different language'));
 
-    // 8. Ask for star (gratitude moment)
-    await askStar();
+    // 9. Ask for star (gratitude moment) — skip in non-interactive/auto-repatch mode
+    if (!process.env.CC_I18N_AUTO) {
+      await askStar();
+    }
   } catch (err) {
     spinner.fail(`Patch failed: ${(err as Error).message}`);
     process.exit(1);

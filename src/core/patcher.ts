@@ -56,6 +56,20 @@ const WHITELIST_STRINGS: ReadonlySet<string> = new Set([
   'Creating',
 ]);
 
+/**
+ * Map locale to the language directive injected into every system prompt.
+ * This makes the model respond in the user's chosen language.
+ */
+const LOCALE_DIRECTIVES: Record<string, string> = {
+  'zh-TW': 'You MUST always respond in 繁體中文 (Traditional Chinese). All your text output, explanations, questions, and comments must be in 繁體中文. Never switch to English unless the user explicitly asks for English or you are writing code/commands.',
+  'zh-CN': 'You MUST always respond in 简体中文 (Simplified Chinese). All your text output, explanations, questions, and comments must be in 简体中文. Never switch to English unless the user explicitly asks for English or you are writing code/commands.',
+};
+
+function getLanguageDirective(locale: string): string | null {
+  const baseLang = locale.replace(/-technical$/, '');
+  return LOCALE_DIRECTIVES[baseLang] ?? null;
+}
+
 export interface PatchState {
   locale: string;
   variant: string | null;
@@ -724,6 +738,342 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
         search: '{Read:"Reading",Write:"Writing",Edit:"Editing",MultiEdit:"Editing",Bash:"Running",Glob:"Searching",Grep:"Searching",WebFetch:"Fetching",WebSearch:"Searching",Task:"Running task",FileReadTool:"Reading",FileWriteTool:"Writing",FileEditTool:"Editing",GlobTool:"Searching",GrepTool:"Searching",BashTool:"Running"',
         replace: '{Read:"讀取中",Write:"寫入中",Edit:"編輯中",MultiEdit:"編輯中",Bash:"執行中",Glob:"搜尋中",Grep:"搜尋中",WebFetch:"擷取中",WebSearch:"搜尋中",Task:"執行任務",FileReadTool:"讀取中",FileWriteTool:"寫入中",FileEditTool:"編輯中",GlobTool:"搜尋中",GrepTool:"搜尋中",BashTool:"執行中"',
       },
+      // ── Built-in skill/command descriptions ──
+      {
+        search: 'description:\'Use this skill to configure the Claude Code harness via settings.json. Automated behaviors ("from now on when X", "each time X", "whenever X", "before/after X") require hooks configured in settings.json - the harness executes these, not Claude, so m',
+        replace: 'description:\'透過 settings.json 配置 Claude Code。自動行為（「從現在開始當 X」「每次 X」「X 之前/之後」）需在 settings.json 中配置 hooks — 由系統執行，不是 Claude 自己執行',
+      },
+      {
+        search: `description:'Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: "rebind ctrl+s", "add a chord shortcut", "change the submit key", "customize keybindings".`,
+        replace: `description:'自訂鍵盤快捷鍵、重新綁定按鍵、新增組合鍵、或修改 ~/.claude/keybindings.json 時使用。`,
+      },
+      {
+        search: `description:"Continue the current session in Claude Desktop"`,
+        replace: `description:"在 Claude Desktop 繼續當前會話"`,
+      },
+      {
+        search: `description:"Show remote session URL and QR code"`,
+        replace: `description:"顯示遠端會話網址和 QR code"`,
+      },
+      {
+        search: `description:"Create a branch of the current conversation at this point"`,
+        replace: `description:"在此處建立對話分支"`,
+      },
+      // ── Built-in style descriptions ──
+      {
+        search: '"Explanatory",source:"built-in",description:"Claude explains its implementation choices and codebase patterns"',
+        replace: '"說明型",source:"built-in",description:"Claude 解釋實作選擇和程式碼模式"',
+      },
+      {
+        search: '"Learning",source:"built-in",description:"Claude pauses and asks you to write small pieces of code for hands-on practice"',
+        replace: '"學習型",source:"built-in",description:"Claude 暫停並請你寫小段程式碼來動手練習"',
+      },
+      // ── whenToUse for built-in skills (shown in slash menu secondary text) ──
+      {
+        search: "whenToUse:'When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval",
+        replace: "whenToUse:'當用戶想設定重複任務、定期查詢狀態、或按間隔重複執行時使用",
+      },
+      {
+        search: 'whenToUse:"When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/triggers."',
+        replace: 'whenToUse:"當用戶想排程遠端代理、設定自動化任務、建立 Claude Code 的 cron 排程、或管理排程代理/觸發器時使用。"',
+      },
+      {
+        search: 'whenToUse:"When the user wants to interact with web pages, automate browser tasks, capture screenshots, read console logs, or perform any browser-based actions.',
+        replace: 'whenToUse:"當用戶想與網頁互動、自動化瀏覽器任務、截圖、讀取控制台日誌、或執行瀏覽器操作時使用。',
+      },
+      {
+        search: 'whenToUse:"Use when the user wants to make a sweeping, mechanical change across many files (migrations, refactors, bulk renames) that can be decomposed into independent parallel units."',
+        replace: 'whenToUse:"當用戶需要跨多個檔案進行大規模機械式改動（遷移、重構、批量更名）且可拆分為獨立平行單元時使用。"',
+      },
+      // ── Agent type descriptions ──
+      {
+        search: 'General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you.',
+        replace: '通用代理，用於研究複雜問題、搜尋程式碼和執行多步驟任務。當搜尋關鍵字或檔案且不確定能否快速找到時，用這個代理執行搜尋。',
+      },
+      {
+        search: 'Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-st',
+        replace: '軟體架構代理，用於設計實作計畫。需要規劃任務的實作策略時使用。回傳逐步',
+      },
+      // ── Settings descriptions (single-quoted in cli.js) ──
+      {
+        search: "description:'Show turn duration message after responses",
+        replace: "description:'回應後顯示回合耗時訊息",
+      },
+      {
+        search: "description:'Preferred language for Claude responses and voice dictation",
+        replace: "description:'Claude 回覆和語音聽寫的偏好語言",
+      },
+      {
+        search: "description:'How to spawn teammates:",
+        replace: "description:'如何啟動隊友：",
+      },
+      {
+        search: `"Preferred notification channel"`,
+        replace: `"偏好的通知頻道"`,
+      },
+      {
+        search: `"Enable background memory consolidation"`,
+        replace: `"啟用背景記憶整合"`,
+      },
+      {
+        search: "description:'Show OSC 9;4 progress indicator in supported terminals",
+        replace: "description:'在支援的終端顯示 OSC 9;4 進度指示器",
+      },
+      {
+        search: 'description:"Override the default model"',
+        replace: 'description:"覆蓋預設模型"',
+      },
+      {
+        search: 'description:"Default - trusted network access"',
+        replace: 'description:"預設 — 信任的網路存取"',
+      },
+      // ── Misc UI strings in descriptions ──
+      {
+        search: '"Verify a code change does what it should by running the app."',
+        replace: '"透過執行應用程式驗證程式碼改動是否如預期運作。"',
+      },
+      {
+        search: '"Copy the conversation to your system clipboard"',
+        replace: '"將對話複製到系統剪貼簿"',
+      },
+      {
+        search: '"Save the conversation to a file in the current directory"',
+        replace: '"將對話儲存為當前目錄中的檔案"',
+      },
+      {
+        search: '"You can always enable it later with /remote-control."',
+        replace: '"之後隨時可以用 /remote-control 啟用。"',
+      },
+      // ── Background command / task notification strings ──
+      {
+        search: '="Background command "',
+        replace: '="背景指令 "',
+      },
+      {
+        search: '?"completed successfully":_==="failed"?"failed":"was stopped"',
+        replace: '?"已完成":_==="failed"?"失敗":"已停止"',
+      },
+      {
+        search: '?"Failed":"已停止"',
+        replace: '?"失敗":"已停止"',
+        regex: false,
+      },
+      {
+        search: '`Background command killed: output file exceeded',
+        replace: '`背景指令已終止：輸出檔案超過',
+      },
+      {
+        search: '`Command timed out after',
+        replace: '`指令逾時，超過',
+      },
+      // ── Agent status messages (template literals, use regex for variable names) ──
+      {
+        search: '`Agent "\\$\\{(\\w+)\\}" completed`',
+        replace: '`代理「$${$1}」已完成`',
+        regex: true,
+      },
+      {
+        search: '`Agent "\\$\\{(\\w+)\\}" failed: \\$\\{(\\w+)\\|\\|"Unknown',
+        replace: '`代理「$${$1}」失敗：$${$2}||"未知',
+        regex: true,
+      },
+      // ── Task tools system reminder (inside template literal, real apostrophes) ──
+      {
+        search: "The task tools haven't been used recently. If you're working on tasks that would benefit from tracking progress, consider using",
+        replace: '最近沒有使用任務工具。如果你正在進行需要追蹤進度的工作，請考慮使用',
+      },
+      {
+        search: 'to add new tasks and',
+        replace: '新增任務，以及',
+      },
+      {
+        search: "to update task status (set to in_progress when starting, completed when done). Also consider cleaning up the task list if it has become stale. Only use these if relevant to the current work. This is just a gentle reminder - ignore if not applicable.",
+        replace: '更新任務狀態（開始時設為進行中，完成時設為已完成）。如果任務清單已過時，也請考慮清理。只在相關時使用，此為溫和提醒，不適用請忽略。',
+      },
+      // ── Loop whenToUse English tail ──
+      {
+        search: `(e.g. "check the deploy every 5 minutes", "keep running /babysit-prs"). Do NOT invoke for one-off tasks.`,
+        replace: `（如「每 5 分鐘檢查部署」「持續跑 /babysit-prs」）。一次性任務請勿使用。`,
+      },
+      // ── update-config skill: the translation map only matches the truncated en.json key,
+      //    leaving an English tail. Match the ALREADY-TRANSLATED prefix + English tail. ──
+      {
+        search: `自動行為（「從現在開始當 X」「每次 X」「X 之前/之後」）需在 settings.json 中配置 hooks — 由系統執行，不是 Claude 自己執行emory/preferences cannot fulfill them. Also use for: permissions ("allow X", "add permission", "move permission to"), env vars ("set X=Y"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: "allow npm commands", "add bq permission to global settings", "move permission to user settings", "set DEBUG=true", "when claude stops show X". For simple settings like theme/model, use Config tool.`,
+        replace: `自動行為（「從現在開始 X」「每次 X」「X 之前/之後」）需在 settings.json 中配置 hooks。也用於：權限管理（「允許 X」「新增權限」）、環境變數（「設定 X=Y」）、hook 除錯、或 settings.json 修改。簡單設定如主題/模型用 Config 工具。`,
+      },
+      // ── Turn duration verbs (shown after every response) ──
+      {
+        search: '["Baked","Brewed","Churned","Cogitated","Cooked","Crunched","Sautéed","Worked"]',
+        replace: '["烘了","釀了","攪了","思了","煮了","算了","炒了","做了"]',
+      },
+      // ── "for" in turn duration: `${verb} for ${time}` → `${verb} ${time}` ──
+      {
+        search: '`\\$\\{(\\w+)\\} for \\$\\{(\\w+)\\}`',
+        replace: '`$${$1} $${$2}`',
+        regex: true,
+      },
+      // ── "still running" in turn duration footer ──
+      {
+        search: '` · \\$\\{(\\w+)\\} still running`',
+        replace: '` · $${$1} 仍在執行`',
+        regex: true,
+      },
+      // ── Shell count: "1 shell" / "${n} shells" ──
+      {
+        search: '"1 shell"',
+        replace: '"1 個終端"',
+      },
+      {
+        search: '`\\$\\{(\\w+)\\} shells`',
+        replace: '`$${$1} 個終端`',
+        regex: true,
+      },
+      // ── Monitor count: "1 monitor" / "${n} monitors" ──
+      {
+        search: '"1 monitor"',
+        replace: '"1 個監控"',
+      },
+      {
+        search: '`\\$\\{(\\w+)\\} monitors`',
+        replace: '`$${$1} 個監控`',
+        regex: true,
+      },
+      // ── Background task status labels ──
+      {
+        search: '"completed in background"',
+        replace: '"在背景完成"',
+      },
+      {
+        search: '"still running in background"',
+        replace: '"仍在背景執行"',
+      },
+      // ── "was moved to the background" message ──
+      {
+        search: 'and was moved to the background with ID:',
+        replace: '已移至背景執行，ID：',
+      },
+      {
+        search: 'It is still running — you will be notified when it completes. Output is being written to:',
+        replace: '仍在執行 — 完成時會通知你。輸出正在寫入：',
+      },
+      // ── Remote Control UI (note trailing spaces in cli.js) ──
+      {
+        search: '"Spawn mode: "',
+        replace: '"啟動模式："',
+      },
+      {
+        search: '"Max concurrent sessions: "',
+        replace: '"最大同時會話數："',
+      },
+      {
+        search: '"Environment ID: "',
+        replace: '"環境 ID："',
+      },
+      {
+        search: '"Sandbox:"',
+        replace: '"沙箱："',
+      },
+      // ── Statistics/Status page ──
+      {
+        search: '"Tokens per Day"',
+        replace: '"每日 Token 用量"',
+      },
+      {
+        search: '"No model usage data available"',
+        replace: '"沒有可用的模型使用數據"',
+      },
+      {
+        search: '"Favorite model"',
+        replace: '"常用模型"',
+      },
+      {
+        search: '"Total tokens"',
+        replace: '"總 Token 數"',
+      },
+      {
+        search: '`Total cost:',
+        replace: '`總費用：',
+      },
+      {
+        search: 'Total duration (API):',
+        replace: '總耗時（API）：',
+      },
+      {
+        search: 'Total duration (wall):',
+        replace: '總耗時（實際）：',
+      },
+      {
+        search: '"Active time"',
+        replace: '"活躍時間"',
+      },
+      {
+        search: '"Input tokens"',
+        replace: '"輸入 Token"',
+      },
+      {
+        search: '"Output tokens"',
+        replace: '"輸出 Token"',
+      },
+      // Cache creation/read: these are API field names, not displayed as standalone UI strings
+      // ── Template literal messages (use regex for variable resilience) ──
+      {
+        search: '`You cannot use --strict-mcp-config when an enterprise MCP config is present`',
+        replace: '`有企業 MCP 設定時不能使用 --strict-mcp-config`',
+      },
+      {
+        search: '`You cannot dynamically configure MCP servers when an enterprise MCP config is present`',
+        replace: '`有企業 MCP 設定時不能動態配置 MCP 伺服器`',
+      },
+      // ── iTerm2/Terminal.app restoration messages ──
+      // ── "Browser didn't open" messages ──
+      {
+        search: "Browser didn't open automatically.",
+        replace: '瀏覽器未自動開啟。',
+      },
+      {
+        search: "Browser didn't open? Use the url below to sign in",
+        replace: '瀏覽器沒開啟？用下面的網址登入',
+      },
+      {
+        search: 'Detected an interrupted iTerm2 setup. Your original settings have been restored',
+        replace: '偵測到中斷的 iTerm2 設定。你的原始設定已還原',
+      },
+      {
+        search: 'Detected an interrupted Terminal.app setup. Your original settings have been restored',
+        replace: '偵測到中斷的 Terminal.app 設定。你的原始設定已還原',
+      },
+      // ── System-reminder template strings (shown in conversation context) ──
+      {
+        search: 'The following skills are available for use with the Skill tool:',
+        replace: '以下技能可透過 Skill 工具使用：',
+      },
+      {
+        search: 'The following deferred tools are now available via ToolSearch:',
+        replace: '以下延遲工具現可透過 ToolSearch 使用：',
+      },
+      {
+        search: '# MCP Server Instructions',
+        replace: '# MCP 伺服器指令',
+      },
+      {
+        search: 'The following MCP servers have provided instructions for how to use their tools and resources:',
+        replace: '以下 MCP 伺服器提供了工具和資源的使用說明：',
+      },
+      {
+        search: 'Make sure that you NEVER mention this reminder to the user',
+        replace: '確保你絕不向用戶提及此提醒',
+      },
+      // ── Agent status messages ──
+      {
+        search: '`Agent "\\$\\{(\\w+)\\}" was stopped`',
+        replace: '`代理「$${$1}」已停止`',
+        regex: true,
+      },
+      // ── Task notification wrapper ──
+      {
+        search: '"completed in background"',
+        replace: '"在背景完成"',
+      },
     ];
   }
 
@@ -1336,6 +1686,25 @@ export async function applyPatch(
   const postPatchApplied = applyPostPatch(source, locale);
   source = postPatchApplied.source;
   applied += postPatchApplied.count;
+
+  // Step 5c: Inject language directive into system prompt assembler
+  // H5(q) is the identity function that passes system prompt arrays to the API.
+  // By modifying it to append a language instruction, ALL 20+ system prompt
+  // call sites automatically include the directive — no per-site patching needed.
+  const langDirective = getLanguageDirective(locale);
+  if (langDirective) {
+    // Match: function H5(q){return q}
+    // Replace: function H5(q){return[...q,"<directive>"]}
+    // Use regex for resilience to minified function name changes
+    const h5Pattern = /function (\w+)\((\w+)\)\{return \2\}(var \w+=\d+;async function)/;
+    const h5Match = source.match(h5Pattern);
+    if (h5Match) {
+      const [fullMatch, fnName, paramName, afterContext] = h5Match;
+      const injection = `function ${fnName}(${paramName}){return[...${paramName},${JSON.stringify(langDirective)}]}${afterContext}`;
+      source = source.replace(fullMatch, injection);
+      applied++;
+    }
+  }
 
   // Step 6: Write patched file
   await fs.writeFile(cliPath, source, 'utf-8');

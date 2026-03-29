@@ -9,41 +9,65 @@ const WRAPPER_DIR = path.join(os.homedir(), '.local', 'bin');
 const WRAPPER_PATH = path.join(WRAPPER_DIR, 'claude');
 
 function getWrapperScript(): string {
-  return `#!/usr/bin/env bash
-# cc-i18n wrapper — auto re-patches Claude Code after updates
+  return `#!/bin/bash
+# cc-i18n auto-repatch wrapper v2
 # Installed by: cc-i18n install-wrapper
 # Safe to remove: rm ~/.local/bin/claude
 
-set -euo pipefail
+STATE_FILE="$HOME/.cc-i18n/state.json"
 
-# Find the real claude binary (skip this wrapper)
-find_real_claude() {
-  local self
-  self="$(realpath "\${BASH_SOURCE[0]}" 2>/dev/null || readlink -f "\${BASH_SOURCE[0]}")"
+# 找真正的 claude（跳過自己）
+SELF="$(realpath "$0" 2>/dev/null || readlink -f "$0")"
+REAL_CLAUDE=""
+while IFS= read -r p; do
+  RESOLVED="$(realpath "$p" 2>/dev/null || readlink -f "$p" 2>/dev/null || echo "$p")"
+  if [ "$RESOLVED" != "$SELF" ]; then
+    REAL_CLAUDE="$p"
+    break
+  fi
+done < <(which -a claude 2>/dev/null)
 
-  # Search PATH, skipping our wrapper
-  IFS=':' read -ra dirs <<< "$PATH"
-  for dir in "\${dirs[@]}"; do
-    local candidate="$dir/claude"
-    if [[ -x "$candidate" ]] && [[ "$(realpath "$candidate" 2>/dev/null || readlink -f "$candidate")" != "$self" ]]; then
-      echo "$candidate"
-      return 0
-    fi
-  done
-  return 1
-}
-
-REAL_CLAUDE="$(find_real_claude)" || {
-  echo "cc-i18n wrapper: cannot find real claude binary" >&2
+if [ -z "$REAL_CLAUDE" ]; then
+  echo "❌ cc-i18n wrapper: 找不到 claude 本體" >&2
   exit 1
-}
-
-# Auto re-patch check (silent, non-blocking)
-if command -v cc-i18n &>/dev/null; then
-  cc-i18n check-update --quiet 2>/dev/null || true
 fi
 
-# Pass through to real claude
+# state.json 不存在 → 直接啟動
+if [ ! -f "$STATE_FILE" ]; then
+  exec "$REAL_CLAUDE" "$@"
+fi
+
+# 讀欄位（locale, cliMd5, cliPath）
+LANG_CODE=$(python3 -c "import json; print(json.load(open('$STATE_FILE')).get('locale',''))" 2>/dev/null || echo "")
+SAVED_MD5=$(python3 -c "import json; print(json.load(open('$STATE_FILE')).get('cliMd5',''))" 2>/dev/null || echo "")
+CLI_PATH=$(python3 -c "import json; print(json.load(open('$STATE_FILE')).get('cliPath',''))" 2>/dev/null || echo "")
+
+# 缺資料 → 跳過
+if [ -z "$LANG_CODE" ] || [ -z "$CLI_PATH" ] || [ -z "$SAVED_MD5" ]; then
+  exec "$REAL_CLAUDE" "$@"
+fi
+
+[ ! -f "$CLI_PATH" ] && exec "$REAL_CLAUDE" "$@"
+
+# 比對 MD5
+CURRENT_MD5=$(md5 -q "$CLI_PATH" 2>/dev/null || md5sum "$CLI_PATH" 2>/dev/null | cut -d' ' -f1 || echo "")
+
+if [ "$CURRENT_MD5" = "$SAVED_MD5" ]; then
+  exec "$REAL_CLAUDE" "$@"
+fi
+
+# 不一致 → 自動 repatch
+echo "🔄 CC 已更新，正在重新套用翻譯..." >&2
+if command -v cc-i18n &>/dev/null; then
+  if CC_I18N_AUTO=1 timeout 30 cc-i18n patch --lang "$LANG_CODE" >&2 2>&1; then
+    echo "✅ 翻譯已恢復" >&2
+  else
+    echo "⚠️ 自動修復失敗，啟動英文版。稍後手動跑：cc-i18n patch --lang $LANG_CODE" >&2
+  fi
+else
+  echo "⚠️ cc-i18n 未安裝，跳過修復" >&2
+fi
+
 exec "$REAL_CLAUDE" "$@"
 `;
 }
