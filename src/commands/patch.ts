@@ -24,16 +24,16 @@ const REPO_URL = `https://github.com/${REPO}`;
 async function askStar(): Promise<void> {
   console.log();
   console.log(chalk.cyan('  ─────────────────────────────────────────'));
-  console.log(chalk.cyan.bold('  🙏 感謝使用 cc-i18n！這是免費開源專案'));
+  console.log(chalk.cyan.bold('  🙏 感谢使用 cc-i18n！这是免费开源项目'));
   console.log(chalk.cyan('  ─────────────────────────────────────────'));
   console.log();
 
   try {
     const answer = await select({
-      message: '覺得好用嗎？給個 ⭐ 讓更多人看到！',
+      message: '觉得好用吗？给个 ⭐ 让更多人看到！',
       choices: [
-        { name: '⭐ 好，點星星支持！', value: 'star' },
-        { name: '🙂 下次再說', value: 'skip' },
+        { name: '⭐ 好，点星星支持！', value: 'star' },
+        { name: '🙂 下次再说', value: 'skip' },
       ],
       default: 'star',
     });
@@ -53,10 +53,10 @@ async function askStar(): Promise<void> {
       }
 
       if (starred) {
-        console.log(chalk.green.bold('\n  ⭐ 已幫你點了星星，感謝支持！'));
+        console.log(chalk.green.bold('\n  ⭐ 已帮你点了星星，感谢支持！'));
       } else {
         // Open browser as fallback
-        console.log(chalk.dim('\n  正在打開 GitHub 頁面，請點右上角的 ⭐ Star 按鈕...'));
+        console.log(chalk.dim('\n  正在打开 GitHub 页面，请点右上角的 ⭐ Star 按钮...'));
         try {
           const cmd = process.platform === 'darwin'
             ? `open "${REPO_URL}"`
@@ -65,7 +65,7 @@ async function askStar(): Promise<void> {
               : `xdg-open "${REPO_URL}"`;
           execSync(cmd, { stdio: 'ignore', timeout: 3000 });
         } catch {
-          console.log(chalk.dim(`  或手動前往：${REPO_URL}`));
+          console.log(chalk.dim(`  或手动前往：${REPO_URL}`));
         }
       }
     }
