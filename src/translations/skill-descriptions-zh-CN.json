@@ -1,6 +1,5 @@
 {
   "_comment": "Skill/command description translations for zh-CN. Key = exact English description, Value = Chinese translation.",
-
   "superpowers": {
     "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.": "任何创造性工作前必须使用 —— 建功能、建组件、加功能、改行为。先探索意图、需求和设计再动手。",
     "Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies": "当有 2 个以上独立任务、不需要共享状态或顺序依赖时使用",
@@ -17,7 +16,6 @@
     "Use when you have a spec or requirements for a multi-step task, before touching code": "有规格或需求的多步骤任务，动手写代码前先用这个规划",
     "Use when creating new skills, editing existing skills, or verifying skills work before deployment": "创建新技能、编辑现有技能、或部署前验证技能时使用"
   },
-
   "gsd": {
     "Add an idea to the backlog parking lot (999.x numbering)": "将想法加入待办停车场（999.x 编号）",
     "Add phase to end of current milestone in roadmap": "在路线图当前里程碑末尾加入阶段",
@@ -77,26 +75,49 @@
     "Validate built features through conversational UAT": "通过对话式用户验收测试验证已建功能",
     "Zero-friction idea capture. Append, list, or promote notes to todos.": "零摩擦捕捉灵感。追加、列出或将笔记提升为待办。"
   },
-
   "user_skills": {
     "Wu Browser": "悟浏览器",
     "AI Browser Skill": "AI 浏览器技能",
     "看懂專案結構再動手。Use when starting a new project, new feature, or when user says \"入神\" / \"看結構\" / \"庖丁解牛\". Also auto-trigger when the task involves building a new application, UI, server, or any user-facing deliverable.": "看懂项目结构再动手。新项目、新功能时使用，或用户说「入神」「看结构」「庖丁解牛」时触发。涉及建应用、UI、服务器或用户端交付物时自动触发。"
   },
-
   "deprecated_superpowers": {
     "Deprecated - use the superpowers:brainstorming skill instead": "已弃用 —— 请改用 superpowers:brainstorming 技能",
     "Deprecated - use the superpowers:writing-plans skill instead": "已弃用 —— 请改用 superpowers:writing-plans 技能",
     "Deprecated - use the superpowers:executing-plans skill instead": "已弃用 —— 请改用 superpowers:executing-plans 技能"
   },
-
   "telegram": {
     "Manage Telegram channel access — approve pairings, edit allowlists, set DM/group policy. Use when the user asks to pair, approve someone, check who's allowed, or change policy for the Telegram channel.": "管理 Telegram 频道访问 —— 批准配对、编辑允许列表、设置私信/群组策略。",
     "Set up the Telegram channel — save the bot token and review access policy. Use when the user pastes a Telegram bot token, asks to configure Telegram, asks \"how do I set this up\" or \"who can reach me,\" or wants to check channel status.": "设置 Telegram 频道 —— 保存机器人 Token 并检查访问策略。"
   },
-
   "other_commands": {
     "Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so m…": "通过 settings.json 配置 Claude Code。自动行为需要在 settings.json 中配置 hooks。",
-    "Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".": "自定义键盘快捷键、重新绑定按键、新增组合键、或修改快捷键设置时使用。"
+    "Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".": "自定义键盘快捷键、重新绑定按键、新增组合键、或修改快捷键设置时使用。",
+    "Run a Codex review that challenges the implementation approach and design choices": "运行一次 Codex 审查，质疑实现方案和设计选择",
+    "Cancel an active background Codex job in this repository": "取消此仓库中正在后台运行的 Codex 任务",
+    "Delegate investigation, an explicit fix request, or follow-up rescue work to the Codex rescue subagent": "将调查、明确的修复请求或后续救援工作委托给 Codex rescue 子代理",
+    "Show the stored final output for a finished Codex job in this repository": "显示此仓库中已完成 Codex 任务保存的最终输出",
+    "Run a Codex code review against local git state": "基于本地 git 状态运行 Codex 代码审查",
+    "Check whether the local Codex CLI is ready and optionally toggle the stop-time review gate": "检查本地 Codex CLI 是否就绪，并可选择切换停止时审查门禁",
+    "Show active and recent Codex jobs for this repository, including review-gate status": "显示此仓库中正在运行和最近的 Codex 任务，包括审查门禁状态",
+    "Create and setup a new Claude Agent SDK application": "创建并设置新的 Claude Agent SDK 应用",
+    "Update CLAUDE.md with learnings from this session": "用本次会话中的经验更新 CLAUDE.md",
+    "Full discovery & portfolio analysis of a legacy system — inventory, complexity, debt, effort estimation": "对遗留系统进行完整发现和资产组合分析 —— 清单、复杂度、债务和工作量估算",
+    "Generate a phased Modernization Brief — the approved plan that transformation agents will execute against": "生成分阶段的现代化改造简报 —— 转换代理将执行的已批准计划",
+    "Mine business logic from legacy code into testable, human-readable rule specifications": "从遗留代码中挖掘业务逻辑，整理为可测试、可读的规则规格",
+    "Security vulnerability scan + remediation — OWASP, CVE, secrets, injection": "安全漏洞扫描与修复 —— OWASP、CVE、密钥泄露、注入问题",
+    "Dependency & topology mapping — call graphs, data lineage, batch flows, rendered as navigable diagrams": "依赖与拓扑映射 —— 调用图、数据血缘、批处理流程，并渲染为可导航图表",
+    "Multi-agent greenfield rebuild — extract specs from legacy, design AI-native, scaffold & validate with HITL": "多代理绿地重建 —— 从遗留系统提取规格，设计 AI 原生方案，并通过人机协作搭建和验证",
+    "Transform one legacy module to the target stack — idiomatic rewrite with behavior-equivalence tests": "将一个遗留模块转换到目标技术栈 —— 惯用重写并配行为等价测试",
+    "Code review a pull request": "审查一个 Pull Request",
+    "An example slash command that demonstrates command frontmatter options (legacy format)": "演示命令 frontmatter 选项的示例斜杠命令（旧格式）",
+    "Guided feature development with codebase understanding and architecture focus": "带代码库理解和架构关注点的引导式功能开发",
+    "Enable or disable hookify rules interactively": "交互式启用或禁用 hookify 规则",
+    "Get help with the hookify plugin": "获取 hookify 插件帮助",
+    "Create hooks to prevent unwanted behaviors from conversation analysis or explicit instructions": "根据对话分析或明确指令创建 hooks，防止不想要的行为",
+    "List all configured hookify rules": "列出所有已配置的 hookify 规则",
+    "Guided end-to-end plugin creation workflow with component design, implementation, and validation": "端到端插件创建引导流程，包含组件设计、实现和验证",
+    "Comprehensive PR review using specialized agents": "使用专门代理进行全面 PR 审查",
+    "Cancel active Ralph Loop": "取消正在运行的 Ralph Loop",
+    "Start Ralph Loop in current session": "在当前会话中启动 Ralph Loop"
   }
 }

@@ -53,15 +53,13 @@ async function patchSkillFile(
   const content = await fs.readFile(filePath, 'utf-8');
 
   // Match frontmatter description field (supports quoted and unquoted, single/multi-line)
-  const descMatch = content.match(
-    /^(---\n[\s\S]*?)(description:\s*)(["']?)([\s\S]*?)\3(\n(?:  .*\n)*)?(?=\w+:|---)/m,
-  );
+  const descMatch = content.match(/^---\r?\n[\s\S]*?\r?\n---/m);
 
   if (!descMatch) return false;
 
   // Extract description text — handle multiline YAML (>, |, or continuation lines)
   let currentDesc = '';
-  const lines = content.split('\n');
+  const lines = content.split(/\r?\n/);
   let inDesc = false;
   let descLineStart = -1;
   let descLineEnd = -1;
@@ -117,6 +115,31 @@ async function patchSkillFile(
 
   await fs.writeFile(filePath, newLines.join('\n'), 'utf-8');
   return true;
+}
+
+async function collectMarkdownFiles(dir: string): Promise<string[]> {
+  if (!(await fs.pathExists(dir))) return [];
+
+  const entries = await fs.readdir(dir, { withFileTypes: true });
+  const files: string[] = [];
+
+  for (const entry of entries) {
+    const entryPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...await collectMarkdownFiles(entryPath));
+    } else if (entry.isFile() && entry.name.endsWith('.md')) {
+      files.push(entryPath);
+    }
+  }
+
+  return files;
+}
+
+function isPluginDescriptionFile(filePath: string): boolean {
+  const normalized = filePath.replaceAll(path.sep, '/');
+  return /\/commands\/[^/]+\.md$/.test(normalized)
+    || /\/agents\/[^/]+\.md$/.test(normalized)
+    || /\/skills\/[^/]+\/SKILL\.md$/.test(normalized);
 }
 
 /**
@@ -256,6 +279,10 @@ async function findSkillFiles(): Promise<{
     }
   }
 
+  const pluginsDir = path.join(claudeDir, 'plugins');
+  const pluginFiles = await collectMarkdownFiles(pluginsDir);
+  result.otherCommands.push(...pluginFiles.filter(isPluginDescriptionFile));
+
   return result;
 }
 
@@ -280,12 +307,12 @@ export async function patchSkillDescriptions(locale: string): Promise<SkillPatch
     Object.assign(allTranslations, val);
   }
 
-  const allFiles = [
+  const allFiles = [...new Set([
     ...files.superpowers,
     ...files.gsd,
     ...files.userSkills,
     ...files.otherCommands,
-  ];
+  ])];
 
   for (const filePath of allFiles) {
     try {
