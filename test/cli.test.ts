@@ -1,14 +1,22 @@
 import { describe, it, expect } from 'vitest';
 import { execSync } from 'node:child_process';
+import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 
 const CLI = path.join(__dirname, '..', 'dist', 'cli.js');
+const TEST_HOME = fs.mkdtempSync(path.join(os.tmpdir(), 'cc-i18n-cli-'));
 
 function run(args: string): string {
   return execSync(`node ${CLI} ${args}`, {
     encoding: 'utf-8',
     timeout: 30000,
     cwd: path.join(__dirname, '..'),
+    env: {
+      ...process.env,
+      HOME: TEST_HOME,
+      USERPROFILE: TEST_HOME,
+    },
   }).trim();
 }
 

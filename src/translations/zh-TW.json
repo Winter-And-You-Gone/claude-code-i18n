@@ -243,7 +243,13 @@
     "mcp_server_disconnected": "MCP 伺服器已斷線",
     "loading_general": "載入中",
     "saving_general": "儲存中",
-    "cancelling": "取消中"
+    "cancelling": "取消中",
+    "worked_for": "用時 ",
+    "teammates_running": "隊友執行中",
+    "remote_agent_launched": "🚀 遠端代理已啟動",
+    "remote_agent_launched_ccr": "🚀 已在 CCR 中啟動遠端代理。",
+    "compact_summary": "✻ 壓縮摘要",
+    "update_available": "有可用更新"
   },
   "prompts": {
     "press_enter_continue": "按 Enter 繼續",
@@ -289,7 +295,21 @@
     "ctrl_s_to_copy": " · ctrl+s 複製",
     "press_enter_retry_or_cancel": "按 Enter 重試，或按其他鍵取消",
     "press_any_key_api_selection": "按任意鍵返回 API 金鑰選擇",
-    "press_enter_continue_general": "按 Enter 繼續"
+    "press_enter_continue_general": "按 Enter 繼續",
+    "shortcuts_hint": "? 快捷鍵",
+    "auto_accept_edits_action": "自動接受修改",
+    "paste_images_action": "貼上圖片",
+    "switch_model_action": "切換模型",
+    "shift_tab_cycle_permissions": "按 shift+tab 循環切換權限模式。每種模式會改變 Claude 在執行前詢問你的頻率：",
+    "drag_drop_images_tip": "💡 你可以把圖片檔案直接拖放到終端機裡",
+    "paste_images_control_v_tip": "使用 control+v（不是 cmd+v！）將圖片貼到 Claude Code",
+    "double_tap_esc_rewind_tip": "↩ 雙擊 esc 可回退到之前的對話節點",
+    "agents_tip": "🤖 使用 /agents 最佳化特定任務，例如軟體架構師、程式碼撰寫者、程式碼審查者",
+    "stats_footer_stats": "↓ 統計",
+    "stats_footer_tabs": "↑ 分頁",
+    "stats_cycle_dates": "r 切換日期",
+    "stats_copy": "ctrl+s 複製",
+    "search_history": "搜尋歷史"
   },
   "tools": {
     "view_tools": "🧰 查看工具",
@@ -311,7 +331,15 @@
     "file_denied_settings": "⛔ 檔案在你的權限設定禁止的目錄中。",
     "sandbox_not_enabled": "沙箱未啟用。啟用後才能設定覆寫規則。",
     "error_prefix": "錯誤：",
-    "oauth_error": "OAuth 錯誤："
+    "oauth_error": "OAuth 錯誤：",
+    "agent_teams_unavailable": "你的方案暫不支援 Agent Teams。",
+    "powershell_unavailable": "此系統上無法使用 PowerShell。",
+    "no_task_found_with_id": "找不到該 ID 的任務：",
+    "failed_load_conversations": "載入對話失敗",
+    "error_loading_cc_sessions": "載入 Claude Code 會話時發生錯誤",
+    "no_matches_found": "找不到符合項目",
+    "authentication_invalid_code": "認證失敗：授權碼無效",
+    "invalid_token_signature": "權杖簽章無效："
   },
   "actions": {
     "try_again": "🔄 再試一次",
@@ -442,7 +470,10 @@
     "cache_creation": "快取建立",
     "cache_read": "快取讀取",
     "remote_control_not_enabled": "遠端控制未啟用",
-    "no_mcp_servers_configured": "未配置 MCP 伺服器"
+    "no_mcp_servers_configured": "未配置 MCP 伺服器",
+    "no_conversations_resume": "沒有可恢復的會話",
+    "press_ctrl_r_retry": "按 Ctrl+R 重試",
+    "no_cc_sessions_found": "找不到 Claude Code 會話"
   },
   "billing": {
     "pro_max_team": "Pro、Max、Team 或 Enterprise",

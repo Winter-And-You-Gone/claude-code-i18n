@@ -1537,6 +1537,93 @@ function getPostPatchRules(locale: string): PostPatchRule[] {
         search: '?"SandboxedBash":"Bash"',
         replace: '?"SandboxedBash":"终端指令"',
       },
+      // ── High-visibility TUI status and footer strings ──
+      {
+        search: '\\$\\{(\\w+)\\} Worked for \\$\\{([^}]+)\\}',
+        replace: '${$1} 用时 ${$2}',
+        regex: true,
+      },
+      {
+        search: '\\$\\{(\\w+)\\} Idle',
+        replace: '${$1} 空闲中',
+        regex: true,
+      },
+      {
+        search: '" · teammates running"',
+        replace: '" · 队友运行中"',
+      },
+      {
+        search: '`Hit (\\$\\{[^}]+\\}) to cycle between default mode, auto-accept edit mode, and plan mode`',
+        replace: '`按 $1 在默认模式、自动接受修改模式和规划模式之间切换`',
+        regex: true,
+      },
+      {
+        search: '`No image found in clipboard\\. Use (\\$\\{[^}]+\\}) to paste images\\.`',
+        replace: '`剪贴板中没有找到图片。使用 $1 粘贴图片。`',
+        regex: true,
+      },
+      {
+        search: '`✻ Conversation compacted \\((\\$\\{[^}]+\\}) for history\\)`',
+        replace: '`✻ 对话已压缩（$1 查看历史）`',
+        regex: true,
+      },
+      {
+        search: '"sync cycle modes for all"',
+        replace: '"同步切换所有人的模式"',
+      },
+      {
+        search: '"h hide/show · H hide/show all"',
+        replace: '"h 隐藏/显示 · H 全部隐藏/显示"',
+      },
+      {
+        search: '"Esc close"',
+        replace: '"Esc 关闭"',
+      },
+      {
+        search: '"cycle mode"',
+        replace: '"切换模式"',
+      },
+      {
+        search: '"Type to filter · Enter/↓ select · ↑ tabs · Esc clear"',
+        replace: '"输入筛选 · Enter/↓ 选择 · ↑ 标签页 · Esc 清除"',
+      },
+      {
+        search: '"↑↓ navigate · Enter select · Type to search · ←/→ switch · Esc cancel"',
+        replace: '"↑↓ 导航 · Enter 选择 · 输入搜索 · ←/→ 切换 · Esc 取消"',
+      },
+      {
+        search: '"←/→ tab switch · ↓ return · Esc cancel"',
+        replace: '"←/→ 切换标签页 · ↓ 返回 · Esc 取消"',
+      },
+      {
+        search: '"Enter approve · r retry · ↑↓ navigate · ←/→ switch · Esc cancel"',
+        replace: '"Enter 批准 · r 重试 · ↑↓ 导航 · ←/→ 切换 · Esc 取消"',
+      },
+      {
+        search: '`(\\$\\{[^}]+\\}) switch tabs · (\\$\\{[^}]+\\}) navigate · Enter select · Esc close`',
+        replace: '`$1 切换标签页 · $2 导航 · Enter 选择 · Esc 关闭`',
+        regex: true,
+      },
+      {
+        search: 'No task found with ID: (\\$\\{[^}]+\\})',
+        replace: '未找到该 ID 的任务：$1',
+        regex: true,
+      },
+      {
+        search: '`Monitor started \\(task (\\$\\{[^}]+\\})\\)\\. Output file: (\\$\\{[^}]+\\})`',
+        replace: '`监控已启动（任务 $1）。输出文件：$2`',
+        regex: true,
+      },
+      {
+        search: '`Installed (\\$\\{[^}]+\\}) terminal Shift\\+Enter key binding`',
+        replace: '`已安装 $1 终端 Shift+Enter 快捷键绑定`',
+        regex: true,
+      },
+      {
+        search: '`Failed to install (\\$\\{[^}]+\\}) terminal Shift\\+Enter key binding`',
+        replace: '`安装 $1 终端 Shift+Enter 快捷键绑定失败`',
+        regex: true,
+      },
       // ── Activity description map ──
       {
         search: '{Read:"Reading",Write:"Writing",Edit:"Editing",MultiEdit:"Editing",Bash:"Running",Glob:"Searching",Grep:"Searching",WebFetch:"Fetching",WebSearch:"Searching",Task:"Running task",FileReadTool:"Reading",FileWriteTool:"Writing",FileEditTool:"Editing",GlobTool:"Searching",GrepTool:"Searching",BashTool:"Running"',

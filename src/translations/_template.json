@@ -240,7 +240,13 @@
     "mcp_server_disconnected": "",
     "loading_general": "",
     "saving_general": "",
-    "cancelling": ""
+    "cancelling": "",
+    "worked_for": "",
+    "teammates_running": "",
+    "remote_agent_launched": "",
+    "remote_agent_launched_ccr": "",
+    "compact_summary": "",
+    "update_available": ""
   },
   "prompts": {
     "press_enter_continue": "",
@@ -286,7 +292,21 @@
     "ctrl_s_to_copy": "",
     "press_enter_retry_or_cancel": "",
     "press_any_key_api_selection": "",
-    "press_enter_continue_general": ""
+    "press_enter_continue_general": "",
+    "shortcuts_hint": "",
+    "auto_accept_edits_action": "",
+    "paste_images_action": "",
+    "switch_model_action": "",
+    "shift_tab_cycle_permissions": "",
+    "drag_drop_images_tip": "",
+    "paste_images_control_v_tip": "",
+    "double_tap_esc_rewind_tip": "",
+    "agents_tip": "",
+    "stats_footer_stats": "",
+    "stats_footer_tabs": "",
+    "stats_cycle_dates": "",
+    "stats_copy": "",
+    "search_history": ""
   },
   "tools": {
     "view_tools": "",
@@ -308,7 +328,15 @@
     "file_denied_settings": "",
     "sandbox_not_enabled": "",
     "error_prefix": "",
-    "oauth_error": ""
+    "oauth_error": "",
+    "agent_teams_unavailable": "",
+    "powershell_unavailable": "",
+    "no_task_found_with_id": "",
+    "failed_load_conversations": "",
+    "error_loading_cc_sessions": "",
+    "no_matches_found": "",
+    "authentication_invalid_code": "",
+    "invalid_token_signature": ""
   },
   "actions": {
     "try_again": "",
@@ -439,7 +467,10 @@
     "cache_creation": "",
     "cache_read": "",
     "remote_control_not_enabled": "",
-    "no_mcp_servers_configured": ""
+    "no_mcp_servers_configured": "",
+    "no_conversations_resume": "",
+    "press_ctrl_r_retry": "",
+    "no_cc_sessions_found": ""
   },
   "billing": {
     "pro_max_team": "",

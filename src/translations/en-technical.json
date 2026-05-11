@@ -243,7 +243,13 @@
     "mcp_server_disconnected": "MCP server disconnected",
     "loading_general": "Loading",
     "saving_general": "Saving",
-    "cancelling": "Cancelling"
+    "cancelling": "Cancelling",
+    "worked_for": "Worked for ",
+    "teammates_running": "teammates running",
+    "remote_agent_launched": "Remote agent launched",
+    "remote_agent_launched_ccr": "Remote agent launched in CCR.",
+    "compact_summary": "Compact summary",
+    "update_available": "Update available"
   },
   "prompts": {
     "press_enter_continue": "Press Enter to continue",
@@ -289,7 +295,21 @@
     "ctrl_s_to_copy": " · ctrl+s to copy",
     "press_enter_retry_or_cancel": "Press Enter to try again, or any other key to cancel",
     "press_any_key_api_selection": "Press any key to return to API key selection",
-    "press_enter_continue_general": "Press Enter to continue"
+    "press_enter_continue_general": "Press Enter to continue",
+    "shortcuts_hint": "? for shortcuts",
+    "auto_accept_edits_action": "auto-accept edits",
+    "paste_images_action": "paste images",
+    "switch_model_action": "switch model",
+    "shift_tab_cycle_permissions": "Press shift+tab to cycle permission modes. Each mode changes how much Claude asks before acting:",
+    "drag_drop_images_tip": "Did you know you can drag and drop image files into your terminal?",
+    "paste_images_control_v_tip": "Paste images into Claude Code using control+v (not cmd+v!)",
+    "double_tap_esc_rewind_tip": "Double-tap esc to rewind the conversation to a previous point in time",
+    "agents_tip": "Use /agents to optimize specific tasks. Eg. Software Architect, Code Writer, Code Reviewer",
+    "stats_footer_stats": "↓ stats",
+    "stats_footer_tabs": "↑ tabs",
+    "stats_cycle_dates": "r to cycle dates",
+    "stats_copy": "ctrl+s to copy",
+    "search_history": "search history"
   },
   "tools": {
     "view_tools": "View tools",
@@ -311,7 +331,15 @@
     "file_denied_settings": "File is in a directory that is denied by your permission settings.",
     "sandbox_not_enabled": "Sandbox is not enabled. Enable sandbox to configure override settings.",
     "error_prefix": "Error:",
-    "oauth_error": "OAuth error:"
+    "oauth_error": "OAuth error:",
+    "agent_teams_unavailable": "Agent Teams is not yet available on your plan.",
+    "powershell_unavailable": "PowerShell is not available on this system.",
+    "no_task_found_with_id": "No task found with ID:",
+    "failed_load_conversations": "Failed to load conversations",
+    "error_loading_cc_sessions": "Error loading Claude Code sessions",
+    "no_matches_found": "No matches found",
+    "authentication_invalid_code": "Authentication failed: Invalid authorization code",
+    "invalid_token_signature": "Invalid token signature:"
   },
   "actions": {
     "try_again": "Try again",
@@ -442,7 +470,10 @@
     "cache_creation": "Cache creation",
     "cache_read": "Cache read",
     "remote_control_not_enabled": "Remote Control is not enabled",
-    "no_mcp_servers_configured": "No MCP servers configured"
+    "no_mcp_servers_configured": "No MCP servers configured",
+    "no_conversations_resume": "No conversations found to resume",
+    "press_ctrl_r_retry": "Press Ctrl+R to retry",
+    "no_cc_sessions_found": "No Claude Code sessions found"
   },
   "billing": {
     "pro_max_team": "Pro, Max, Team, or Enterprise",
