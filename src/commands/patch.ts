@@ -160,8 +160,10 @@ export async function patchCommand(options: PatchOptions): Promise<void> {
     const skillResult = await patchSkillDescriptions(localeKey);
     if (skillResult.patched > 0) {
       spinner.succeed(`Skills: ${skillResult.patched} descriptions translated`);
-    } else {
+    } else if (skillResult.errors.some(error => error.startsWith('No skill translations for locale:'))) {
       spinner.succeed('Skills: no translations for this locale');
+    } else {
+      spinner.succeed('Skills: no matching descriptions to translate');
     }
     if (skillResult.errors.length > 0) {
       console.log(chalk.yellow(`   ⚠ ${skillResult.errors.length} skill patch errors`));

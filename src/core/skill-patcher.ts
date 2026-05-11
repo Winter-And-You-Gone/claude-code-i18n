@@ -1,6 +1,7 @@
 import fs from 'fs-extra';
-import path from 'node:path';
 import os from 'node:os';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 interface SkillTranslations {
   superpowers: Record<string, string>;
@@ -23,7 +24,7 @@ interface SkillPatchResult {
  */
 async function loadSkillTranslations(locale: string): Promise<SkillTranslations | null> {
   const baseLang = locale.replace(/-technical$/, '');
-  const distDir = path.dirname(new URL(import.meta.url).pathname);
+  const distDir = path.dirname(fileURLToPath(import.meta.url));
 
   // Try multiple paths: bundled (dist/translations/) and source (src/translations/)
   const candidates = [
